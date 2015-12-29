@@ -28,5 +28,5 @@ gulp
 ```
 gulp build-demo
 webpack
-open the the index.html from demo
+open index.html from subdir demo
 ```
