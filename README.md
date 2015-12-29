@@ -7,7 +7,7 @@ Based on the original sources from <a href="https://github.com/AitorATuin/puresc
 
 This version is compatible with PSC 0.8.0.0.
 
-The original Grunt mechanics were replaced by Gulp (mostly because of compatibility issues regarding some Grunt plugins).
+The original Grunt mechanics were replaced by Gulp (mostly because of compatibility issues with Grunt plugins).
 
 For quick testing a small Demo App + WebPack-config are available.
 
