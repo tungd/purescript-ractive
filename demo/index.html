@@ -7,6 +7,8 @@
   <script src="http://cdn.ractivejs.org/latest/ractive.min.js"></script>
 
     <script id="template" type="text/ractive">
+    <div class="row app-panel">
+      <div class="col-lg-4">
       <div class="panel panel-default">
          <div class="panel-heading">
             {{uiLibrary}} with {{language}}
@@ -14,10 +16,12 @@
          <div class="panel-body">
             {{message}}
             <div>
-            <img src="{{logoUrl}}">
+            <img on-click="alert('hello')" class="app-logo" src="{{logoUrl}}">
             </div>
          </div>
       </div>
+      </div>
+    </div>
     </script>
 
   <script src="scripts/release/app.min.js"></script>
@@ -30,7 +34,7 @@
 <div id="app"/>
 <script>
 $(function(){
-  DemoApp.ractive.main();
+  window.app = DemoApp.ractive.main();
 });
 </script>
 </body>

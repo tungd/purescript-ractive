@@ -8,16 +8,6 @@ var root              = __dirname + '/';
 var npmRoot           = root + 'node_modules/';
 var nodeScripts       = root + 'node_modules/'
 
-var IS_PROD = process.env.NODE_ENV === "production";
-
-function prodPureScriptExternals() {
-  var moduleNames = fs.readdirSync(path.join(__dirname, "output"));
-  return moduleNames.reduce(function(result, moduleName) {
-    result[moduleName] = "PS[\"" + moduleName + "\"]";
-    return result;
-  }, {});
-}
-
 var config = {
   cache: false,
   entry: {
@@ -29,7 +19,6 @@ var config = {
     sourceMapFilename: '[name].min.js.map',
     library: ['DemoApp','ractive']
   },
-  externals: IS_PROD ? prodPureScriptExternals() : null,
   module: {
 
     loaders: [

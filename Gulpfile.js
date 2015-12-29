@@ -10,15 +10,15 @@ var sources = [
   "bower_components/purescript-*/src/**/*.purs",
 ];
 
+var foreigns = [
+  "src/**/*.js",
+  "bower_components/purescript-*/src/**/*.js"
+];
+
 var demoSources = [
   "demo/scripts/**/*.purs",
   "src/**/*.purs",
   "bower_components/purescript-*/src/**/*.purs",
-];
-
-var foreigns = [
-  "src/**/*.js",
-  "bower_components/purescript-*/src/**/*.js"
 ];
 
 var demoForeigns = [
@@ -39,7 +39,7 @@ gulp.task("bundle", ["make"], function () {
 });
 
 gulp.task("bundle-demo", ["make-demo"], function () {
-  return purescript.pscBundle({ src: "output/DemoApp.WithRactive/**/*.js", output: "demo/scripts/bundle.js" });
+  return purescript.pscBundle({ src: "output/DemoApp.WithRactive/**/*.js", output: "dist/demo/bundle.js" });
 });
 
 gulp.task("docs", function () {
