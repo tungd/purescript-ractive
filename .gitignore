@@ -8,3 +8,6 @@
 /tmp/
 html/js/demo.js
 html/templates/tut*/content.html
+demo/scripts/bundle.js
+/dist/
+/.pulp.cache/
