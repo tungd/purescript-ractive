@@ -11,7 +11,7 @@ The original Grunt mechanics were replaced by Gulp (mostly because of compatibil
 
 For quick testing a small Demo App + WebPack-config are available.
 
-# Future planning
+## Future planning
 
 To implement the <a href="http://docs.ractivejs.org/latest/get-started" target="_blank">Ractive APIs</a> (Event Handling, Parallel DOM, Proxy Events etc.)
 
