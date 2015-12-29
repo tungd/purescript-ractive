@@ -5,7 +5,7 @@ Ractive bindings for PureScript (Work in progress)
 
 Based on the original sources from <a href="https://github.com/AitorATuin/purescript-ractive" target="_blank">AitorATui</a>
 
-This version is compatible to PSC 0.8.0.0.
+This version is compatible with PSC 0.8.0.0.
 
 The original Grunt mechanics were replaced by Grunt.
 
