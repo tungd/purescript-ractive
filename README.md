@@ -30,3 +30,7 @@ gulp build-demo
 webpack
 open index.html from subdir demo
 ```
+
+## License
+
+<a href="https://github.com/brakmic/purescript-ractive/blob/master/LICENSE">MIT</a>
