@@ -11,7 +11,7 @@ The original Grunt mechanics were replaced by Gulp (mostly because of compatibil
 
 For quick testing a small demo app is available.
 
-<img src="http://fs5.directupload.net/images/151229/7fdaafk9.png">
+<img src="http://fs5.directupload.net/images/151229/t2oktwfp.png" width="678" height="772">
 
 ## Future planning
 
