@@ -9,7 +9,9 @@ This version is compatible with PSC 0.8.0.0.
 
 The original Grunt mechanics were replaced by Gulp (mostly because of compatibility issues with Grunt plugins).
 
-For quick testing a small Demo App + WebPack-config are available.
+For quick testing a small demo app is available.
+
+<img src="http://fs5.directupload.net/images/151229/7fdaafk9.png">
 
 ## Future planning
 
