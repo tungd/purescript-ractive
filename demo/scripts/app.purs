@@ -1,6 +1,6 @@
 module DemoApp.WithRactive where
 
-import Control.Monad.Eff         (Eff)
+import Control.Monad.Eff
 import Control.Monad.Eff.Ractive (RactiveM, Ractive, ractive)
 
 
