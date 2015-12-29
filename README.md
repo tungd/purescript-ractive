@@ -1,17 +1,25 @@
 
-# purescript-ractive  
-
-[![Build Status](https://travis-ci.org/AitorATuin/purescript-ractive.svg?branch=master)](https://travis-ci.org/AitorATuin/purescript-ractive)
+# purescript-ractive
 
 Ractive bindings for PureScript (Work in progress)
 
-## Building
+Based on the original sources from <a href="https://github.com/AitorATuin/purescript-ractive" target="_blank">AitorATui</a>
+
+This version is compatible to PSC 0.8.0.0. It uses Gulp instead of Grunt to build the RactiveJS Bindings.
+
+WebPack is used to rebuild the Demo App.
+
+## Building the Bindings
 
 ```
 npm install
 bower update
-grunt
+gulp
 ```
 
-## Demo
-A demo/tutorial can be found [here](http://aitoratuin.github.io/purescript-ractive-tutorial/) and the source for it [here](https://github.com/AitorATuin/purescript-ractive-tutorial)
+## Building the Demo
+
+```
+gulp build-demo
+```
+...then open in your browser the index.html from *demo*-subdir.
