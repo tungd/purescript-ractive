@@ -33,7 +33,7 @@ webpack
 open index.html from subdir demo
 ```
 
-## Bogs / Issues etc.
+## Bugs / Issues etc.
 
 There's a <a href="https://github.com/purescript/purescript/issues/1767" target="_blank">bug</a> in the current PureScript release that leads to generation of invalid identifiers (e.g *fʹ* or *w'*).
 
