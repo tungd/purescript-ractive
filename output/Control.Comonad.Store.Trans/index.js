@@ -25,9 +25,9 @@ var extendStoreT = function (dictExtend) {
         return functorStoreT(dictExtend["__superclass_Prelude.Functor_0"]());
     }, function (f) {
         return function (v) {
-            return StoreT(new Data_Tuple.Tuple(Control_Extend["<<="](dictExtend)(function (w__ALT) {
-                return function (s__ALT) {
-                    return f(StoreT(new Data_Tuple.Tuple(w__ALT, s__ALT)));
+            return StoreT(new Data_Tuple.Tuple(Control_Extend["<<="](dictExtend)(function (w__UNUSED) {
+                return function (s__UNUSED) {
+                    return f(StoreT(new Data_Tuple.Tuple(w__UNUSED, s__UNUSED)));
                 };
             })(v.value0), v.value1));
         };
@@ -48,10 +48,10 @@ var comonadStoreT = function (dictComonad) {
     });
 };
 module.exports = {
-    StoreT: StoreT,
-    runStoreT: runStoreT,
-    functorStoreT: functorStoreT,
-    extendStoreT: extendStoreT,
-    comonadStoreT: comonadStoreT,
+    StoreT: StoreT, 
+    runStoreT: runStoreT, 
+    functorStoreT: functorStoreT, 
+    extendStoreT: extendStoreT, 
+    comonadStoreT: comonadStoreT, 
     comonadTransStoreT: comonadTransStoreT
 };

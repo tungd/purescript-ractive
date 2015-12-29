@@ -11,8 +11,8 @@ var extendFn = function (dictSemigroup) {
     }, function (f) {
         return function (g) {
             return function (w) {
-                return f(function (w__ALT) {
-                    return g(Prelude["<>"](dictSemigroup)(w)(w__ALT));
+                return f(function (w__UNUSED) {
+                    return g(Prelude["<>"](dictSemigroup)(w)(w__UNUSED));
                 });
             };
         };
@@ -53,12 +53,12 @@ var duplicate = function (dictExtend) {
     return extend(dictExtend)(Prelude.id(Prelude.categoryFn));
 };
 module.exports = {
-    Extend: Extend,
-    duplicate: duplicate,
-    "=<=": $eq$less$eq,
-    "=>=": $eq$greater$eq,
-    "=>>": $eq$greater$greater,
-    "<<=": $less$less$eq,
-    extend: extend,
+    Extend: Extend, 
+    duplicate: duplicate, 
+    "=<=": $eq$less$eq, 
+    "=>=": $eq$greater$eq, 
+    "=>>": $eq$greater$greater, 
+    "<<=": $less$less$eq, 
+    extend: extend, 
     extendFn: extendFn
 };

@@ -38,7 +38,7 @@ var unzip = $foreign["uncons'"](function (v) {
 var uncons = $foreign["uncons'"](Prelude["const"](Data_Maybe.Nothing.value))(function (x) {
     return function (xs) {
         return new Data_Maybe.Just({
-            head: x,
+            head: x, 
             tail: xs
         });
     };
@@ -63,7 +63,7 @@ var span = function (p) {
                     continue tco;
                 };
                 return {
-                    init: $foreign.reverse(acc),
+                    init: $foreign.reverse(acc), 
                     rest: xs
                 };
             };
@@ -78,7 +78,7 @@ var takeWhile = function (p) {
 };
 var sortBy = function (comp) {
     return function (xs) {
-        var comp__ALT = function (x) {
+        var comp__UNUSED = function (x) {
             return function (y) {
                 var $44 = comp(x)(y);
                 if ($44 instanceof Prelude.GT) {
@@ -93,7 +93,7 @@ var sortBy = function (comp) {
                 throw new Error("Failed pattern match at Data.Array line 409, column 3 - line 414, column 1: " + [ $44.constructor.name ]);
             };
         };
-        return $foreign.sortImpl(comp__ALT)(xs);
+        return $foreign.sortImpl(comp__UNUSED)(xs);
     };
 };
 var sort = function (dictOrd) {
@@ -223,8 +223,8 @@ var foldM = function (dictMonad) {
                 return Prelude["return"](dictMonad["__superclass_Prelude.Applicative_0"]())(a);
             })(function (b) {
                 return function (bs) {
-                    return Prelude[">>="](dictMonad["__superclass_Prelude.Bind_1"]())(f(a)(b))(function (a__ALT) {
-                        return foldM(dictMonad)(f)(a__ALT)(bs);
+                    return Prelude[">>="](dictMonad["__superclass_Prelude.Bind_1"]())(f(a)(b))(function (a__UNUSED) {
+                        return foldM(dictMonad)(f)(a__UNUSED)(bs);
                     });
                 };
             });
@@ -370,66 +370,66 @@ var alterAt = function (i) {
     };
 };
 module.exports = {
-    foldM: foldM,
-    unzip: unzip,
-    zip: zip,
-    zipWithA: zipWithA,
-    intersectBy: intersectBy,
-    intersect: intersect,
-    "\\\\": $bslash$bslash,
-    deleteBy: deleteBy,
-    "delete": $$delete,
-    unionBy: unionBy,
-    union: union,
-    nubBy: nubBy,
-    nub: nub,
-    groupBy: groupBy,
-    "group'": group$prime,
-    group: group,
-    span: span,
-    dropWhile: dropWhile,
-    takeWhile: takeWhile,
-    take: take,
-    sortBy: sortBy,
-    sort: sort,
-    catMaybes: catMaybes,
-    mapMaybe: mapMaybe,
-    filterM: filterM,
-    concatMap: concatMap,
-    alterAt: alterAt,
-    modifyAt: modifyAt,
-    updateAt: updateAt,
-    deleteAt: deleteAt,
-    insertAt: insertAt,
-    findLastIndex: findLastIndex,
-    findIndex: findIndex,
-    elemLastIndex: elemLastIndex,
-    elemIndex: elemIndex,
-    index: index,
-    "!!": $bang$bang,
-    uncons: uncons,
-    init: init,
-    tail: tail,
-    last: last,
-    head: head,
-    insertBy: insertBy,
-    insert: insert,
-    ":": $colon,
-    "null": $$null,
-    many: many,
-    some: some,
-    replicateM: replicateM,
-    "..": $dot$dot,
-    singleton: singleton,
-    zipWith: $foreign.zipWith,
-    drop: $foreign.drop,
-    slice: $foreign.slice,
-    filter: $foreign.filter,
-    concat: $foreign.concat,
-    reverse: $foreign.reverse,
-    snoc: $foreign.snoc,
-    cons: $foreign.cons,
-    length: $foreign.length,
-    replicate: $foreign.replicate,
+    foldM: foldM, 
+    unzip: unzip, 
+    zip: zip, 
+    zipWithA: zipWithA, 
+    intersectBy: intersectBy, 
+    intersect: intersect, 
+    "\\\\": $bslash$bslash, 
+    deleteBy: deleteBy, 
+    "delete": $$delete, 
+    unionBy: unionBy, 
+    union: union, 
+    nubBy: nubBy, 
+    nub: nub, 
+    groupBy: groupBy, 
+    "group'": group$prime, 
+    group: group, 
+    span: span, 
+    dropWhile: dropWhile, 
+    takeWhile: takeWhile, 
+    take: take, 
+    sortBy: sortBy, 
+    sort: sort, 
+    catMaybes: catMaybes, 
+    mapMaybe: mapMaybe, 
+    filterM: filterM, 
+    concatMap: concatMap, 
+    alterAt: alterAt, 
+    modifyAt: modifyAt, 
+    updateAt: updateAt, 
+    deleteAt: deleteAt, 
+    insertAt: insertAt, 
+    findLastIndex: findLastIndex, 
+    findIndex: findIndex, 
+    elemLastIndex: elemLastIndex, 
+    elemIndex: elemIndex, 
+    index: index, 
+    "!!": $bang$bang, 
+    uncons: uncons, 
+    init: init, 
+    tail: tail, 
+    last: last, 
+    head: head, 
+    insertBy: insertBy, 
+    insert: insert, 
+    ":": $colon, 
+    "null": $$null, 
+    many: many, 
+    some: some, 
+    replicateM: replicateM, 
+    "..": $dot$dot, 
+    singleton: singleton, 
+    zipWith: $foreign.zipWith, 
+    drop: $foreign.drop, 
+    slice: $foreign.slice, 
+    filter: $foreign.filter, 
+    concat: $foreign.concat, 
+    reverse: $foreign.reverse, 
+    snoc: $foreign.snoc, 
+    cons: $foreign.cons, 
+    length: $foreign.length, 
+    replicate: $foreign.replicate, 
     range: $foreign.range
 };

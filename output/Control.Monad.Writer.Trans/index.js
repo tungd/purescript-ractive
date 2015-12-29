@@ -153,7 +153,7 @@ var monadRecWriterT = function (dictMonoid) {
             return monadWriterT(dictMonoid)(dictMonadRec["__superclass_Prelude.Monad_0"]());
         }, function (f) {
             return function (a) {
-                var f__ALT = function (v) {
+                var f__UNUSED = function (v) {
                     return Prelude.bind((dictMonadRec["__superclass_Prelude.Monad_0"]())["__superclass_Prelude.Bind_1"]())(runWriterT(f(v.value0)))(function (v1) {
                         return Prelude["return"]((dictMonadRec["__superclass_Prelude.Monad_0"]())["__superclass_Prelude.Applicative_0"]())((function () {
                             if (v1.value0 instanceof Data_Either.Left) {
@@ -166,7 +166,7 @@ var monadRecWriterT = function (dictMonoid) {
                         })());
                     });
                 };
-                return WriterT(Control_Monad_Rec_Class.tailRecM(dictMonadRec)(f__ALT)(new Data_Tuple.Tuple(a, Data_Monoid.mempty(dictMonoid))));
+                return WriterT(Control_Monad_Rec_Class.tailRecM(dictMonadRec)(f__UNUSED)(new Data_Tuple.Tuple(a, Data_Monoid.mempty(dictMonoid))));
             };
         });
     };
@@ -230,25 +230,25 @@ var monadPlusWriterT = function (dictMonoid) {
     };
 };
 module.exports = {
-    WriterT: WriterT,
-    mapWriterT: mapWriterT,
-    execWriterT: execWriterT,
-    runWriterT: runWriterT,
-    functorWriterT: functorWriterT,
-    applyWriterT: applyWriterT,
-    applicativeWriterT: applicativeWriterT,
-    altWriterT: altWriterT,
-    plusWriterT: plusWriterT,
-    alternativeWriterT: alternativeWriterT,
-    bindWriterT: bindWriterT,
-    monadWriterT: monadWriterT,
-    monadRecWriterT: monadRecWriterT,
-    monadPlusWriterT: monadPlusWriterT,
-    monadTransWriterT: monadTransWriterT,
-    monadEffWriter: monadEffWriter,
-    monadContWriterT: monadContWriterT,
-    monadErrorWriterT: monadErrorWriterT,
-    monadReaderWriterT: monadReaderWriterT,
-    monadStateWriterT: monadStateWriterT,
+    WriterT: WriterT, 
+    mapWriterT: mapWriterT, 
+    execWriterT: execWriterT, 
+    runWriterT: runWriterT, 
+    functorWriterT: functorWriterT, 
+    applyWriterT: applyWriterT, 
+    applicativeWriterT: applicativeWriterT, 
+    altWriterT: altWriterT, 
+    plusWriterT: plusWriterT, 
+    alternativeWriterT: alternativeWriterT, 
+    bindWriterT: bindWriterT, 
+    monadWriterT: monadWriterT, 
+    monadRecWriterT: monadRecWriterT, 
+    monadPlusWriterT: monadPlusWriterT, 
+    monadTransWriterT: monadTransWriterT, 
+    monadEffWriter: monadEffWriter, 
+    monadContWriterT: monadContWriterT, 
+    monadErrorWriterT: monadErrorWriterT, 
+    monadReaderWriterT: monadReaderWriterT, 
+    monadStateWriterT: monadStateWriterT, 
     monadWriterWriterT: monadWriterWriterT
 };

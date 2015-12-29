@@ -35,23 +35,23 @@ var ifM = function (dictBind) {
     return function (cond) {
         return function (t) {
             return function (f) {
-                return Prelude[">>="](dictBind)(cond)(function (cond__ALT) {
-                    if (cond__ALT) {
+                return Prelude[">>="](dictBind)(cond)(function (cond__UNUSED) {
+                    if (cond__UNUSED) {
                         return t;
                     };
-                    if (!cond__ALT) {
+                    if (!cond__UNUSED) {
                         return f;
                     };
-                    throw new Error("Failed pattern match at Control.Bind line 44, column 1 - line 45, column 1: " + [ cond__ALT.constructor.name ]);
+                    throw new Error("Failed pattern match at Control.Bind line 44, column 1 - line 45, column 1: " + [ cond__UNUSED.constructor.name ]);
                 });
             };
         };
     };
 };
 module.exports = {
-    ifM: ifM,
-    join: join,
-    "<=<": $less$eq$less,
-    ">=>": $greater$eq$greater,
+    ifM: ifM, 
+    join: join, 
+    "<=<": $less$eq$less, 
+    ">=>": $greater$eq$greater, 
     "=<<": $eq$less$less
 };

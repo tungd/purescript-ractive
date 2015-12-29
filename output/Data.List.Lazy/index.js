@@ -76,7 +76,7 @@ var uncons = function (xs) {
     };
     if ($71 instanceof Cons) {
         return new Data_Maybe.Just({
-            head: $71.value0,
+            head: $71.value0, 
             tail: $71.value1
         });
     };
@@ -664,28 +664,28 @@ var range = function (start) {
         if (Prelude.otherwise) {
             var go = function (__copy_s) {
                 return function (__copy_e) {
-                    return function (__copy_step__ALT) {
+                    return function (__copy_step__UNUSED) {
                         return function (__copy_rest) {
                             var s = __copy_s;
                             var e = __copy_e;
-                            var step__ALT = __copy_step__ALT;
+                            var step__UNUSED = __copy_step__UNUSED;
                             var rest = __copy_rest;
                             tco: while (true) {
                                 if (s === e) {
                                     return cons(s)(rest);
                                 };
                                 if (Prelude.otherwise) {
-                                    var __tco_s = s + step__ALT | 0;
+                                    var __tco_s = s + step__UNUSED | 0;
                                     var __tco_e = e;
-                                    var __tco_step__ALT = step__ALT;
+                                    var __tco_step__UNUSED = step__UNUSED;
                                     var __tco_rest = cons(s)(rest);
                                     s = __tco_s;
                                     e = __tco_e;
-                                    step__ALT = __tco_step__ALT;
+                                    step__UNUSED = __tco_step__UNUSED;
                                     rest = __tco_rest;
                                     continue tco;
                                 };
-                                throw new Error("Failed pattern match at Data.List.Lazy line 162, column 1 - line 163, column 1: " + [ s.constructor.name, e.constructor.name, step__ALT.constructor.name, rest.constructor.name ]);
+                                throw new Error("Failed pattern match at Data.List.Lazy line 162, column 1 - line 163, column 1: " + [ s.constructor.name, e.constructor.name, step__UNUSED.constructor.name, rest.constructor.name ]);
                             };
                         };
                     };
@@ -712,12 +712,12 @@ var span = function (p) {
         if ($183 instanceof Data_Maybe.Just && p($183.value0.head)) {
             var $184 = span(p)($183.value0.tail);
             return {
-                init: cons($183.value0.head)($184.init),
+                init: cons($183.value0.head)($184.init), 
                 rest: $184.rest
             };
         };
         return {
-            init: nil,
+            init: nil, 
             rest: xs
         };
     };
@@ -877,78 +877,78 @@ var monadPlusList = new Control_MonadPlus.MonadPlus(function () {
     return monadList;
 });
 module.exports = {
-    Nil: Nil,
-    Cons: Cons,
-    List: List,
-    zip: zip,
-    zipWith: zipWith,
-    intersectBy: intersectBy,
-    intersect: intersect,
-    "\\\\": $bslash$bslash,
-    deleteBy: deleteBy,
-    "delete": $$delete,
-    unionBy: unionBy,
-    union: union,
-    nubBy: nubBy,
-    nub: nub,
-    groupBy: groupBy,
-    group: group,
-    span: span,
-    dropWhile: dropWhile,
-    drop: drop,
-    takeWhile: takeWhile,
-    take: take,
-    catMaybes: catMaybes,
-    mapMaybe: mapMaybe,
-    filter: filter,
-    concatMap: concatMap,
-    concat: concat,
-    reverse: reverse,
-    alterAt: alterAt,
-    modifyAt: modifyAt,
-    updateAt: updateAt,
-    deleteAt: deleteAt,
-    insertAt: insertAt,
-    index: index,
-    "!!": $bang$bang,
-    uncons: uncons,
-    init: init,
-    tail: tail,
-    last: last,
-    head: head,
-    insertBy: insertBy,
-    insert: insert,
-    cons: cons,
-    ":": $colon,
-    length: length,
-    "null": $$null,
-    cycle: cycle,
-    iterate: iterate,
-    repeat: repeat,
-    range: range,
-    "..": $dot$dot,
-    singleton: singleton,
-    nil: nil,
-    step: step,
-    toList: toList,
-    fromList: fromList,
-    runList: runList,
-    showList: showList,
-    eqList: eqList,
-    ordList: ordList,
-    lazyList: lazyList,
-    semigroupList: semigroupList,
-    monoidList: monoidList,
-    functorList: functorList,
-    foldableList: foldableList,
-    unfoldableList: unfoldableList,
-    traversableList: traversableList,
-    applyList: applyList,
-    applicativeList: applicativeList,
-    bindList: bindList,
-    monadList: monadList,
-    altList: altList,
-    plusList: plusList,
-    alternativeList: alternativeList,
+    Nil: Nil, 
+    Cons: Cons, 
+    List: List, 
+    zip: zip, 
+    zipWith: zipWith, 
+    intersectBy: intersectBy, 
+    intersect: intersect, 
+    "\\\\": $bslash$bslash, 
+    deleteBy: deleteBy, 
+    "delete": $$delete, 
+    unionBy: unionBy, 
+    union: union, 
+    nubBy: nubBy, 
+    nub: nub, 
+    groupBy: groupBy, 
+    group: group, 
+    span: span, 
+    dropWhile: dropWhile, 
+    drop: drop, 
+    takeWhile: takeWhile, 
+    take: take, 
+    catMaybes: catMaybes, 
+    mapMaybe: mapMaybe, 
+    filter: filter, 
+    concatMap: concatMap, 
+    concat: concat, 
+    reverse: reverse, 
+    alterAt: alterAt, 
+    modifyAt: modifyAt, 
+    updateAt: updateAt, 
+    deleteAt: deleteAt, 
+    insertAt: insertAt, 
+    index: index, 
+    "!!": $bang$bang, 
+    uncons: uncons, 
+    init: init, 
+    tail: tail, 
+    last: last, 
+    head: head, 
+    insertBy: insertBy, 
+    insert: insert, 
+    cons: cons, 
+    ":": $colon, 
+    length: length, 
+    "null": $$null, 
+    cycle: cycle, 
+    iterate: iterate, 
+    repeat: repeat, 
+    range: range, 
+    "..": $dot$dot, 
+    singleton: singleton, 
+    nil: nil, 
+    step: step, 
+    toList: toList, 
+    fromList: fromList, 
+    runList: runList, 
+    showList: showList, 
+    eqList: eqList, 
+    ordList: ordList, 
+    lazyList: lazyList, 
+    semigroupList: semigroupList, 
+    monoidList: monoidList, 
+    functorList: functorList, 
+    foldableList: foldableList, 
+    unfoldableList: unfoldableList, 
+    traversableList: traversableList, 
+    applyList: applyList, 
+    applicativeList: applicativeList, 
+    bindList: bindList, 
+    monadList: monadList, 
+    altList: altList, 
+    plusList: plusList, 
+    alternativeList: alternativeList, 
     monadPlusList: monadPlusList
 };

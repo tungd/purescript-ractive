@@ -7,24 +7,24 @@ var $div$bslash = function (a) {
         return new Data_Tuple.Tuple(a, b);
     };
 };
-var uncurry9 = function (f__ALT) {
+var uncurry9 = function (f__UNUSED) {
     return function (v) {
-        return f__ALT(v.value0.value0.value0.value0.value0.value0.value0.value0)(v.value0.value0.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value1)(v.value0.value0.value0.value1)(v.value0.value0.value1)(v.value0.value1)(v.value1);
+        return f__UNUSED(v.value0.value0.value0.value0.value0.value0.value0.value0)(v.value0.value0.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value1)(v.value0.value0.value0.value1)(v.value0.value0.value1)(v.value0.value1)(v.value1);
     };
 };
-var uncurry8 = function (f__ALT) {
+var uncurry8 = function (f__UNUSED) {
     return function (v) {
-        return f__ALT(v.value0.value0.value0.value0.value0.value0.value0)(v.value0.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value1)(v.value0.value0.value0.value1)(v.value0.value0.value1)(v.value0.value1)(v.value1);
+        return f__UNUSED(v.value0.value0.value0.value0.value0.value0.value0)(v.value0.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value1)(v.value0.value0.value0.value1)(v.value0.value0.value1)(v.value0.value1)(v.value1);
     };
 };
-var uncurry7 = function (f__ALT) {
+var uncurry7 = function (f__UNUSED) {
     return function (v) {
-        return f__ALT(v.value0.value0.value0.value0.value0.value0)(v.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value1)(v.value0.value0.value0.value1)(v.value0.value0.value1)(v.value0.value1)(v.value1);
+        return f__UNUSED(v.value0.value0.value0.value0.value0.value0)(v.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value1)(v.value0.value0.value0.value1)(v.value0.value0.value1)(v.value0.value1)(v.value1);
     };
 };
-var uncurry6 = function (f__ALT) {
+var uncurry6 = function (f__UNUSED) {
     return function (v) {
-        return f__ALT(v.value0.value0.value0.value0.value0)(v.value0.value0.value0.value0.value1)(v.value0.value0.value0.value1)(v.value0.value0.value1)(v.value0.value1)(v.value1);
+        return f__UNUSED(v.value0.value0.value0.value0.value0)(v.value0.value0.value0.value0.value1)(v.value0.value0.value0.value1)(v.value0.value0.value1)(v.value0.value1)(v.value1);
     };
 };
 var uncurry5 = function (f) {
@@ -47,9 +47,9 @@ var uncurry2 = function (f) {
         return f(v.value0)(v.value1);
     };
 };
-var uncurry10 = function (f__ALT) {
+var uncurry10 = function (f__UNUSED) {
     return function (v) {
-        return f__ALT(v.value0.value0.value0.value0.value0.value0.value0.value0.value0)(v.value0.value0.value0.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value1)(v.value0.value0.value0.value1)(v.value0.value0.value1)(v.value0.value1)(v.value1);
+        return f__UNUSED(v.value0.value0.value0.value0.value0.value0.value0.value0.value0)(v.value0.value0.value0.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value0.value1)(v.value0.value0.value0.value0.value1)(v.value0.value0.value0.value1)(v.value0.value0.value1)(v.value0.value1)(v.value1);
     };
 };
 var tuple9 = function (a) {
@@ -165,7 +165,7 @@ var tuple10 = function (a) {
         };
     };
 };
-var curry9 = function (f__ALT) {
+var curry9 = function (f__UNUSED) {
     return function (a) {
         return function (b) {
             return function (c) {
@@ -175,7 +175,7 @@ var curry9 = function (f__ALT) {
                             return function (g) {
                                 return function (h) {
                                     return function (i) {
-                                        return f__ALT(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(a, b), c), d), e), f), g), h), i));
+                                        return f__UNUSED(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(a, b), c), d), e), f), g), h), i));
                                     };
                                 };
                             };
@@ -186,7 +186,7 @@ var curry9 = function (f__ALT) {
         };
     };
 };
-var curry8 = function (f__ALT) {
+var curry8 = function (f__UNUSED) {
     return function (a) {
         return function (b) {
             return function (c) {
@@ -195,7 +195,7 @@ var curry8 = function (f__ALT) {
                         return function (f) {
                             return function (g) {
                                 return function (h) {
-                                    return f__ALT(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(a, b), c), d), e), f), g), h));
+                                    return f__UNUSED(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(a, b), c), d), e), f), g), h));
                                 };
                             };
                         };
@@ -205,7 +205,7 @@ var curry8 = function (f__ALT) {
         };
     };
 };
-var curry7 = function (f__ALT) {
+var curry7 = function (f__UNUSED) {
     return function (a) {
         return function (b) {
             return function (c) {
@@ -213,7 +213,7 @@ var curry7 = function (f__ALT) {
                     return function (e) {
                         return function (f) {
                             return function (g) {
-                                return f__ALT(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(a, b), c), d), e), f), g));
+                                return f__UNUSED(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(a, b), c), d), e), f), g));
                             };
                         };
                     };
@@ -222,14 +222,14 @@ var curry7 = function (f__ALT) {
         };
     };
 };
-var curry6 = function (f__ALT) {
+var curry6 = function (f__UNUSED) {
     return function (a) {
         return function (b) {
             return function (c) {
                 return function (d) {
                     return function (e) {
                         return function (f) {
-                            return f__ALT(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(a, b), c), d), e), f));
+                            return f__UNUSED(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(a, b), c), d), e), f));
                         };
                     };
                 };
@@ -277,7 +277,7 @@ var curry2 = function (f) {
         };
     };
 };
-var curry10 = function (f__ALT) {
+var curry10 = function (f__UNUSED) {
     return function (a) {
         return function (b) {
             return function (c) {
@@ -288,7 +288,7 @@ var curry10 = function (f__ALT) {
                                 return function (h) {
                                     return function (i) {
                                         return function (j) {
-                                            return f__ALT(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(a, b), c), d), e), f), g), h), i), j));
+                                            return f__UNUSED(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(new Data_Tuple.Tuple(a, b), c), d), e), f), g), h), i), j));
                                         };
                                     };
                                 };
@@ -301,32 +301,32 @@ var curry10 = function (f__ALT) {
     };
 };
 module.exports = {
-    "/\\": $div$bslash,
-    curry10: curry10,
-    uncurry10: uncurry10,
-    curry9: curry9,
-    uncurry9: uncurry9,
-    curry8: curry8,
-    uncurry8: uncurry8,
-    curry7: curry7,
-    uncurry7: uncurry7,
-    curry6: curry6,
-    uncurry6: uncurry6,
-    curry5: curry5,
-    uncurry5: uncurry5,
-    curry4: curry4,
-    uncurry4: uncurry4,
-    curry3: curry3,
-    uncurry3: uncurry3,
-    curry2: curry2,
-    uncurry2: uncurry2,
-    tuple10: tuple10,
-    tuple9: tuple9,
-    tuple8: tuple8,
-    tuple7: tuple7,
-    tuple6: tuple6,
-    tuple5: tuple5,
-    tuple4: tuple4,
-    tuple3: tuple3,
+    "/\\": $div$bslash, 
+    curry10: curry10, 
+    uncurry10: uncurry10, 
+    curry9: curry9, 
+    uncurry9: uncurry9, 
+    curry8: curry8, 
+    uncurry8: uncurry8, 
+    curry7: curry7, 
+    uncurry7: uncurry7, 
+    curry6: curry6, 
+    uncurry6: uncurry6, 
+    curry5: curry5, 
+    uncurry5: uncurry5, 
+    curry4: curry4, 
+    uncurry4: uncurry4, 
+    curry3: curry3, 
+    uncurry3: uncurry3, 
+    curry2: curry2, 
+    uncurry2: uncurry2, 
+    tuple10: tuple10, 
+    tuple9: tuple9, 
+    tuple8: tuple8, 
+    tuple7: tuple7, 
+    tuple6: tuple6, 
+    tuple5: tuple5, 
+    tuple4: tuple4, 
+    tuple3: tuple3, 
     tuple2: tuple2
 };

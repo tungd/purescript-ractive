@@ -51,18 +51,18 @@ var intercalate = function (dictFoldable) {
                     return function (x) {
                         if (v.init) {
                             return {
-                                init: false,
+                                init: false, 
                                 acc: x
                             };
                         };
                         return {
-                            init: false,
+                            init: false, 
                             acc: Prelude["<>"](dictMonoid["__superclass_Prelude.Semigroup_0"]())(v.acc)(Prelude["<>"](dictMonoid["__superclass_Prelude.Semigroup_0"]())(sep)(x))
                         };
                     };
                 };
                 return (foldl(dictFoldable)(go)({
-                    init: true,
+                    init: true, 
                     acc: Data_Monoid.mempty(dictMonoid)
                 })(xs)).acc;
             };
@@ -71,7 +71,7 @@ var intercalate = function (dictFoldable) {
 };
 var maximumBy = function (dictFoldable) {
     return function (cmp) {
-        var max__ALT = function (v) {
+        var max__UNUSED = function (v) {
             return function (v1) {
                 if (v instanceof Data_Maybe.Nothing) {
                     return new Data_Maybe.Just(v1);
@@ -88,7 +88,7 @@ var maximumBy = function (dictFoldable) {
                 throw new Error("Failed pattern match at Data.Foldable line 246, column 3 - line 247, column 3: " + [ v.constructor.name, v1.constructor.name ]);
             };
         };
-        return foldl(dictFoldable)(max__ALT)(Data_Maybe.Nothing.value);
+        return foldl(dictFoldable)(max__UNUSED)(Data_Maybe.Nothing.value);
     };
 };
 var maximum = function (dictOrd) {
@@ -103,7 +103,7 @@ var mconcat = function (dictFoldable) {
 };
 var minimumBy = function (dictFoldable) {
     return function (cmp) {
-        var min__ALT = function (v) {
+        var min__UNUSED = function (v) {
             return function (v1) {
                 if (v instanceof Data_Maybe.Nothing) {
                     return new Data_Maybe.Just(v1);
@@ -120,7 +120,7 @@ var minimumBy = function (dictFoldable) {
                 throw new Error("Failed pattern match at Data.Foldable line 261, column 3 - line 262, column 3: " + [ v.constructor.name, v1.constructor.name ]);
             };
         };
-        return foldl(dictFoldable)(min__ALT)(Data_Maybe.Nothing.value);
+        return foldl(dictFoldable)(min__UNUSED)(Data_Maybe.Nothing.value);
     };
 };
 var minimum = function (dictOrd) {
@@ -432,40 +432,40 @@ var and = function (dictFoldable) {
     };
 };
 module.exports = {
-    Foldable: Foldable,
-    minimumBy: minimumBy,
-    minimum: minimum,
-    maximumBy: maximumBy,
-    maximum: maximum,
-    find: find,
-    notElem: notElem,
-    elem: elem,
-    product: product,
-    sum: sum,
-    all: all,
-    any: any,
-    or: or,
-    and: and,
-    intercalate: intercalate,
-    mconcat: mconcat,
-    sequence_: sequence_,
-    for_: for_,
-    traverse_: traverse_,
-    fold: fold,
-    foldMapDefaultR: foldMapDefaultR,
-    foldMapDefaultL: foldMapDefaultL,
-    foldlDefault: foldlDefault,
-    foldrDefault: foldrDefault,
-    foldMap: foldMap,
-    foldl: foldl,
-    foldr: foldr,
-    foldableArray: foldableArray,
-    foldableMaybe: foldableMaybe,
-    foldableFirst: foldableFirst,
-    foldableLast: foldableLast,
-    foldableAdditive: foldableAdditive,
-    foldableDual: foldableDual,
-    foldableDisj: foldableDisj,
-    foldableConj: foldableConj,
+    Foldable: Foldable, 
+    minimumBy: minimumBy, 
+    minimum: minimum, 
+    maximumBy: maximumBy, 
+    maximum: maximum, 
+    find: find, 
+    notElem: notElem, 
+    elem: elem, 
+    product: product, 
+    sum: sum, 
+    all: all, 
+    any: any, 
+    or: or, 
+    and: and, 
+    intercalate: intercalate, 
+    mconcat: mconcat, 
+    sequence_: sequence_, 
+    for_: for_, 
+    traverse_: traverse_, 
+    fold: fold, 
+    foldMapDefaultR: foldMapDefaultR, 
+    foldMapDefaultL: foldMapDefaultL, 
+    foldlDefault: foldlDefault, 
+    foldrDefault: foldrDefault, 
+    foldMap: foldMap, 
+    foldl: foldl, 
+    foldr: foldr, 
+    foldableArray: foldableArray, 
+    foldableMaybe: foldableMaybe, 
+    foldableFirst: foldableFirst, 
+    foldableLast: foldableLast, 
+    foldableAdditive: foldableAdditive, 
+    foldableDual: foldableDual, 
+    foldableDisj: foldableDisj, 
+    foldableConj: foldableConj, 
     foldableMultiplicative: foldableMultiplicative
 };

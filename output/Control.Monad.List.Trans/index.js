@@ -89,8 +89,8 @@ var scanl = function (dictMonad) {
                 var g = function (v) {
                     var h = function (v1) {
                         if (v1 instanceof Yield) {
-                            var b__ALT = f(v.value0)(v1.value0);
-                            return Data_Maybe.Just.create(new Data_Tuple.Tuple(new Data_Tuple.Tuple(b__ALT, Data_Lazy.force(v1.value1)), b__ALT));
+                            var b__UNUSED = f(v.value0)(v1.value0);
+                            return Data_Maybe.Just.create(new Data_Tuple.Tuple(new Data_Tuple.Tuple(b__UNUSED, Data_Lazy.force(v1.value1)), b__UNUSED));
                         };
                         if (v1 instanceof Skip) {
                             return Data_Maybe.Just.create(new Data_Tuple.Tuple(new Data_Tuple.Tuple(v.value0, Data_Lazy.force(v1.value0)), v.value0));
@@ -350,19 +350,19 @@ var filter = function (dictFunctor) {
     return function (f) {
         var g = function (v) {
             if (v instanceof Yield) {
-                var s__ALT = Prelude["<$>"](Data_Lazy.functorLazy)(filter(dictFunctor)(f))(v.value1);
+                var s__UNUSED = Prelude["<$>"](Data_Lazy.functorLazy)(filter(dictFunctor)(f))(v.value1);
                 var $131 = f(v.value0);
                 if ($131) {
-                    return new Yield(v.value0, s__ALT);
+                    return new Yield(v.value0, s__UNUSED);
                 };
                 if (!$131) {
-                    return new Skip(s__ALT);
+                    return new Skip(s__UNUSED);
                 };
                 throw new Error("Failed pattern match at Control.Monad.List.Trans line 164, column 3 - line 165, column 3: " + [ $131.constructor.name ]);
             };
             if (v instanceof Skip) {
-                var s__ALT = Prelude["<$>"](Data_Lazy.functorLazy)(filter(dictFunctor)(f))(v.value0);
-                return new Skip(s__ALT);
+                var s__UNUSED = Prelude["<$>"](Data_Lazy.functorLazy)(filter(dictFunctor)(f))(v.value0);
+                return new Skip(s__UNUSED);
             };
             if (v instanceof Done) {
                 return Done.value;
@@ -552,44 +552,44 @@ var monadPlusListT = function (dictMonad) {
     });
 };
 module.exports = {
-    "zipWith'": zipWith$prime,
-    zipWith: zipWith,
-    wrapLazy: wrapLazy,
-    wrapEffect: wrapEffect,
-    unfold: unfold,
-    uncons: uncons,
-    takeWhile: takeWhile,
-    take: take,
-    tail: tail,
-    singleton: singleton,
-    scanl: scanl,
-    repeat: repeat,
-    "prepend'": prepend$prime,
-    prepend: prepend,
-    nil: nil,
-    mapMaybe: mapMaybe,
-    iterate: iterate,
-    head: head,
-    fromEffect: fromEffect,
-    "foldl'": foldl$prime,
-    foldl: foldl,
-    filter: filter,
-    dropWhile: dropWhile,
-    drop: drop,
-    cons: cons,
-    catMaybes: catMaybes,
-    semigroupListT: semigroupListT,
-    monoidListT: monoidListT,
-    functorListT: functorListT,
-    unfoldableListT: unfoldableListT,
-    applyListT: applyListT,
-    applicativeListT: applicativeListT,
-    bindListT: bindListT,
-    monadListT: monadListT,
-    monadTransListT: monadTransListT,
-    altListT: altListT,
-    plusListT: plusListT,
-    alternativeListT: alternativeListT,
-    monadPlusListT: monadPlusListT,
+    "zipWith'": zipWith$prime, 
+    zipWith: zipWith, 
+    wrapLazy: wrapLazy, 
+    wrapEffect: wrapEffect, 
+    unfold: unfold, 
+    uncons: uncons, 
+    takeWhile: takeWhile, 
+    take: take, 
+    tail: tail, 
+    singleton: singleton, 
+    scanl: scanl, 
+    repeat: repeat, 
+    "prepend'": prepend$prime, 
+    prepend: prepend, 
+    nil: nil, 
+    mapMaybe: mapMaybe, 
+    iterate: iterate, 
+    head: head, 
+    fromEffect: fromEffect, 
+    "foldl'": foldl$prime, 
+    foldl: foldl, 
+    filter: filter, 
+    dropWhile: dropWhile, 
+    drop: drop, 
+    cons: cons, 
+    catMaybes: catMaybes, 
+    semigroupListT: semigroupListT, 
+    monoidListT: monoidListT, 
+    functorListT: functorListT, 
+    unfoldableListT: unfoldableListT, 
+    applyListT: applyListT, 
+    applicativeListT: applicativeListT, 
+    bindListT: bindListT, 
+    monadListT: monadListT, 
+    monadTransListT: monadTransListT, 
+    altListT: altListT, 
+    plusListT: plusListT, 
+    alternativeListT: alternativeListT, 
+    monadPlusListT: monadPlusListT, 
     monadEffListT: monadEffListT
 };

@@ -3,7 +3,6 @@ module DemoApp.WithRactive where
 import Control.Monad.Eff
 import Control.Monad.Eff.Ractive (RactiveM, Ractive, ractive)
 
-
 main :: Eff (ractiveM :: RactiveM) Ractive
 main = ractive "#template" "#app" {
                                     uiLibrary : "RactiveJS",

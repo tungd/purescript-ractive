@@ -63,9 +63,9 @@ var applyExceptT = function (dictApply) {
         return functorExceptT(dictApply["__superclass_Prelude.Functor_0"]());
     }, function (v) {
         return function (v1) {
-            var f__ALT = Prelude["<$>"](dictApply["__superclass_Prelude.Functor_0"]())(Prelude["<*>"](Data_Either.applyEither))(v);
-            var x__ALT = Prelude["<*>"](dictApply)(f__ALT)(v1);
-            return x__ALT;
+            var f__UNUSED = Prelude["<$>"](dictApply["__superclass_Prelude.Functor_0"]())(Prelude["<*>"](Data_Either.applyEither))(v);
+            var x__UNUSED = Prelude["<*>"](dictApply)(f__UNUSED)(v1);
+            return x__UNUSED;
         };
     });
 };
@@ -258,26 +258,26 @@ var monadPlusExceptT = function (dictMonoid) {
     };
 };
 module.exports = {
-    ExceptT: ExceptT,
-    mapExceptT: mapExceptT,
-    withExceptT: withExceptT,
-    runExceptT: runExceptT,
-    functorExceptT: functorExceptT,
-    applyExceptT: applyExceptT,
-    applicativeExceptT: applicativeExceptT,
-    bindExceptT: bindExceptT,
-    monadExceptT: monadExceptT,
-    monadRecExceptT: monadRecExceptT,
-    altExceptT: altExceptT,
-    plusExceptT: plusExceptT,
-    alternativeExceptT: alternativeExceptT,
-    monadPlusExceptT: monadPlusExceptT,
-    monadTransExceptT: monadTransExceptT,
-    monadEffExceptT: monadEffExceptT,
-    monadContExceptT: monadContExceptT,
-    monadErrorExceptT: monadErrorExceptT,
-    monadReaderExceptT: monadReaderExceptT,
-    monadStateExceptT: monadStateExceptT,
-    monadWriterExceptT: monadWriterExceptT,
+    ExceptT: ExceptT, 
+    mapExceptT: mapExceptT, 
+    withExceptT: withExceptT, 
+    runExceptT: runExceptT, 
+    functorExceptT: functorExceptT, 
+    applyExceptT: applyExceptT, 
+    applicativeExceptT: applicativeExceptT, 
+    bindExceptT: bindExceptT, 
+    monadExceptT: monadExceptT, 
+    monadRecExceptT: monadRecExceptT, 
+    altExceptT: altExceptT, 
+    plusExceptT: plusExceptT, 
+    alternativeExceptT: alternativeExceptT, 
+    monadPlusExceptT: monadPlusExceptT, 
+    monadTransExceptT: monadTransExceptT, 
+    monadEffExceptT: monadEffExceptT, 
+    monadContExceptT: monadContExceptT, 
+    monadErrorExceptT: monadErrorExceptT, 
+    monadReaderExceptT: monadReaderExceptT, 
+    monadStateExceptT: monadStateExceptT, 
+    monadWriterExceptT: monadWriterExceptT, 
     monadRWSExceptT: monadRWSExceptT
 };

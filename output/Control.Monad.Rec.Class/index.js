@@ -22,7 +22,7 @@ var tailRecM2 = function (dictMonadRec) {
                 return tailRecM(dictMonadRec)(function (o) {
                     return f(o.a)(o.b);
                 })({
-                    a: a,
+                    a: a, 
                     b: b
                 });
             };
@@ -37,8 +37,8 @@ var tailRecM3 = function (dictMonadRec) {
                     return tailRecM(dictMonadRec)(function (o) {
                         return f(o.a)(o.b)(o.c);
                     })({
-                        a: a,
-                        b: b,
+                        a: a, 
+                        b: b, 
                         c: c
                     });
                 };
@@ -48,11 +48,11 @@ var tailRecM3 = function (dictMonadRec) {
 };
 var tailRecEff = function (f) {
     return function (a) {
-        var f__ALT = function ($18) {
+        var f__UNUSED = function ($18) {
             return Control_Monad_Eff_Unsafe.unsafeInterleaveEff(f($18));
         };
         return function __do() {
-            var v = f__ALT(a)();
+            var v = f__UNUSED(a)();
             var v1 = {
                 value: v
             };
@@ -62,7 +62,7 @@ var tailRecEff = function (f) {
                     return (function () {
                         if (v2 instanceof Data_Either.Left) {
                             return function __do() {
-                                var v3 = f__ALT(v2.value0)();
+                                var v3 = f__UNUSED(v2.value0)();
                                 v1.value = v3;
                                 return Prelude["return"](Control_Monad_Eff.applicativeEff)(false)();
                             };
@@ -120,12 +120,12 @@ var forever = function (dictMonadRec) {
     };
 };
 module.exports = {
-    MonadRec: MonadRec,
-    forever: forever,
-    tailRecM3: tailRecM3,
-    tailRecM2: tailRecM2,
-    tailRecM: tailRecM,
-    tailRec: tailRec,
-    monadRecIdentity: monadRecIdentity,
+    MonadRec: MonadRec, 
+    forever: forever, 
+    tailRecM3: tailRecM3, 
+    tailRecM2: tailRecM2, 
+    tailRecM: tailRecM, 
+    tailRec: tailRec, 
+    monadRecIdentity: monadRecIdentity, 
     monadRecEff: monadRecEff
 };

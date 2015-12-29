@@ -66,9 +66,9 @@ var bindContT = function (dictMonad) {
         return applyContT(dictMonad);
     }, function (m) {
         return function (k) {
-            return function (k__ALT) {
+            return function (k__UNUSED) {
                 return runContT(m)(function (a) {
-                    return runContT(k(a))(k__ALT);
+                    return runContT(k(a))(k__UNUSED);
                 });
             };
         };
@@ -133,18 +133,18 @@ var monadStateContT = function (dictMonadState) {
     });
 };
 module.exports = {
-    ContT: ContT,
-    withContT: withContT,
-    mapContT: mapContT,
-    runContT: runContT,
-    monadContContT: monadContContT,
-    functorContT: functorContT,
-    applyContT: applyContT,
-    applicativeContT: applicativeContT,
-    bindContT: bindContT,
-    monadContT: monadContT,
-    monadTransContT: monadTransContT,
-    monadEffContT: monadEffContT,
-    monadReaderContT: monadReaderContT,
+    ContT: ContT, 
+    withContT: withContT, 
+    mapContT: mapContT, 
+    runContT: runContT, 
+    monadContContT: monadContContT, 
+    functorContT: functorContT, 
+    applyContT: applyContT, 
+    applicativeContT: applicativeContT, 
+    bindContT: bindContT, 
+    monadContT: monadContT, 
+    monadTransContT: monadTransContT, 
+    monadEffContT: monadEffContT, 
+    monadReaderContT: monadReaderContT, 
     monadStateContT: monadStateContT
 };

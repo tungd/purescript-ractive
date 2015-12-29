@@ -145,7 +145,7 @@ var monadRecReaderT = function (dictMonadRec) {
         return monadReaderT(dictMonadRec["__superclass_Prelude.Monad_0"]());
     }, function (k) {
         return function (a) {
-            var k__ALT = function (r) {
+            var k__UNUSED = function (r) {
                 return function (a1) {
                     return Prelude.bind((dictMonadRec["__superclass_Prelude.Monad_0"]())["__superclass_Prelude.Bind_1"]())(runReaderT(k(a1))(r))(function (v) {
                         return Prelude["return"]((dictMonadRec["__superclass_Prelude.Monad_0"]())["__superclass_Prelude.Applicative_0"]())(Data_Either.either(Data_Either.Left.create)(Data_Either.Right.create)(v));
@@ -153,7 +153,7 @@ var monadRecReaderT = function (dictMonadRec) {
                 };
             };
             return function (r) {
-                return Control_Monad_Rec_Class.tailRecM(dictMonadRec)(k__ALT(r))(a);
+                return Control_Monad_Rec_Class.tailRecM(dictMonadRec)(k__UNUSED(r))(a);
             };
         };
     });
@@ -205,26 +205,26 @@ var monadPlusReaderT = function (dictMonadPlus) {
     });
 };
 module.exports = {
-    ReaderT: ReaderT,
-    mapReaderT: mapReaderT,
-    withReaderT: withReaderT,
-    runReaderT: runReaderT,
-    functorReaderT: functorReaderT,
-    applyReaderT: applyReaderT,
-    applicativeReaderT: applicativeReaderT,
-    altReaderT: altReaderT,
-    plusReaderT: plusReaderT,
-    alternativeReaderT: alternativeReaderT,
-    bindReaderT: bindReaderT,
-    monadReaderT: monadReaderT,
-    monadPlusReaderT: monadPlusReaderT,
-    monadTransReaderT: monadTransReaderT,
-    monadEffReader: monadEffReader,
-    monadContReaderT: monadContReaderT,
-    monadErrorReaderT: monadErrorReaderT,
-    monadReaderReaderT: monadReaderReaderT,
-    monadStateReaderT: monadStateReaderT,
-    monadWriterReaderT: monadWriterReaderT,
-    distributiveReaderT: distributiveReaderT,
+    ReaderT: ReaderT, 
+    mapReaderT: mapReaderT, 
+    withReaderT: withReaderT, 
+    runReaderT: runReaderT, 
+    functorReaderT: functorReaderT, 
+    applyReaderT: applyReaderT, 
+    applicativeReaderT: applicativeReaderT, 
+    altReaderT: altReaderT, 
+    plusReaderT: plusReaderT, 
+    alternativeReaderT: alternativeReaderT, 
+    bindReaderT: bindReaderT, 
+    monadReaderT: monadReaderT, 
+    monadPlusReaderT: monadPlusReaderT, 
+    monadTransReaderT: monadTransReaderT, 
+    monadEffReader: monadEffReader, 
+    monadContReaderT: monadContReaderT, 
+    monadErrorReaderT: monadErrorReaderT, 
+    monadReaderReaderT: monadReaderReaderT, 
+    monadStateReaderT: monadStateReaderT, 
+    monadWriterReaderT: monadWriterReaderT, 
+    distributiveReaderT: distributiveReaderT, 
     monadRecReaderT: monadRecReaderT
 };
