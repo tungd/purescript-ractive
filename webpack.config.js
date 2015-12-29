@@ -6,7 +6,6 @@ var fs                = require("fs");
 var CompressionPlugin = require('compression-webpack-plugin');
 var root              = __dirname + '/';
 var npmRoot           = root + 'node_modules/';
-var stylesRoot        = root + 'Content/';
 var nodeScripts       = root + 'node_modules/'
 
 var IS_PROD = process.env.NODE_ENV === "production";
