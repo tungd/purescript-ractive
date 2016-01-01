@@ -31,8 +31,8 @@ var extendTracedT = function (dictExtend) {
                 return Control_Extend["<<="](dictExtend)(function (w1) {
                     return function (t) {
                         return f(Prelude["<$>"](dictExtend["__superclass_Prelude.Functor_0"]())(function (h) {
-                            return function (t__UNUSED) {
-                                return h(Prelude["<>"](dictSemigroup)(t)(t__UNUSED));
+                            return function (t__ALT) {
+                                return h(Prelude["<>"](dictSemigroup)(t)(t__ALT));
                             };
                         })(w1));
                     };
@@ -60,10 +60,10 @@ var comonadTracedT = function (dictComonad) {
     };
 };
 module.exports = {
-    TracedT: TracedT, 
-    runTracedT: runTracedT, 
-    functorTracedT: functorTracedT, 
-    extendTracedT: extendTracedT, 
-    comonadTracedT: comonadTracedT, 
+    TracedT: TracedT,
+    runTracedT: runTracedT,
+    functorTracedT: functorTracedT,
+    extendTracedT: extendTracedT,
+    comonadTracedT: comonadTracedT,
     comonadTransTracedT: comonadTransTracedT
 };

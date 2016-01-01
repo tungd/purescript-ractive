@@ -197,7 +197,7 @@ var functorStateR = new Prelude.Functor(function (f) {
         return function (s) {
             var $74 = stateR(k)(s);
             return {
-                accum: $74.accum, 
+                accum: $74.accum,
                 value: f($74.value)
             };
         };
@@ -208,7 +208,7 @@ var functorStateL = new Prelude.Functor(function (f) {
         return function (s) {
             var $77 = stateL(k)(s);
             return {
-                accum: $77.accum, 
+                accum: $77.accum,
                 value: f($77.value)
             };
         };
@@ -231,7 +231,7 @@ var applyStateR = new Prelude.Apply(function () {
             var $80 = stateR(x)(s);
             var $81 = stateR(f)($80.accum);
             return {
-                accum: $81.accum, 
+                accum: $81.accum,
                 value: $81.value($80.value)
             };
         };
@@ -245,7 +245,7 @@ var applyStateL = new Prelude.Apply(function () {
             var $86 = stateL(f)(s);
             var $87 = stateL(x)($86.accum);
             return {
-                accum: $87.accum, 
+                accum: $87.accum,
                 value: $86.value($87.value)
             };
         };
@@ -256,7 +256,7 @@ var applicativeStateR = new Prelude.Applicative(function () {
 }, function (a) {
     return function (s) {
         return {
-            accum: s, 
+            accum: s,
             value: a
         };
     };
@@ -280,10 +280,10 @@ var scanr = function (dictTraversable) {
             return function (xs) {
                 return (mapAccumR(dictTraversable)(function (b) {
                     return function (a) {
-                        var b__UNUSED = f(a)(b);
+                        var b__ALT = f(a)(b);
                         return {
-                            accum: b__UNUSED, 
-                            value: b__UNUSED
+                            accum: b__ALT,
+                            value: b__ALT
                         };
                     };
                 })(b0)(xs)).value;
@@ -296,7 +296,7 @@ var applicativeStateL = new Prelude.Applicative(function () {
 }, function (a) {
     return function (s) {
         return {
-            accum: s, 
+            accum: s,
             value: a
         };
     };
@@ -320,10 +320,10 @@ var scanl = function (dictTraversable) {
             return function (xs) {
                 return (mapAccumL(dictTraversable)(function (b) {
                     return function (a) {
-                        var b__UNUSED = f(b)(a);
+                        var b__ALT = f(b)(a);
                         return {
-                            accum: b__UNUSED, 
-                            value: b__UNUSED
+                            accum: b__ALT,
+                            value: b__ALT
                         };
                     };
                 })(b0)(xs)).value;
@@ -332,23 +332,23 @@ var scanl = function (dictTraversable) {
     };
 };
 module.exports = {
-    Traversable: Traversable, 
-    mapAccumR: mapAccumR, 
-    mapAccumL: mapAccumL, 
-    scanr: scanr, 
-    scanl: scanl, 
-    "for": $$for, 
-    sequenceDefault: sequenceDefault, 
-    traverseDefault: traverseDefault, 
-    sequence: sequence, 
-    traverse: traverse, 
-    traversableArray: traversableArray, 
-    traversableMaybe: traversableMaybe, 
-    traversableFirst: traversableFirst, 
-    traversableLast: traversableLast, 
-    traversableAdditive: traversableAdditive, 
-    traversableDual: traversableDual, 
-    traversableConj: traversableConj, 
-    traversableDisj: traversableDisj, 
+    Traversable: Traversable,
+    mapAccumR: mapAccumR,
+    mapAccumL: mapAccumL,
+    scanr: scanr,
+    scanl: scanl,
+    "for": $$for,
+    sequenceDefault: sequenceDefault,
+    traverseDefault: traverseDefault,
+    sequence: sequence,
+    traverse: traverse,
+    traversableArray: traversableArray,
+    traversableMaybe: traversableMaybe,
+    traversableFirst: traversableFirst,
+    traversableLast: traversableLast,
+    traversableAdditive: traversableAdditive,
+    traversableDual: traversableDual,
+    traversableConj: traversableConj,
+    traversableDisj: traversableDisj,
     traversableMultiplicative: traversableMultiplicative
 };

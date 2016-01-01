@@ -108,8 +108,8 @@ var monadContStateT = function (dictMonadCont) {
         return StateT(function (s) {
             return Control_Monad_Cont_Class.callCC(dictMonadCont)(function (c) {
                 return runStateT(f(function (a) {
-                    return StateT(function (s__UNUSED) {
-                        return c(new Data_Tuple.Tuple(a, s__UNUSED));
+                    return StateT(function (s__ALT) {
+                        return c(new Data_Tuple.Tuple(a, s__ALT));
                     });
                 }))(s);
             });
@@ -152,7 +152,7 @@ var monadRecStateT = function (dictMonadRec) {
         return monadStateT(dictMonadRec["__superclass_Prelude.Monad_0"]());
     }, function (f) {
         return function (a) {
-            var f__UNUSED = function (v) {
+            var f__ALT = function (v) {
                 return Prelude.bind((dictMonadRec["__superclass_Prelude.Monad_0"]())["__superclass_Prelude.Bind_1"]())(runStateT(f(v.value0))(v.value1))(function (v1) {
                     return Prelude["return"]((dictMonadRec["__superclass_Prelude.Monad_0"]())["__superclass_Prelude.Applicative_0"]())((function () {
                         if (v1.value0 instanceof Data_Either.Left) {
@@ -166,7 +166,7 @@ var monadRecStateT = function (dictMonadRec) {
                 });
             };
             return function (s) {
-                return Control_Monad_Rec_Class.tailRecM(dictMonadRec)(f__UNUSED)(new Data_Tuple.Tuple(a, s));
+                return Control_Monad_Rec_Class.tailRecM(dictMonadRec)(f__ALT)(new Data_Tuple.Tuple(a, s));
             };
         };
     });
@@ -240,28 +240,28 @@ var monadPlusStateT = function (dictMonadPlus) {
     });
 };
 module.exports = {
-    StateT: StateT, 
-    withStateT: withStateT, 
-    mapStateT: mapStateT, 
-    execStateT: execStateT, 
-    evalStateT: evalStateT, 
-    runStateT: runStateT, 
-    functorStateT: functorStateT, 
-    applyStateT: applyStateT, 
-    applicativeStateT: applicativeStateT, 
-    altStateT: altStateT, 
-    plusStateT: plusStateT, 
-    alternativeStateT: alternativeStateT, 
-    bindStateT: bindStateT, 
-    monadStateT: monadStateT, 
-    monadRecStateT: monadRecStateT, 
-    monadPlusStateT: monadPlusStateT, 
-    monadTransStateT: monadTransStateT, 
-    lazyStateT: lazyStateT, 
-    monadEffState: monadEffState, 
-    monadContStateT: monadContStateT, 
-    monadErrorStateT: monadErrorStateT, 
-    monadReaderStateT: monadReaderStateT, 
-    monadStateStateT: monadStateStateT, 
+    StateT: StateT,
+    withStateT: withStateT,
+    mapStateT: mapStateT,
+    execStateT: execStateT,
+    evalStateT: evalStateT,
+    runStateT: runStateT,
+    functorStateT: functorStateT,
+    applyStateT: applyStateT,
+    applicativeStateT: applicativeStateT,
+    altStateT: altStateT,
+    plusStateT: plusStateT,
+    alternativeStateT: alternativeStateT,
+    bindStateT: bindStateT,
+    monadStateT: monadStateT,
+    monadRecStateT: monadRecStateT,
+    monadPlusStateT: monadPlusStateT,
+    monadTransStateT: monadTransStateT,
+    lazyStateT: lazyStateT,
+    monadEffState: monadEffState,
+    monadContStateT: monadContStateT,
+    monadErrorStateT: monadErrorStateT,
+    monadReaderStateT: monadReaderStateT,
+    monadStateStateT: monadStateStateT,
     monadWriterStateT: monadWriterStateT
 };

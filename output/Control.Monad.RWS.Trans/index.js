@@ -216,7 +216,7 @@ var monadRecRWST = function (dictMonoid) {
             return monadRWST(dictMonadRec["__superclass_Prelude.Monad_0"]())(dictMonoid);
         }, function (k) {
             return function (a) {
-                var k__UNUSED = function (r) {
+                var k__ALT = function (r) {
                     return function (v) {
                         return Prelude.bind((dictMonadRec["__superclass_Prelude.Monad_0"]())["__superclass_Prelude.Bind_1"]())(runRWST(k(v.value1))(r)(v.value0))(function (v1) {
                             return Prelude["return"]((dictMonadRec["__superclass_Prelude.Monad_0"]())["__superclass_Prelude.Applicative_0"]())((function () {
@@ -233,7 +233,7 @@ var monadRecRWST = function (dictMonoid) {
                 };
                 return function (r) {
                     return function (s) {
-                        return Control_Monad_Rec_Class.tailRecM(dictMonadRec)(k__UNUSED(r))(new RWSResult(s, a, Data_Monoid.mempty(dictMonoid)));
+                        return Control_Monad_Rec_Class.tailRecM(dictMonadRec)(k__ALT(r))(new RWSResult(s, a, Data_Monoid.mempty(dictMonoid)));
                     };
                 };
             };
@@ -297,24 +297,24 @@ var monadRWSRWST = function (dictMonad) {
     };
 };
 module.exports = {
-    RWST: RWST, 
-    RWSResult: RWSResult, 
-    withRWST: withRWST, 
-    mapRWST: mapRWST, 
-    execRWST: execRWST, 
-    evalRWST: evalRWST, 
-    runRWST: runRWST, 
-    functorRWST: functorRWST, 
-    applyRWST: applyRWST, 
-    bindRWST: bindRWST, 
-    applicativeRWST: applicativeRWST, 
-    monadRWST: monadRWST, 
-    monadTransRWST: monadTransRWST, 
-    monadEffRWS: monadEffRWS, 
-    monadReaderRWST: monadReaderRWST, 
-    monadStateRWST: monadStateRWST, 
-    monadWriterRWST: monadWriterRWST, 
-    monadRWSRWST: monadRWSRWST, 
-    monadErrorRWST: monadErrorRWST, 
+    RWST: RWST,
+    RWSResult: RWSResult,
+    withRWST: withRWST,
+    mapRWST: mapRWST,
+    execRWST: execRWST,
+    evalRWST: evalRWST,
+    runRWST: runRWST,
+    functorRWST: functorRWST,
+    applyRWST: applyRWST,
+    bindRWST: bindRWST,
+    applicativeRWST: applicativeRWST,
+    monadRWST: monadRWST,
+    monadTransRWST: monadTransRWST,
+    monadEffRWS: monadEffRWS,
+    monadReaderRWST: monadReaderRWST,
+    monadStateRWST: monadStateRWST,
+    monadWriterRWST: monadWriterRWST,
+    monadRWSRWST: monadRWSRWST,
+    monadErrorRWST: monadErrorRWST,
     monadRecRWST: monadRecRWST
 };
