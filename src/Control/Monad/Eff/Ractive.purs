@@ -9,7 +9,8 @@ type Data a b = {
   template :: String,
   el :: String,
   partials :: { | a},
-  "data" :: { | b}}
+  "data" :: { | b}
+}
 
 type Event = {node :: DOMNode,
   original :: DOMEvent,
@@ -28,14 +29,18 @@ foreign import data Ractive :: *
 
 type RactiveEff a = forall e. Eff (ractiveM :: RactiveM | e) a
 
-ffiF :: forall t3. Array String -> String -> t3
+ffiF :: forall a. Array String -> String -> a
 ffiF = unsafeForeignFunction
 
 ffiP :: forall a. Array String -> String -> a
 ffiP = unsafeForeignProcedure
 
-ractive :: forall a. String -> String -> a -> RactiveEff Ractive
-ractive = ffiF ["template", "document", "data", ""] "new Ractive({template:template, el: document, data:data});"
+-- alternative way // comment out the below foreign import when using this one
+{-ractive :: forall a. String -> String -> a -> RactiveEff Ractive
+ractive = ffiF ["template", "document", "data", ""] "new Ractive({template:template, el: document, data:data})"
+-}
+
+foreign import ractive :: forall a b. Data a b -> RactiveEff Ractive
 
 ractiveFromData :: forall a b. Data a b -> RactiveEff Ractive
 ractiveFromData = ffiF ["data", ""] "new Ractive(data);"
@@ -43,8 +48,7 @@ ractiveFromData = ffiF ["data", ""] "new Ractive(data);"
 get :: forall a. String -> Ractive -> RactiveEff a
 get = ffiF ["field", "ractive", ""] "ractive.get(field)"
 
-set :: forall a. String -> a -> Ractive -> RactiveEff Unit
-set = unsafeForeignFunction ["selector","ractive"] "ractive.set(selector)"
+foreign import set :: forall a. String -> a -> Ractive -> RactiveEff Unit
 
 setPartial :: String -> String -> Ractive -> RactiveEff Unit
 setPartial = unsafeForeignProcedure ["selector", "value", "ractive"] "ractive.partials[selector] = value;"
