@@ -11,8 +11,7 @@ change property value ractive = do
 
 newtype RactiveInstance = RactiveInstance Ractive
 
---main :: forall eff. Eff (ractiveM :: RactiveM | eff) Unit
---main :: Eff (ractiveM :: RactiveM) Unit
+main :: forall eff. Eff (ractiveM :: RactiveM | eff) Unit
 main = do
        ract <- ractive { template : "#template",
                       el : "#app",
