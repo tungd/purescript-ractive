@@ -2,7 +2,8 @@
   "name": "purescript-ractive",
   "description": "Ractive bindings for PureScript (Work in progress)",
   "keywords": [
-    "purescript"
+    "purescript",
+    "ractive"
   ],
   "ignore": [
     "**/.*",
@@ -17,7 +18,8 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-easy-ffi": "~1.0.1"
+    "purescript-easy-ffi": "~1.0.1",
+    "ractive": "~0.7.3"
   },
   "devDependencies": {
     "purescript-math": "*",

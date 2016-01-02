@@ -20,8 +20,8 @@ To map the <a href="http://docs.ractivejs.org/latest/get-started" target="_blank
 ## Building the Bindings
 
 ```
-npm install
-bower update
+npm install (initial build only)
+bower update (initial build only)
 gulp
 ```
 
@@ -29,7 +29,6 @@ gulp
 
 ```
 gulp build-demo
-webpack
 open index.html from subdir demo
 ```
 

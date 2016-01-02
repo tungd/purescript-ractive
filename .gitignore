@@ -11,3 +11,5 @@ html/templates/tut*/content.html
 demo/scripts/bundle.js
 /dist/
 /.pulp.cache/
+/.psci_modules/
+/Test/

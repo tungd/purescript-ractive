@@ -5,10 +5,12 @@
   "main": "",
   "private": true,
   "author": "Aitor P. Iturri",
-  "contributors": [{
-    "name": "Harris Brakmic",
-    "email": "brakmic@gmail.com"
-  }],
+  "contributors": [
+    {
+      "name": "Harris Brakmic",
+      "email": "brakmic@gmail.com"
+    }
+  ],
   "keywords": [
     "purescript",
     "javascript",
@@ -27,5 +29,9 @@
     "gulp-purescript": "^0.8.0"
   },
   "devDependencies": {
+    "gulp-webpack": "^1.5.0",
+    "gulp-webpack-build": "^0.13.1",
+    "webpack-config": "^0.8.1",
+    "webpack-stream": "^3.1.0"
   }
 }

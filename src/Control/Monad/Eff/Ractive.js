@@ -2,8 +2,9 @@
 
 // module Control.Monad.Eff.Ractive
 
+var Ractive = require('ractive');
+
 exports.set = function set(selector) {
-  //console.log('setting a value');
    return function(value) {
      return function(ractive) {
        return function () {

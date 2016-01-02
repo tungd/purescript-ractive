@@ -1,9 +1,12 @@
-var path       = require('path');
-var gulp       = require('gulp');
-var changed    = require('gulp-changed');
-var purescript = require('gulp-purescript');
-var srcRoot    = 'src/';
-var destRoot   = 'dest/';
+var path         = require('path');
+var gulp         = require('gulp');
+var changed      = require('gulp-changed');
+var webpack      = require('webpack-stream');
+var config       = require('./webpack.config.js');
+var purescript   = require('gulp-purescript');
+var projectRoot  = __dirname + '/';
+var srcRoot      = 'src/';
+var destRoot     = 'dest/';
 
 var sources = [
   "src/**/*.purs",
@@ -25,6 +28,12 @@ var demoForeigns = [
   "src/**/*.js",
   "bower_components/purescript-*/src/**/*.js"
 ];
+
+gulp.task('webpack', function() {
+    return gulp.src('output/DemoApp.WithRactive/index.js')
+              .pipe(webpack(config))
+              .pipe(gulp.dest('./demo/scripts/release/'));
+});
 
 gulp.task("make", function () {
   return purescript.psc({ src: sources, ffi: foreigns });
@@ -68,5 +77,5 @@ gulp.task("test", ["make"], function() {
 });
 
 
-gulp.task("build-demo", ["bundle-demo", "dotpsci-demo"]);
+gulp.task("build-demo", ["bundle-demo", "dotpsci-demo","webpack"]);
 gulp.task("default", ["bundle", "dotpsci"]);

@@ -22,7 +22,7 @@ main = do
                                     uiLibrary : "RactiveJS",
                                     language  : "PureScript",
                                     logoUrl   : "http://www.brakmic.de/img/ps-logo.png",
-                                    message   : "Hello, world!"
+                                    message   : "Hello, world 2!"
                                   }
                       }
      -- alternative call (lines 38/39 in Control/Monad/Eff/Ractive.purs must be uncommented)
