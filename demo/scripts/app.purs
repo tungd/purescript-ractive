@@ -2,7 +2,9 @@ module DemoApp.WithRactive where
 
 import Prelude (..)
 import Control.Monad.Eff
-import Control.Monad.Eff.Ractive (RactiveM, Ractive, RactiveEff, ractive, get, set, setPartial, on, off)
+import Control.Monad.Eff.Console (..)
+import Control.Monad.Eff.Ractive (..)
+
 
 -- change a property by using Ractive's set method: http://docs.ractivejs.org/latest/ractive-set
 change :: forall value. String -> value -> Ractive -> (forall e. Eff (ractiveM :: RactiveM | e) Unit)
@@ -11,7 +13,7 @@ change property value ractive = do
 
 newtype RactiveInstance = RactiveInstance Ractive
 
-main :: forall eff. Eff (ractiveM :: RactiveM | eff) Unit
+main :: forall eff. Eff (ractiveM :: RactiveM, console :: CONSOLE | eff) Unit
 main = do
        ract <- ractive { template : "#template",
                       el : "#app",
@@ -32,3 +34,6 @@ main = do
                                   }-}
 
        change "message" "HELLO WORLD!" ract
+       -- return a value from Ractive
+       m <- (get "message" ract)
+       log m
