@@ -8,16 +8,19 @@
 
     <script id="template" type="text/ractive">
     <div class="row app-panel">
-      <div class="col-lg-4">
+      <div class="col-lg-3">
       <div class="panel panel-default">
          <div class="panel-heading">
             {{uiLibrary}} with {{language}}
          </div>
          <div class="panel-body">
-            {{message}}
             <div>
-            <img class="app-logo" src="{{logoUrl}}">
+            <img class="app-logo" on-click="logo-clicked" src="{{logoUrl}}">
             </div>
+            <div class="well demo-output">{{message}}</div>
+         </div>
+         <div class="panel-footer clearfix">
+            <input type="button" class="btn btn-info" on-click="control-button-clicked" value="Can randomize: {{canRandomize}}">
          </div>
       </div>
       </div>

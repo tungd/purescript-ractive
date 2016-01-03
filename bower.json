@@ -19,10 +19,16 @@
   ],
   "dependencies": {
     "purescript-easy-ffi": "~1.0.1",
-    "ractive": "~0.7.3"
+    "ractive": "~0.7.3",
+    "purescript-foreign": "~0.7.2",
+    "purescript-dom": "~0.2.13"
   },
   "devDependencies": {
     "purescript-math": "*",
     "purescript-quickcheck": "*"
+  },
+  "resolutions": {
+    "purescript-eff": "^0.1.2",
+    "purescript-maybe": "^0.3.0"
   }
 }

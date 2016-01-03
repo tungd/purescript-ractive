@@ -4,5 +4,6 @@
 }
 
 .app-logo {
-  padding-left: 7.5em;
+  position: relative;
+  padding-left: 6.5em;
 }

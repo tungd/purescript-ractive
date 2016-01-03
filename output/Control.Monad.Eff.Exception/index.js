@@ -2,16 +2,9 @@
 "use strict";
 var $foreign = require("./foreign");
 var Prelude = require("Prelude");
-var Data_Maybe = require("Data.Maybe");
 var Control_Monad_Eff = require("Control.Monad.Eff");
-var $$throw = function ($0) {
-    return $foreign.throwException($foreign.error($0));
-};
-var stack = $foreign.stackImpl(Data_Maybe.Just.create)(Data_Maybe.Nothing.value);
 var showError = new Prelude.Show($foreign.showErrorImpl);
 module.exports = {
-    "throw": $$throw, 
-    stack: stack, 
     showError: showError, 
     catchException: $foreign.catchException, 
     throwException: $foreign.throwException, 

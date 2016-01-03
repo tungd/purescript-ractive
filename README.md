@@ -1,7 +1,7 @@
 
 # purescript-ractive
 
-Ractive bindings for PureScript (Work in progress)
+RactiveJS bindings for PureScript (Work in progress)
 
 Based on the original sources from <a href="https://github.com/AitorATuin/purescript-ractive" target="_blank">AitorATui</a>
 
@@ -11,11 +11,24 @@ The original Grunt mechanics were replaced by Gulp.
 
 For quick testing a small demo app is available.
 
-<img src="http://fs5.directupload.net/images/151229/t2oktwfp.png" width="678" height="772">
+## Screenshot
+<img src="http://fs5.directupload.net/images/160103/tevk6oy3.png" width="678" height="772">
+
+## Video
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=IOaG-gbnGpU" target="_blank">
+<img src="http://img.youtube.com/vi/IOaG-gbnGpU/0.jpg" alt="RactiveJS with PureScript"
+width="240" height="180" border="10" /></a>
+
+## Currently implemented APIs
+
+- <a href="http://docs.ractivejs.org/latest/ractive-get" target="_blank">get</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-set" target="_blank">set</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-on" target="_blank">on</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-off" target="_blank">off</a>
 
 ## Future planning
 
-To map the <a href="http://docs.ractivejs.org/latest/get-started" target="_blank">Ractive APIs</a> (Event Handling, Parallel DOM, Proxy Events etc.)
+To map all of the <a href="http://docs.ractivejs.org/latest/get-started" target="_blank">Ractive APIs</a> (Event Handling, Parallel DOM, Proxy Events etc.)
 
 ## Building the Bindings
 

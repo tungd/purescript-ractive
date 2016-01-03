@@ -3,6 +3,7 @@
 var $foreign = require("./foreign");
 var Prelude = require("Prelude");
 var Control_Monad_Eff = require("Control.Monad.Eff");
+var Data_Maybe = require("Data.Maybe");
 var Data_Foreign_EasyFFI = require("Data.Foreign.EasyFFI");
 var RQString = (function () {
     function RQString(value0) {
@@ -22,29 +23,26 @@ var RQNode = (function () {
     };
     return RQNode;
 })();
-var updateModel = Data_Foreign_EasyFFI.unsafeForeignProcedure([ "ractive" ])("ractive.updateModel();");
-var setPartial = Data_Foreign_EasyFFI.unsafeForeignProcedure([ "selector", "value", "ractive" ])("ractive.partials[selector] = value;");
-var renderById = Data_Foreign_EasyFFI.unsafeForeignFunction([ "id", "ractive" ])("ractive.render(id);");
-var on = Data_Foreign_EasyFFI.unsafeForeignFunction([ "event", "handler", "ractive" ])("ractive.on(event,handler);");
-var off = Data_Foreign_EasyFFI.unsafeForeignFunction([ "event", "handler", "ractive" ])("ractive.off(event,handler);");
-var getPartial = Data_Foreign_EasyFFI.unsafeForeignFunction([ "selector", "ractive" ])("ractive.partials[selector];");
 var ffiP = Data_Foreign_EasyFFI.unsafeForeignProcedure;
+var renderById = ffiP([ "id", "ractive" ])("ractive.render(id);");
+var setPartial = ffiP([ "selector", "value", "ractive" ])("ractive.partials[selector] = value;");
+var updateModel = ffiP([ "ractive" ])("ractive.updateModel();");
 var ffiF = Data_Foreign_EasyFFI.unsafeForeignFunction;
-var get = ffiF([ "field", "ractive", "" ])("ractive.get(field)");
+var getPartial = ffiF([ "selector", "ractive" ])("ractive.partials[selector];");
 var ractiveFromData = ffiF([ "data", "" ])("new Ractive(data);");
 module.exports = {
     RQString: RQString, 
     RQNode: RQNode, 
     renderById: renderById, 
     updateModel: updateModel, 
-    off: off, 
-    on: on, 
     getPartial: getPartial, 
     setPartial: setPartial, 
-    get: get, 
     ractiveFromData: ractiveFromData, 
     ffiP: ffiP, 
     ffiF: ffiF, 
+    off: $foreign.off, 
+    on: $foreign.on, 
     set: $foreign.set, 
+    get: $foreign.get, 
     ractive: $foreign.ractive
 };

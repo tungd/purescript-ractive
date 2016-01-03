@@ -15,14 +15,6 @@ exports.message = function (e) {
   return e.message;
 };
 
-exports.stackImpl = function (just) {
-  return function (nothing) {
-    return function (e) {
-      return e.stack ? just(e.stack) : nothing;
-    };
-  };
-};
-
 exports.throwException = function (e) {
   return function () {
     throw e;

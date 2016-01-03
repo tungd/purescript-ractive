@@ -2,9 +2,9 @@ module Control.Monad.Eff.Ractive where
 
 import Prelude              (Unit, bind)
 import Control.Monad.Eff    (Eff)
+import Data.Maybe           (Maybe)
 import Data.Foreign.EasyFFI (unsafeForeignFunction, unsafeForeignProcedure)
 
--- TODO: How to restrict values a of type String?
 type Data a b = {
   template :: String,
   el :: String,
@@ -12,10 +12,16 @@ type Data a b = {
   "data" :: { | b}
 }
 
-type Event = {node :: DOMNode,
+type Event = {
+  node :: DOMNode,
   original :: DOMEvent,
   keypath :: String,
-  context :: {name :: String}}
+  context :: {
+    name :: String
+  }
+}
+
+type RactiveEventCallback = forall a e. Ractive -> Event -> Eff e a
 
 data RenderQuery = RQString String | RQNode DOMNode
 
@@ -26,6 +32,12 @@ foreign import data DOMNode :: *
 foreign import data RactiveM :: !
 
 foreign import data Ractive :: *
+
+foreign import data Text :: *
+
+foreign import data Element :: *
+
+foreign import data Cancellable :: *
 
 type RactiveEff a = forall e. Eff (ractiveM :: RactiveM | e) a
 
@@ -45,25 +57,20 @@ foreign import ractive :: forall a b. Data a b -> RactiveEff Ractive
 ractiveFromData :: forall a b. Data a b -> RactiveEff Ractive
 ractiveFromData = ffiF ["data", ""] "new Ractive(data);"
 
-get :: forall a. String -> Ractive -> RactiveEff a
-get = ffiF ["field", "ractive", ""] "ractive.get(field)"
-
+foreign import get :: forall a. String -> Ractive -> RactiveEff a
 foreign import set :: forall a. String -> a -> Ractive -> RactiveEff Unit
 
 setPartial :: String -> String -> Ractive -> RactiveEff Unit
-setPartial = unsafeForeignProcedure ["selector", "value", "ractive"] "ractive.partials[selector] = value;"
+setPartial = ffiP ["selector", "value", "ractive"] "ractive.partials[selector] = value;"
 
 getPartial :: String -> Ractive -> RactiveEff String
-getPartial = unsafeForeignFunction ["selector","ractive"] "ractive.partials[selector];"
+getPartial = ffiF ["selector","ractive"] "ractive.partials[selector];"
 
-on :: forall a e. String -> (Ractive -> Event -> Eff e a) -> Ractive -> RactiveEff Ractive
-on = unsafeForeignFunction ["event","handler","ractive"] "ractive.on(event,handler);"
-
-off :: forall a e. String -> String -> Ractive -> RactiveEff Ractive
-off = unsafeForeignFunction ["event","handler","ractive"] "ractive.off(event,handler);"
+foreign import on :: forall a e. String -> (Ractive -> Event -> Eff e a) -> Ractive -> RactiveEff Cancellable
+foreign import off :: Maybe String -> Maybe RactiveEventCallback -> Ractive -> RactiveEff Ractive
 
 updateModel :: Ractive -> RactiveEff Unit
-updateModel = unsafeForeignProcedure ["ractive"] "ractive.updateModel();"
+updateModel = ffiP ["ractive"] "ractive.updateModel();"
 
 renderById :: String -> Ractive -> RactiveEff Unit
-renderById = unsafeForeignFunction ["id","ractive"] "ractive.render(id);"
+renderById = ffiP ["id","ractive"] "ractive.render(id);"
