@@ -12,7 +12,7 @@ The original Grunt mechanics were replaced by Gulp.
 For quick testing a small demo app is available.
 
 ## Screenshot
-<img src="http://fs5.directupload.net/images/160103/tevk6oy3.png" width="678" height="772">
+<img src="http://fs5.directupload.net/images/160103/tevk6oy3.png" width="378" height="472">
 
 ## Video
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=IOaG-gbnGpU" target="_blank">
