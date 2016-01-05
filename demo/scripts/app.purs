@@ -25,18 +25,34 @@ setRandom ractive = do
             n <- random
             (change "message" n ractive)
 
+
+-- | Callback for `logo-clicked` proxy event
+-- | Each time we click a new random number will be generated unless we disable it by clicking on the button below
+onLogoClicked :: forall event eff. Ractive -> event -> Eff (ractiveM :: RactiveM, random :: RANDOM | eff) Unit
+onLogoClicked = \r e -> do
+                         canRandomize <- get "canRandomize" r
+                         if canRandomize then (setRandom r) else (change "message" "Randomization disabled!" r)
+
+-- | Callback for `control-button-clicked` proxy event
+-- | Here we can enable/disable the randomization functionality of the app.
+onControlButtonClicked :: forall event eff. Ractive -> event -> Eff (ractiveM :: RactiveM | eff) Unit
+onControlButtonClicked = \r e -> do
+                                  canRandomize <- (get "canRandomize" r)
+                                  change "canRandomize" (inverse canRandomize) r
+
 main :: forall eff. Eff (ractiveM :: RactiveM, console :: CONSOLE, random :: RANDOM | eff) Unit
 main = do
-       ract <- ractive { template : "#template",
+       ract <- ractive {
+                      template : "#template",
                       el : "#app",
                       partials : {},
                       "data" : {
-                                    uiLibrary : "RactiveJS",
-                                    language  : "PureScript",
-                                    logoUrl   : "./content/img/ps-logo.png",
-                                    message   : "Click the PureScript Logo!",
-                                    canRandomize : true
-                                  }
+                              uiLibrary : "RactiveJS",
+                              language  : "PureScript",
+                              logoUrl   : "./content/img/ps-logo.png",
+                              message   : "Click the PureScript Logo!",
+                              canRandomize : true
+                          }
                       }
        -- alternative call (lines 46/49 in Control/Monad/Eff/Ractive.purs must be uncommented)
        {-  ract <- ractive "#template" "#app" {
@@ -45,24 +61,21 @@ main = do
                                     logoUrl   : "./content/img/ps-logo.png",
                                     message   : "Hello, world!"
                                  }-}
-       -- register an event-handler
-       -- generate a random number each time we click the logo
-       on "logo-clicked" (\r e -> do
-                                    can <- get "canRandomize" r
-                                    if can then (setRandom r) else (change "message" "Randomization disabled!" r)
-                        ) ract
-       on "control-button-clicked" (\r e -> do
-                                          can <- (get "canRandomize" r)
-                                          change "canRandomize" (inverse can) r) ract
-       -- deregister the event handler
-       -- see also: http://docs.ractivejs.org/latest/ractive-off
+
+       -- Register event-handlers for logo-clicks & button-clicks.
+       -- Generate a random number each time we click the logo.
+       on "logo-clicked" (onLogoClicked) ract
+       on "control-button-clicked" (onControlButtonClicked) ract
+
+       -- We can also deregister event handlers like in the example below
+       -- See also: http://docs.ractivejs.org/latest/ractive-off
        --> off (Just "logo-clicked") Nothing ract
 
-       -- change the internal state of Ractive instance
-       -- here we manipulate its property `message`
+       -- Change the internal state of Ractive instance
+       -- Here we manipulate the property `message`
        --> change "message" "HELLO WORLD!" ract
 
-       -- return a value from Ractive
-       -- see also: http://docs.ractivejs.org/latest/ractive-get
+       -- Return a value from Ractive
+       -- See also: http://docs.ractivejs.org/latest/ractive-get
        m <- (get "message" ract)
        log m
