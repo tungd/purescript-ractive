@@ -5,6 +5,10 @@
     "purescript",
     "ractive"
   ],
+  "repository": {
+	"type": "git",
+	"url": "git://github.com/brakmic/purescript-ractive.git"
+  },
   "ignore": [
     "**/.*",
     "bower_components",
