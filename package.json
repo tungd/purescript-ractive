@@ -2,7 +2,6 @@
   "name": "purescript-ractive",
   "version": "0.1.1",
   "description": "Ractive bindings for PureScript (Work in progress)",
-  "main": "",
   "private": true,
   "author": "Aitor P. Iturri",
   "contributors": [

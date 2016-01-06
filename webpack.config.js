@@ -6,7 +6,7 @@ var fs                = require("fs");
 var CompressionPlugin = require('compression-webpack-plugin');
 var root              = __dirname + '/';
 var npmRoot           = root + 'node_modules/';
-var nodeScripts       = root + 'node_modules/'
+var nodeScripts       = root + 'node_modules/';
 
 var config = {
   cache: false,

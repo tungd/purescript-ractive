@@ -74,7 +74,7 @@ main = do
        -- Change the internal state of Ractive instance
        -- Here we manipulate the property `message`
        --> change "message" "HELLO WORLD!" ract
-
+       
        -- Return a value from Ractive
        -- See also: http://docs.ractivejs.org/latest/ractive-get
        m <- (get "message" ract)
