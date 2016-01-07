@@ -45,6 +45,12 @@ onControlButtonClicked = \r e -> do
 
 main :: forall eff. Eff (ractiveM :: RactiveM, console :: CONSOLE, random :: RANDOM | eff) Unit
 main = do
+       -- | Here we define a single Ractive instance.
+       -- | Every instance must be given a `template` and a DOM-element `el` to mount.
+       -- | The template can be a simple string describing instance's HTML-structure or a separate
+       -- | <script>-tag with a non-javascript type-attribute, for example "text/ractive".
+       -- | In most cases there's also a `data`-field containing properties,
+       -- | child-components, functions etc.
        ract <- ractive {
                       template : "#template",
                       el : "#app",
