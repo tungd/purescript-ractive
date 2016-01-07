@@ -9,7 +9,7 @@ This version is compatible with **psc 0.8.0.0**.
 
 The original Grunt mechanics were replaced by Gulp/WebPack.
 
-For quick testing a small demo app is available.
+For quick testing a <a href="https://github.com/brakmic/purescript-ractive/blob/master/demo/scripts/app.purs">small demo app</a> with detailed comments is available.
 
 ### Screenshot
 <img src="http://fs5.directupload.net/images/160103/tevk6oy3.png" width="378" height="472">
