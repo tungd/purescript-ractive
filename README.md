@@ -7,7 +7,7 @@ Based on the original sources from <a href="https://github.com/AitorATuin/puresc
 
 This version is compatible with **psc 0.8.0.0**.
 
-The original Grunt mechanics were replaced by Gulp.
+The original Grunt mechanics were replaced by Gulp/WebPack.
 
 For quick testing a small demo app is available.
 
@@ -27,7 +27,7 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 
 ### Future planning
 
-To map all of the <a href="http://docs.ractivejs.org/latest/get-started" target="_blank">Ractive APIs</a> (Event Handling, Parallel DOM, Proxy Events etc.)
+To map all of the <a href="http://docs.ractivejs.org/latest/get-started" target="_blank">Ractive APIs</a> to PureScript.
 
 ### Building the Bindings
 
