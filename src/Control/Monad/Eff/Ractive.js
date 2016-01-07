@@ -4,7 +4,7 @@
 
 var Ractive = require('ractive');
 
-function get(selector){
+var get = function(selector){
   return function(ractive){
     return function(){
       var data = ractive.get(selector);
@@ -13,7 +13,7 @@ function get(selector){
   }
 }
 
-function set(selector) {
+var set = function(selector) {
    return function(value) {
      return function(ractive) {
        return function () {
@@ -24,13 +24,13 @@ function set(selector) {
   }
 }
 
-function ractive(settings){
+var ractive = function(settings){
     return function(){
       return new Ractive(settings);
     }
 }
 
-function on(event) {
+var on = function(event) {
  return function(handler) {
    return function(ractive) {
      return function() {
@@ -43,7 +43,7 @@ function on(event) {
  }
 }
 
-function off(event){
+var off = function(event){
   return function(handler){
     return function(ractive){
       return function(){
@@ -62,10 +62,79 @@ function off(event){
   }
 }
 
+var push = function(keypath){
+  return function(value){
+    return function(callback){
+      var cb = createCallback('push', callback);
+      return function(ractive){
+        return function(){
+          var ok = ractive.push(keypath, value).then(function(v){
+            // console.log('push, ractive promise: ' + v);
+          }).catch(function(err){
+            console.log('push failed, error: ' + err);
+          });
+          cb(ok)();
+          return {};
+        }
+      }
+    }
+  }
+}
+
+var pop = function(keypath){
+   return function(callback){
+    var cb = createCallback('pop', callback);
+    return function(ractive){
+      return function(){
+          var ok = ractive.pop(keypath).then(function(r){
+                return r;
+            }).catch(function(err){
+              console.log('pop failed, error: ' + err);
+          });
+            cb(ok)();
+          return {};
+      };
+   };
+ };
+}
+
+var createCallback = function(api, callback){
+  var cb = null;
+  if(callback &&
+       callback.constructor &&
+       callback.constructor.name == 'Nothing'){
+        cb = function(ignore){
+          var ignr = ignore.then(function(){
+            return {};
+          }).catch(function(error){
+            console.log(api + ' failed, error: ' + error);
+          });
+          var ret = function(){
+            return ignr;
+          };
+          return ret;
+      };
+    }else{
+      cb = function(val){
+        return function(){
+          val.then(function(v){
+            callback.value0(v)();
+          }).catch(function(err){
+            console.log(err);
+          });
+          return {};
+        }
+      };
+    }
+    return cb;
+};
+
 module.exports = {
-  get: get,
-  set: set,
-  on: on,
-  off: off,
-  ractive: ractive
+  get     : get,
+  set     : set,
+  on      : on,
+  off     : off,
+  push    : push,
+  pop     : pop,
+  ractive : ractive
 }

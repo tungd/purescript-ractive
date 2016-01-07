@@ -1,10 +1,13 @@
 module DemoApp.WithRactive where
 
-import Prelude                   (Unit, bind, not)
+import Prelude                   (Unit, bind, not, (++),return,($),(>>=))
+import Data.Maybe
 import Control.Monad.Eff         (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log)
-import Control.Monad.Eff.Ractive (RactiveM, Ractive, get, on, ractive, set)
+import Control.Monad.Eff.Console (CONSOLE, log, print)
+import Control.Monad.Eff.Ractive (RactiveM, Ractive, ractive, on, get, set, push, pop)
 import Control.Monad.Eff.Random  (RANDOM, random)
+
+newtype ContT r m a = ContT ((a -> m r) -> m r)
 
 -- | Change a property by using Ractive's set() method
 -- | The `RactiveM` type constructor is used to represent _RactiveJS_ effects.
@@ -51,7 +54,8 @@ main = do
                               language  : "PureScript",
                               logoUrl   : "./content/img/ps-logo.png",
                               message   : "Click the PureScript Logo!",
-                              canRandomize : true
+                              canRandomize : true,
+                              numbers: []
                           }
                       }
        -- alternative call (lines 46/49 in Control/Monad/Eff/Ractive.purs must be uncommented)
@@ -66,7 +70,13 @@ main = do
        -- Generate a random number each time we click the logo.
        on "logo-clicked" (onLogoClicked) ract
        on "control-button-clicked" (onControlButtonClicked) ract
-
+       -- | Push a value into Ractive (console only)
+       -- | The Callbacks are not mandatory. Just pass a `Nothing`.
+       -- | If a Callback is Nothing a `logic-less` callback will be used on JS-side
+       push "numbers" 12345 (Just (\p -> log "push completed")) ract
+       -- | Get a value from Ractive (console only)
+       (pop "numbers" (Just (\r -> log ("got value: " ++ r))) ract)
+       -- log x
        -- We can also deregister event handlers like in the example below
        -- See also: http://docs.ractivejs.org/latest/ractive-off
        --> off (Just "logo-clicked") Nothing ract
@@ -74,7 +84,7 @@ main = do
        -- Change the internal state of Ractive instance
        -- Here we manipulate the property `message`
        --> change "message" "HELLO WORLD!" ract
-       
+
        -- Return a value from Ractive
        -- See also: http://docs.ractivejs.org/latest/ractive-get
        m <- (get "message" ract)

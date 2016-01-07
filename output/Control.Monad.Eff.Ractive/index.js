@@ -42,6 +42,8 @@ module.exports = {
     ffiF: ffiF, 
     off: $foreign.off, 
     on: $foreign.on, 
+    pop: $foreign.pop, 
+    push: $foreign.push, 
     set: $foreign.set, 
     get: $foreign.get, 
     ractive: $foreign.ractive

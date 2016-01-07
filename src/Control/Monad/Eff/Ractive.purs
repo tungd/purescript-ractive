@@ -60,6 +60,9 @@ ractiveFromData = ffiF ["data", ""] "new Ractive(data);"
 foreign import get :: forall a. String -> Ractive -> RactiveEff a
 foreign import set :: forall a. String -> a -> Ractive -> RactiveEff Unit
 
+foreign import push :: forall a b e. String -> a -> Maybe (b -> (Eff e b)) -> Ractive -> RactiveEff Unit
+foreign import pop  :: forall a e. String -> Maybe (a -> (Eff e Unit)) -> Ractive -> RactiveEff Unit
+
 setPartial :: String -> String -> Ractive -> RactiveEff Unit
 setPartial = ffiP ["selector", "value", "ractive"] "ractive.partials[selector] = value;"
 
