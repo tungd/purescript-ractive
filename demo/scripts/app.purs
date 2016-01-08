@@ -82,7 +82,6 @@ main = do
        push "numbers" 12345 (Just (\p -> log "push completed")) ract
        -- | Get a value from Ractive (console only)
        (pop "numbers" (Just (\r -> log ("got value: " ++ r))) ract)
-       -- log x
        -- We can also deregister event handlers like in the example below
        -- See also: http://docs.ractivejs.org/latest/ractive-off
        --> off (Just "logo-clicked") Nothing ract

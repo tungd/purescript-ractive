@@ -1,5 +1,6 @@
 .*
 !/.bowerrc
+bower.json~
 !/.gitignore
 !/.travis.yml
 /output/DemoApp.WithRactive/
