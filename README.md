@@ -12,7 +12,7 @@ The original Grunt mechanics were replaced by Gulp/WebPack.
 For quick testing a <a href="https://github.com/brakmic/purescript-ractive/blob/master/demo/scripts/app.purs">small demo app</a> with detailed comments is available.
 
 ### Screenshot
-<img src="http://fs5.directupload.net/images/160108/dyv3h4cn.png" width="378" height="472">
+<img src="http://fs5.directupload.net/images/160108/v6ohn28m.png" width="741" height="547">
 
 My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" target="_blank">article</a> on using PureScript with RactiveJS.
 
