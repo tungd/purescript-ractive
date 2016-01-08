@@ -40,11 +40,13 @@ module.exports = {
     ractiveFromData: ractiveFromData, 
     ffiP: ffiP, 
     ffiF: ffiF, 
-    off: $foreign.off, 
-    on: $foreign.on, 
+    observeOnce: $foreign.observeOnce, 
+    observe: $foreign.observe, 
     pop: $foreign.pop, 
     push: $foreign.push, 
     set: $foreign.set, 
     get: $foreign.get, 
+    off: $foreign.off, 
+    on: $foreign.on, 
     ractive: $foreign.ractive
 };

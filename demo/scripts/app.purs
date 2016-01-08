@@ -1,10 +1,10 @@
 module DemoApp.WithRactive where
 
-import Prelude                   (Unit, bind, not, (++),return,($),(>>=))
-import Data.Maybe
+import Prelude                   (Unit, bind, not, (++))
+import Data.Maybe                (Maybe(Nothing, Just))
 import Control.Monad.Eff         (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log, print)
-import Control.Monad.Eff.Ractive (RactiveM, Ractive, ractive, on, get, set, push, pop)
+import Control.Monad.Eff.Console (CONSOLE, log)
+import Control.Monad.Eff.Ractive (RactiveM, Ractive, ractive, on, get, set, push, pop, observe)
 import Control.Monad.Eff.Random  (RANDOM, random)
 
 newtype ContT r m a = ContT ((a -> m r) -> m r)
@@ -31,7 +31,7 @@ setRandom ractive = do
 
 -- | Callback for `logo-clicked` proxy event
 -- | Each time we click a new random number will be generated unless we disable it by clicking on the button below
-onLogoClicked :: forall event eff. Ractive -> event -> Eff (ractiveM :: RactiveM, random :: RANDOM | eff) Unit
+onLogoClicked :: forall event e. Ractive -> event -> Eff (ractiveM :: RactiveM, random :: RANDOM | e) Unit
 onLogoClicked = \r e -> do
                          canRandomize <- get "canRandomize" r
                          if canRandomize then (setRandom r) else (change "message" "Randomization disabled!" r)
@@ -42,6 +42,13 @@ onControlButtonClicked :: forall event eff. Ractive -> event -> Eff (ractiveM ::
 onControlButtonClicked = \r e -> do
                                   canRandomize <- (get "canRandomize" r)
                                   change "canRandomize" (inverse canRandomize) r
+
+-- | Writes log messages to the Console Output Panel in Browser
+writeLog :: forall e. Ractive -> String -> String -> Eff (ractiveM :: RactiveM | e) Unit
+writeLog ractive logName message = do
+                                    current <- get logName ractive
+                                    let newLog = (current++ message)
+                                    change logName newLog ractive
 
 main :: forall eff. Eff (ractiveM :: RactiveM, console :: CONSOLE, random :: RANDOM | eff) Unit
 main = do
@@ -60,6 +67,7 @@ main = do
                               language  : "PureScript",
                               logoUrl   : "./content/img/ps-logo.png",
                               message   : "Click the PureScript Logo!",
+                              consoleMessages: "no messages",
                               canRandomize : true,
                               numbers: []
                           }
@@ -74,17 +82,26 @@ main = do
 
        -- Register event-handlers for logo-clicks & button-clicks.
        -- Generate a random number each time we click the logo.
-       on "logo-clicked" (onLogoClicked) ract
-       on "control-button-clicked" (onControlButtonClicked) ract
+       on "logo-clicked" (onLogoClicked ract) ract
+       on "control-button-clicked" (onControlButtonClicked ract) ract
        -- | Push a value into Ractive (console only)
        -- | The Callbacks are not mandatory. Just pass a `Nothing`.
        -- | If a Callback is Nothing a `logic-less` callback will be used on JS-side
-       push "numbers" 12345 (Just (\p -> log "push completed")) ract
-       -- | Get a value from Ractive (console only)
-       (pop "numbers" (Just (\r -> log ("got value: " ++ r))) ract)
+       push "numbers" 12345 (Just (\p -> writeLog ract "consoleMessages" "\r\n\r\npush completed")) ract
+       -- | Get a value from Ractive and execute callback
+       (pop "numbers" (Just (\result -> writeLog ract "consoleMessages" ("\r\n\r\ngot value: " ++ result))) ract)
        -- We can also deregister event handlers like in the example below
        -- See also: http://docs.ractivejs.org/latest/ractive-off
        --> off (Just "logo-clicked") Nothing ract
+
+       -- Ractive supports observers via observe & observeOnce APIs
+       --> See also: http://docs.ractivejs.org/latest/ractive-observe
+       --> and: http://docs.ractivejs.org/latest/ractive-observeonce
+       --> the Callback receives:
+       --------------------------> n = new value
+       --------------------------> o = old value
+       --------------------------> kp = keypath
+       (observe "message" (\n o kp -> writeLog ract "consoleMessages" ("\r\n\r\nrandom: " ++ n)) Nothing ract)
 
        -- Change the internal state of Ractive instance
        -- Here we manipulate the property `message`
