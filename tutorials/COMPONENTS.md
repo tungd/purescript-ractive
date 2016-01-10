@@ -1,10 +1,10 @@
 ## Writing Components
 
-The official information regarding RactiveJS components is located <a href="http://docs.ractivejs.org/latest/components" target="_blank">here</a> and <a href="https://github.com/ractivejs/component-spec" target="_blank">here</a>
+The official information regarding RactiveJS components is located <a href="http://docs.ractivejs.org/latest/components" target="_blank">here</a> and <a href="https://github.com/ractivejs/component-spec" target="_blank">here</a>.
 
 In this tutorial we'll describe a development of a simple component containing a logo and a text message.
 
-We will use two APIs: <a href="https://github.com/brakmic/purescript-ractive/blob/master/src/Control/Monad/Eff/Ractive.purs#L75">ractive</a> and <a href="https://github.com/brakmic/purescript-ractive/blob/master/src/Control/Monad/Eff/Ractive.purs#L76">extend</a>.
+We will use two APIs: <a href="https://github.com/brakmic/purescript-ractive/blob/master/src/Control/Monad/Eff/Ractive.purs#L80">ractive</a> and <a href="https://github.com/brakmic/purescript-ractive/blob/master/src/Control/Monad/Eff/Ractive.purs#L81">extend</a>.
 
 ## Setup
 
