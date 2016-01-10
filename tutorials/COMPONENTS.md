@@ -24,7 +24,7 @@ var myComponent = Ractive.extend({
 })
 ```
 
-Notice the absence of the `el`-property. This is because a Child-Component doesn't automatically take a DOM-element to mount. Instead, its containing Component (the main Ractive instance, for example) will mount it somewhere whithin its area. Such a location is defined with a new HTML-tag of the same name like the component itself. The component from above would, for example, mount a new DOM-element called `<myComponent/>`.
+Notice the absence of the `el`-property. This is because a Child-Component doesn't automatically take a DOM-element to mount. Instead, its containing Component (the main Ractive instance, for example) will mount it somewhere whithin its area. Such a location is defined by an HTML-tag of the same name like the child component itself. The component from above would, for example, mount a new DOM-element called `<myComponent/>`.
 
 Here are two templates: a main Ractive instance (*which is btw. nothing else but a Component too*) and its child component:
 
