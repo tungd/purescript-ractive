@@ -89,6 +89,9 @@ foreign import observeOnce :: forall a b e. String -> (a -> b -> String -> (Eff 
 foreign import find        :: String -> Ractive -> RactiveEff DOMNode
 foreign import findAll     :: String -> Maybe FindAllOptions -> Ractive -> RactiveEff (Array DOMNode)
 
+foreign import add         :: forall a e. String -> Maybe Number -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
+foreign import subtract    :: forall a e. String -> Maybe Number -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
+
 -- | End Foreign Imports
 
 ractiveFromData :: forall a b. Data a b -> RactiveEff Ractive

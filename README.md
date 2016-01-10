@@ -28,6 +28,8 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 - <a href="http://docs.ractivejs.org/latest/ractive-observeonce" target="_blank">observeOnce</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-find" target="_blank">find</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-findall" target="_blank">findAll</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-add" target="_blank">add</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-subtract" target="_blank">subtract</a>
 
 ### Future planning
 

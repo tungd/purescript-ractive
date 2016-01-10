@@ -4,17 +4,7 @@ import Prelude                   (Unit, bind, not, (++))
 import Data.Maybe                (Maybe(Nothing, Just))
 import Control.Monad.Eff         (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
-import Control.Monad.Eff.Ractive (RactiveM,
-                                  Ractive,
-                                  ractive,
-                                  on,
-                                  get,
-                                  set,
-                                  push,
-                                  pop,
-                                  observe,
-                                  find,
-                                  findAll)
+import Control.Monad.Eff.Ractive (..)
 import Control.Monad.Eff.Random  (RANDOM, random)
 
 newtype ContT r m a = ContT ((a -> m r) -> m r)
@@ -60,7 +50,12 @@ writeLog ractive logName message = do
                                     let newLog = (current++ message)
                                     change logName newLog ractive
 
-main :: forall eff. Eff (ractiveM :: RactiveM, console :: CONSOLE, random :: RANDOM | eff) Unit
+main :: forall eff.
+                Eff (
+                  ractiveM :: RactiveM,
+                  console :: CONSOLE,
+                  random :: RANDOM | eff
+                  ) Unit
 main = do
        -- | Here we define a single Ractive instance.
        -- | Every instance must be given a `template` and a DOM-element `el` to mount.
@@ -79,6 +74,7 @@ main = do
                               message   : "Click the PureScript Logo!",
                               consoleMessages: "no messages",
                               canRandomize : true,
+                              counter: 0,
                               numbers: []
                           }
                       }
@@ -112,11 +108,17 @@ main = do
        --------------------------> o = old value
        --------------------------> kp = keypath
        (observe "message" (\n o kp -> writeLog ract "consoleMessages" ("\r\n\r\nrandom: " ++ n)) Nothing ract)
+       -- | Observe `counter` property changes.
+       (observe "counter" (\n o kp -> writeLog ract "consoleMessages" ("\r\n\r\ncounter: " ++ n)) Nothing ract)
        -- | returns the first DOM-Node matching the given CSS selector
        logo <- (find ".app-logo" ract)
        -- | returns an Array of DOM-Nodes matching the CSS selector
        --> See also: http://docs.ractivejs.org/latest/ractive-findall
        elems <- (findAll "div" Nothing ract)
+       -- | Increment & decrement the counter.
+       -- | The registered observer will display changes in the Console Panel.
+       (add "counter" (Just 5.0) (Just \r -> log "Counter incremented!") ract)
+       (subtract "counter" (Just 1.0) (Just \r -> log "Counter decremented!") ract)
        -- Change the internal state of Ractive instance
        -- Here we manipulate the property `message`
        --> change "message" "HELLO WORLD!" ract

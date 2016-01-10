@@ -178,7 +178,7 @@ var pop = function(keypath){
             }).catch(function(err){
               console.log('pop failed, error: ' + err);
           });
-            cb(ok)();
+          cb(ok)();
           return {};
       };
     };
@@ -212,6 +212,56 @@ var findAll = function(selector){
   };
 };
 
+var add = function(keypath){
+  return function(number){
+    var num = 1;
+    if(number &&
+      number.constructor &&
+      number.constructor.name != 'Nothing'){
+      num = number.value0;
+    }
+    return function(callback){
+      var cb = createCallback('add', callback);
+      return function(ractive){
+        return function(){
+          var ok = ractive.add(keypath, num).then(function(r){
+                return r;
+            }).catch(function(err){
+              console.log('add failed, error: ' + err);
+          });
+          cb(ok)();
+          return {};
+        };
+      };
+    };
+  };
+};
+
+var subtract = function(keypath){
+   return function(number){
+    var num = 1;
+    if(number &&
+      number.constructor &&
+      number.constructor.name != 'Nothing'){
+      num = number.value0;
+    }
+    return function(callback){
+      var cb = createCallback('subtract', callback);
+      return function(ractive){
+        return function(){
+          var ok = ractive.subtract(keypath, num).then(function(r){
+                return r;
+            }).catch(function(err){
+              console.log('subtract failed, error: ' + err);
+          });
+          cb(ok)();
+          return {};
+        };
+      };
+    };
+  };
+};
+
 var ractive = function(settings){
     return function(){
       return new Ractive(settings);
@@ -229,5 +279,7 @@ module.exports = {
   observeOnce : observeOnce,
   find        : find,
   findAll     : findAll,
+  add         : add,
+  subtract    : subtract,
   ractive     : ractive
 }
