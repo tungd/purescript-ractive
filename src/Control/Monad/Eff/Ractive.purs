@@ -9,10 +9,7 @@ data Data a b = Data {
   template :: String,
   "data"   :: { | a}
   |
-  b
-  {-el       :: Maybe String,
-  partials :: { | b},
-  components :: { | c } -}
+  b -- optional properties like "components", "partials", "el" etc.
 }
 
 type Event = {
@@ -71,11 +68,6 @@ ffiF              = unsafeForeignFunction
 
 ffiP              :: forall a. Array String -> String -> a
 ffiP              = unsafeForeignProcedure
-
--- alternative way // comment out the below foreign import when using this one
-{-ractive :: forall a. String -> String -> a -> RactiveEff Ractive
-ractive = ffiF ["template", "document", "data", ""] "new Ractive({template:template, el: document, data:data})"
--}
 
 -- | Foreign Imports
 

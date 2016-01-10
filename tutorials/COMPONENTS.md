@@ -4,7 +4,7 @@ The official information regarding RactiveJS components is located <a href="http
 
 In this tutorial we'll describe a development of a simple component containing a logo and a text message.
 
-We will use these two APIs: <a href="https://github.com/brakmic/purescript-ractive/blob/master/src/Control/Monad/Eff/Ractive.purs#L82">ractive</a> and <a href="https://github.com/brakmic/purescript-ractive/blob/master/src/Control/Monad/Eff/Ractive.purs#L83">extend</a>.
+We will use these two APIs: <a href="https://github.com/brakmic/purescript-ractive/blob/master/src/Control/Monad/Eff/Ractive.purs#L74">ractive</a> and <a href="https://github.com/brakmic/purescript-ractive/blob/master/src/Control/Monad/Eff/Ractive.purs#L75">extend</a>.
 
 ## Setup
 
