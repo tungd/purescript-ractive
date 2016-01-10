@@ -26,6 +26,8 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 - <a href="http://docs.ractivejs.org/latest/ractive-pop" target="_blank">pop</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-observe" target="_blank">observe</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-observeonce" target="_blank">observeOnce</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-find" target="_blank">find</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-findall" target="_blank">findAll</a>
 
 ### Future planning
 
