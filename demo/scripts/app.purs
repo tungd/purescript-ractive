@@ -112,8 +112,10 @@ main = do
        --------------------------> o = old value
        --------------------------> kp = keypath
        (observe "message" (\n o kp -> writeLog ract "consoleMessages" ("\r\n\r\nrandom: " ++ n)) Nothing ract)
-
+       -- | returns the first DOM-Node matching the given CSS selector
        logo <- (find ".app-logo" ract)
+       -- | returns an Array of DOM-Nodes matching the CSS selector
+       --> See also: http://docs.ractivejs.org/latest/ractive-findall
        elems <- (findAll "div" Nothing ract)
        -- Change the internal state of Ractive instance
        -- Here we manipulate the property `message`
