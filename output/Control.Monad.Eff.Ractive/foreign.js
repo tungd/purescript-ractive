@@ -262,24 +262,86 @@ var subtract = function(keypath){
   };
 };
 
-var ractive = function(settings){
+var findComponent = function(name){
+  return function(ractive){
     return function(){
-      return new Ractive(settings);
+      var component = ractive.findComponent(name);
+      return component;
+    }
+  };
+};
+
+var findAllComponents = function(name){
+  return function(options){
+    if(options &&
+      options.constructor &&
+      options.constructor.name == 'Nothing'){
+      options = null;
+    }else{
+      options = options.value0;
+    }
+    return function(ractive){
+      return function(){
+        var allComponents = null;
+        if(options){
+          allComponents = ractive.findAllComponents(name, options);
+        }else{
+          allComponents = ractive.find(name);
+        }
+        return allComponents;
+      };
+    };
+  };
+};
+
+var ractive = function(settings){
+    var s = settings;
+    //ugly but needed to accept components that do not have `el`!
+    if(settings &&
+      settings.el &&
+      settings.el.constructor &&
+      settings.el.constructor.name == 'Nothing'){
+      delete s.el;
+    }else{
+      s.el = settings.el.value0;
+    }
+    return function(){
+      return new Ractive(s);
     };
 };
 
+var extend = function(settings){
+  var s = settings;
+    //ugly but needed to accept components that do not have `el`!
+    if(settings &&
+      settings.el &&
+      settings.el.constructor &&
+      settings.el.constructor.name == 'Nothing'){
+      delete s.el;
+    }else{
+      s.el = settings.el.value0;
+    }
+    return function(){
+      var r = Ractive.extend(settings);
+      return r;
+    };
+}
+
 module.exports = {
-  get         : get,
-  set         : set,
-  on          : on,
-  off         : off,
-  push        : push,
-  pop         : pop,
-  observe     : observe,
-  observeOnce : observeOnce,
-  find        : find,
-  findAll     : findAll,
-  add         : add,
-  subtract    : subtract,
-  ractive     : ractive
+  get               : get,
+  set               : set,
+  on                : on,
+  off               : off,
+  push              : push,
+  pop               : pop,
+  observe           : observe,
+  observeOnce       : observeOnce,
+  find              : find,
+  findAll           : findAll,
+  findComponent     : findComponent,
+  findAllComponents : findAllComponents,
+  add               : add,
+  subtract          : subtract,
+  ractive           : ractive,
+  extend            : extend
 }

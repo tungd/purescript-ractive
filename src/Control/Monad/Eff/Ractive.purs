@@ -5,11 +5,12 @@ import Control.Monad.Eff    (Eff)
 import Data.Maybe           (Maybe)
 import Data.Foreign.EasyFFI (unsafeForeignFunction, unsafeForeignProcedure)
 
-type Data a b = {
+type Data a b c = {
   template :: String,
-  el       :: String,
-  partials :: { | a},
-  "data"   :: { | b}
+  el       :: Maybe String,
+  "data"   :: { | a},
+  partials :: { | b},
+  components :: { | c }
 }
 
 type Event = {
@@ -38,6 +39,10 @@ type ObserverOptions = {
 }
 
 type FindAllOptions = {
+  live :: Boolean
+}
+
+type FindAllComponentsOptions = {
   live :: Boolean
 }
 
@@ -72,29 +77,33 @@ ractive = ffiF ["template", "document", "data", ""] "new Ractive({template:templ
 
 -- | Foreign Imports
 
-foreign import ractive     :: forall a b. Data a b -> RactiveEff Ractive
+foreign import ractive           :: forall a b c. Data a b c -> RactiveEff Ractive
+foreign import extend            :: forall a b c. Data a b c -> RactiveEff Ractive
 
-foreign import on          :: forall a e. String -> (Event -> Eff e a) -> Ractive -> RactiveEff Cancellable
-foreign import off         :: Maybe String -> Maybe RactiveEventCallback -> Ractive -> RactiveEff Ractive
+foreign import on                :: forall a e. String -> (Event -> Eff e a) -> Ractive -> RactiveEff Cancellable
+foreign import off               :: Maybe String -> Maybe RactiveEventCallback -> Ractive -> RactiveEff Ractive
 
-foreign import get         :: forall a. String -> Ractive -> RactiveEff a
-foreign import set         :: forall a. String -> a -> Ractive -> RactiveEff Unit
+foreign import get               :: forall a. String -> Ractive -> RactiveEff a
+foreign import set               :: forall a. String -> a -> Ractive -> RactiveEff Unit
 
-foreign import push        :: forall a b e. String -> a -> Maybe (b -> (Eff e Unit)) -> Ractive -> RactiveEff Unit
-foreign import pop         :: forall a e. String -> Maybe (a -> (Eff e Unit)) -> Ractive -> RactiveEff Unit
+foreign import push              :: forall a b e. String -> a -> Maybe (b -> (Eff e Unit)) -> Ractive -> RactiveEff Unit
+foreign import pop               :: forall a e. String -> Maybe (a -> (Eff e Unit)) -> Ractive -> RactiveEff Unit
 
-foreign import observe     :: forall a b e. String -> (a -> b -> String -> (Eff e Unit)) -> Maybe ObserverOptions -> Ractive -> RactiveEff Cancellable
-foreign import observeOnce :: forall a b e. String -> (a -> b -> String -> (Eff e Unit)) -> Maybe ObserverOptions -> Ractive -> RactiveEff Cancellable
+foreign import observe           :: forall a b e. String -> (a -> b -> String -> (Eff e Unit)) -> Maybe ObserverOptions -> Ractive -> RactiveEff Cancellable
+foreign import observeOnce       :: forall a b e. String -> (a -> b -> String -> (Eff e Unit)) -> Maybe ObserverOptions -> Ractive -> RactiveEff Cancellable
 
-foreign import find        :: String -> Ractive -> RactiveEff DOMNode
-foreign import findAll     :: String -> Maybe FindAllOptions -> Ractive -> RactiveEff (Array DOMNode)
+foreign import find              :: String -> Ractive -> RactiveEff DOMNode
+foreign import findAll           :: String -> Maybe FindAllOptions -> Ractive -> RactiveEff (Array DOMNode)
 
-foreign import add         :: forall a e. String -> Maybe Number -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
-foreign import subtract    :: forall a e. String -> Maybe Number -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
+foreign import findComponent     :: String -> Ractive -> RactiveEff Ractive
+foreign import findAllComponents :: String -> Maybe FindAllComponentsOptions -> Ractive -> RactiveEff (Array Ractive)
+
+foreign import add               :: forall a e. String -> Maybe Number -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
+foreign import subtract          :: forall a e. String -> Maybe Number -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
 
 -- | End Foreign Imports
 
-ractiveFromData :: forall a b. Data a b -> RactiveEff Ractive
+ractiveFromData :: forall a b c. Data a b c-> RactiveEff Ractive
 ractiveFromData = ffiF ["data", ""] "new Ractive(data);"
 
 setPartial      :: String -> String -> Ractive -> RactiveEff Unit

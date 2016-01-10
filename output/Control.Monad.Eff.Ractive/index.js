@@ -42,6 +42,8 @@ module.exports = {
     ffiF: ffiF, 
     subtract: $foreign.subtract, 
     add: $foreign.add, 
+    findAllComponents: $foreign.findAllComponents, 
+    findComponent: $foreign.findComponent, 
     findAll: $foreign.findAll, 
     find: $foreign.find, 
     observeOnce: $foreign.observeOnce, 
@@ -52,5 +54,6 @@ module.exports = {
     get: $foreign.get, 
     off: $foreign.off, 
     on: $foreign.on, 
+    extend: $foreign.extend, 
     ractive: $foreign.ractive
 };

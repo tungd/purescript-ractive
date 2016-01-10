@@ -63,19 +63,34 @@ main = do
        -- | <script>-tag with a non-javascript type-attribute, for example "text/ractive".
        -- | In most cases there's also a `data`-field containing properties,
        -- | child-components, functions etc.
+
+       let component = extend {
+                                 template : "#component-template",
+                                 el : Nothing,
+                                 "data" : {
+                                   info : "I'm an embedded Ractive.JS component",
+                                   logoUrl   : "./content/img/ractive-logo.png"
+                                 },
+                                 partials   : {},
+                                 components : {}
+                              }
+
        ract <- ractive {
-                      template : "#template",
-                      el : "#app",
-                      partials : {},
-                      "data" : {
-                              uiLibrary : "RactiveJS",
-                              language  : "PureScript",
-                              logoUrl   : "./content/img/ps-logo.png",
-                              message   : "Click the PureScript Logo!",
-                              consoleMessages: "no messages",
-                              canRandomize : true,
-                              counter: 0,
-                              numbers: []
+                         template : "#template",
+                         el       : (Just "#app"),
+                         "data" : {
+                                  uiLibrary : "RactiveJS",
+                                  language  : "PureScript",
+                                  logoUrl   : "./content/img/ps-logo.png",
+                                  message   : "Click on the PureScript Logo!",
+                                  consoleMessages: "no messages",
+                                  canRandomize : true,
+                                  counter: 0,
+                                  numbers: []
+                              },
+                          partials : {},
+                          components : {
+                            "mycomponent" : component
                           }
                       }
        -- alternative call (lines 46/49 in Control/Monad/Eff/Ractive.purs must be uncommented)

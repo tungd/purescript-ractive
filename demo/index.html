@@ -8,7 +8,7 @@
 
     <script id="template" type="text/ractive">
     <div class="row app-panel">
-      <div class="col-lg-3">
+      <div class="col-lg-4">
       <div class="panel panel-default">
          <div class="panel-heading">
             {{uiLibrary}} with {{language}}
@@ -18,13 +18,14 @@
             <img class="app-logo" on-click="logo-clicked" src="{{logoUrl}}">
             </div>
             <div class="well demo-output">{{message}}</div>
+            <mycomponent/>
          </div>
          <div class="panel-footer clearfix">
             <input type="button" class="btn btn-info" on-click="control-button-clicked" value="Can randomize: {{canRandomize}}">
          </div>
       </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading">
         Console Output
@@ -35,6 +36,11 @@
       </div>
       </div>
     </div>
+    </script>
+
+    <script id="component-template" type="text/ractive">
+      <img class="ractive-logo" src="{{logoUrl}}">
+      <div class="component-footer">{{info}}</div>
     </script>
 
   <script src="scripts/release/app.min.js"></script>

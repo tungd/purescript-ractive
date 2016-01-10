@@ -10,6 +10,9 @@
       "email": "brakmic@gmail.com"
     }
   ],
+  "scripts": {
+    "start": "babel-node ./demo/index.js"
+  },
   "keywords": [
     "purescript",
     "javascript",
@@ -19,17 +22,19 @@
     "functional"
   ],
   "license": "MIT",
-  "dependencies": {
-    "gulp": "^3.9.0",
-    "webpack": "^1.12.9",
+  "dependencies": {},
+  "devDependencies": {
     "async-uglify-js-webpack-plugin": "0.0.4",
     "compression-webpack-plugin": "^0.2.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
     "gulp-changed": "^1.3.0",
-    "gulp-purescript": "^0.8.0"
-  },
-  "devDependencies": {
+    "gulp-purescript": "^0.8.0",
     "gulp-webpack": "^1.5.0",
     "gulp-webpack-build": "^0.13.1",
+    "hapi": "^12.1.0",
+    "inert": "^3.2.0",
+    "webpack": "^1.12.9",
     "webpack-config": "^0.8.1",
     "webpack-stream": "^3.1.0"
   }

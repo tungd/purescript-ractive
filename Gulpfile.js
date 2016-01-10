@@ -1,5 +1,6 @@
 var path         = require('path');
 var gulp         = require('gulp');
+var del          = require('del');
 var changed      = require('gulp-changed');
 var webpack      = require('webpack-stream');
 var config       = require('./webpack.config.js');
@@ -7,6 +8,7 @@ var purescript   = require('gulp-purescript');
 var projectRoot  = __dirname + '/';
 var srcRoot      = 'src/';
 var destRoot     = 'dest/';
+var releaseRoot  = 'demo/scripts/release';
 
 var sources = [
   "src/**/*.purs",
@@ -71,11 +73,20 @@ gulp.task("dotpsci", function () {
     .pipe(gulp.dest("."));
 });
 
+gulp.task('clean', function (cb) {
+    del([releaseRoot + '**/*'], function (err, deletedFiles) {
+    if(err){
+      console.log('Error during deletion: ' + err);
+    }
+  });
+  cb();
+});
+
 gulp.task("test", ["make"], function() {
   return purescript.pscBundle({ src: "output/**/*.js", main: "Test.Main" })
     .pipe(run("node"));
 });
 
 
-gulp.task("build-demo", ["bundle-demo", "dotpsci-demo","webpack"]);
+gulp.task("build-demo", ["clean", "bundle-demo", "dotpsci-demo","webpack"]);
 gulp.task("default", ["bundle", "dotpsci"]);
