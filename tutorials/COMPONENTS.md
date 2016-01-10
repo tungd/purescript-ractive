@@ -102,6 +102,6 @@ Here's the screenshot of the <a href="https://github.com/brakmic/purescript-ract
 
 <img src="http://fs5.directupload.net/images/160110/ebiof4rs.png" width="608" height="622">
 
-For more in-depth info regarding *JavaScript* RactiveJS Component development you'll maybe like to read an <a href="http://blog.brakmic.com/creating-components-with-ractive-js/">article</a> of mine.
+For more in-depth info regarding *JavaScript* RactiveJS Component development you could read an <a href="http://blog.brakmic.com/creating-components-with-ractive-js/">article</a> of mine.
 
 Have fun!
