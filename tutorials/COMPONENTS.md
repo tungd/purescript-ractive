@@ -54,7 +54,7 @@ tag in the above main Component -->
 
 These two templates describe the DOM-structures nicely but now we need a proper mechanics to combine them together.
 
-This is how a component definition in PureScript could look like.
+This is how a component definition in PureScript could looks like.
 
 Our main Ractive instance will be created by using the `ractive` API from *purescript-ractive*.
 
