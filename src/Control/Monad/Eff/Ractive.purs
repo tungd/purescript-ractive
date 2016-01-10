@@ -37,6 +37,10 @@ type ObserverOptions = {
   context :: Ractive
 }
 
+type FindAllOptions = {
+  live :: Boolean
+}
+
 data RenderQuery             = RQString String | RQNode DOMNode
 
 foreign import data DOMEvent    :: *
@@ -83,6 +87,7 @@ foreign import observe     :: forall a b e. String -> (a -> b -> String -> (Eff 
 foreign import observeOnce :: forall a b e. String -> (a -> b -> String -> (Eff e Unit)) -> Maybe ObserverOptions -> Ractive -> RactiveEff Cancellable
 
 foreign import find        :: String -> Ractive -> RactiveEff DOMNode
+foreign import findAll     :: String -> Maybe FindAllOptions -> Ractive -> RactiveEff (Array DOMNode)
 
 -- | End Foreign Imports
 

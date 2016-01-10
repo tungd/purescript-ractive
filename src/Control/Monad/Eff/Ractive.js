@@ -116,12 +116,6 @@ var set = function(selector) {
   };
 };
 
-var ractive = function(settings){
-    return function(){
-      return new Ractive(settings);
-    };
-};
-
 var on = function(event) {
  return function(handler) {
    return function(ractive) {
@@ -200,6 +194,30 @@ var find = function(selector){
   };
 };
 
+var findAll = function(selector){
+  return function(options){
+    return function(ractive){
+      return function(){
+        var elements = null;
+        if(options &&
+          options.constructor &&
+          options.constructor.name == 'Nothing'){
+          elements = ractive.findAll(selector);
+        }else{
+          elements = ractive.findAll(selector, options.value0);
+        }
+        return elements;
+      };
+    };
+  };
+};
+
+var ractive = function(settings){
+    return function(){
+      return new Ractive(settings);
+    };
+};
+
 module.exports = {
   get         : get,
   set         : set,
@@ -210,5 +228,6 @@ module.exports = {
   observe     : observe,
   observeOnce : observeOnce,
   find        : find,
+  findAll     : findAll,
   ractive     : ractive
 }

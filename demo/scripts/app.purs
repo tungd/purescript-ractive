@@ -13,7 +13,8 @@ import Control.Monad.Eff.Ractive (RactiveM,
                                   push,
                                   pop,
                                   observe,
-                                  find)
+                                  find,
+                                  findAll)
 import Control.Monad.Eff.Random  (RANDOM, random)
 
 newtype ContT r m a = ContT ((a -> m r) -> m r)
@@ -113,6 +114,7 @@ main = do
        (observe "message" (\n o kp -> writeLog ract "consoleMessages" ("\r\n\r\nrandom: " ++ n)) Nothing ract)
 
        logo <- (find ".app-logo" ract)
+       elems <- (findAll "div" Nothing ract)
        -- Change the internal state of Ractive instance
        -- Here we manipulate the property `message`
        --> change "message" "HELLO WORLD!" ract
