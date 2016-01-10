@@ -30,6 +30,11 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 - <a href="http://docs.ractivejs.org/latest/ractive-findall" target="_blank">findAll</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-add" target="_blank">add</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-subtract" target="_blank">subtract</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-extend" target="_blank">extend</a>
+
+### Component Support
+
+Creation of RactiveJS <a href="http://docs.ractivejs.org/latest/components" target="_blank">Components</a> is supported via the `extend` API. Read the <a href="https://github.com/brakmic/purescript-ractive/blob/master/tutorials/COMPONENTS.md">Tutorial</a> for more info.
 
 ### Future planning
 
