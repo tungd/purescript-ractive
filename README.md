@@ -43,7 +43,7 @@ To map all of the <a href="http://docs.ractivejs.org/latest/get-started" target=
 ### Building the Bindings
 
 ```
-npm install [initial build only
+npm install [initial build only]
 bower update [initial build only]
 gulp
 ```
