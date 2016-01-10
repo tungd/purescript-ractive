@@ -5,12 +5,14 @@ import Control.Monad.Eff    (Eff)
 import Data.Maybe           (Maybe)
 import Data.Foreign.EasyFFI (unsafeForeignFunction, unsafeForeignProcedure)
 
-type Data a b c = {
+data Data a b = Data {
   template :: String,
-  el       :: Maybe String,
-  "data"   :: { | a},
+  "data"   :: { | a}
+  |
+  b
+  {-el       :: Maybe String,
   partials :: { | b},
-  components :: { | c }
+  components :: { | c } -}
 }
 
 type Event = {
@@ -77,8 +79,8 @@ ractive = ffiF ["template", "document", "data", ""] "new Ractive({template:templ
 
 -- | Foreign Imports
 
-foreign import ractive           :: forall a b c. Data a b c -> RactiveEff Ractive
-foreign import extend            :: forall a b c. Data a b c -> RactiveEff Ractive
+foreign import ractive           :: forall a b. Data a b -> RactiveEff Ractive
+foreign import extend            :: forall a b. Data a b -> RactiveEff Ractive
 
 foreign import on                :: forall a e. String -> (Event -> Eff e a) -> Ractive -> RactiveEff Cancellable
 foreign import off               :: Maybe String -> Maybe RactiveEventCallback -> Ractive -> RactiveEff Ractive
@@ -103,7 +105,7 @@ foreign import subtract          :: forall a e. String -> Maybe Number -> Maybe 
 
 -- | End Foreign Imports
 
-ractiveFromData :: forall a b c. Data a b c-> RactiveEff Ractive
+ractiveFromData :: forall a b. Data a b -> RactiveEff Ractive
 ractiveFromData = ffiF ["data", ""] "new Ractive(data);"
 
 setPartial      :: String -> String -> Ractive -> RactiveEff Unit

@@ -23,6 +23,15 @@ var RQNode = (function () {
     };
     return RQNode;
 })();
+var Data = (function () {
+    function Data(value0) {
+        this.value0 = value0;
+    };
+    Data.create = function (value0) {
+        return new Data(value0);
+    };
+    return Data;
+})();
 var ffiP = Data_Foreign_EasyFFI.unsafeForeignProcedure;
 var renderById = ffiP([ "id", "ractive" ])("ractive.render(id);");
 var setPartial = ffiP([ "selector", "value", "ractive" ])("ractive.partials[selector] = value;");
@@ -33,6 +42,7 @@ var ractiveFromData = ffiF([ "data", "" ])("new Ractive(data);");
 module.exports = {
     RQString: RQString, 
     RQNode: RQNode, 
+    Data: Data, 
     renderById: renderById, 
     updateModel: updateModel, 
     getPartial: getPartial, 

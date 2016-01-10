@@ -61,7 +61,7 @@ Our main Ractive instance will be created by using the `ractive` API from *pures
 ```purescript
   let ract = ractive {
                template : "#template",
-               el       : (Just "#app"),
+               el       : "#app",
                "data" : {
                         uiLibrary : "RactiveJS",
                         language  : "PureScript",
@@ -72,7 +72,6 @@ Our main Ractive instance will be created by using the `ractive` API from *pures
                         counter: 0,
                         numbers: []
                     },
-                partials : {},
                 components : {
                   "mycomponent" : component  -- we give the component the name
                                              -- of the HTML-element where it
@@ -86,13 +85,10 @@ The Child Component will be defined *but not instantiated* via the `extend` API.
 ```purescript
  let component = extend {
                    template : "#child-component-template",
-                   el : Nothing,
                    "data" : {
                      info : "I'm an embedded Ractive.JS component",
                      logoUrl   : "./content/img/ractive-logo.png"
-                   },
-                   partials   : {},
-                   components : {}
+                   }
                 }
 ```
 

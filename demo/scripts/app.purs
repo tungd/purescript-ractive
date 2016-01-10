@@ -64,20 +64,19 @@ main = do
        -- | In most cases there's also a `data`-field containing properties,
        -- | child-components, functions etc.
 
-       let component = extend {
-                                 template : "#component-template",
-                                 el : Nothing,
+       -- | Define Component Properties
+       let componentSettings = Data { template : "#component-template",
                                  "data" : {
                                    info : "I'm an embedded Ractive.JS component",
                                    logoUrl   : "./content/img/ractive-logo.png"
-                                 },
-                                 partials   : {},
-                                 components : {}
+                                 }
                               }
-
-       ract <- ractive {
+       -- | Create a new Component based on Ractive as its `base class`
+       let component = extend componentSettings
+       -- | Define MainApp's Properties containing a Child Component
+       let appSettings = Data {
                          template : "#template",
-                         el       : (Just "#app"),
+                         el       : "#app",
                          "data" : {
                                   uiLibrary : "RactiveJS",
                                   language  : "PureScript",
@@ -88,18 +87,14 @@ main = do
                                   counter: 0,
                                   numbers: []
                               },
-                          partials : {},
                           components : {
-                            "mycomponent" : component
+                            "mycomponent" : component -- Child Component
                           }
                       }
-       -- alternative call (lines 46/49 in Control/Monad/Eff/Ractive.purs must be uncommented)
-       {-  ract <- ractive "#template" "#app" {
-                                    uiLibrary : "RactiveJS",
-                                    language  : "PureScript",
-                                    logoUrl   : "./content/img/ps-logo.png",
-                                    message   : "Hello, world!"
-                                 }-}
+       -- | Instantiate the MainApp Component
+       -- | This component will load its template first and then all subordinated
+       -- | components and their templates
+       ract <- ractive appSettings
 
        -- Register event-handlers for logo-clicks & button-clicks.
        -- Generate a random number each time we click the logo.
@@ -111,6 +106,7 @@ main = do
        push "numbers" 12345 (Just (\p -> writeLog ract "consoleMessages" "\r\n\r\npush completed")) ract
        -- | Get a value from Ractive and execute callback
        (pop "numbers" (Just (\result -> writeLog ract "consoleMessages" ("\r\n\r\ngot value: " ++ result))) ract)
+
        -- We can also deregister event handlers like in the example below
        -- See also: http://docs.ractivejs.org/latest/ractive-off
        --> off (Just "logo-clicked") Nothing ract

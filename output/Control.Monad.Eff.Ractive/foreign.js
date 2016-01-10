@@ -38,6 +38,14 @@ var createCallback = function(api, callback){
 };
 // -- end of ugly helper function
 
+// -- extract Ractive component settings
+
+var extractSettings = function(settings){
+  return settings.value0;
+}
+
+// -- end of extract Ractive component settings
+
 var observe = function(selector){
   return function(handler){
     return function(options){
@@ -295,34 +303,16 @@ var findAllComponents = function(name){
 };
 
 var ractive = function(settings){
-    var s = settings;
-    //ugly but needed to accept components that do not have `el`!
-    if(settings &&
-      settings.el &&
-      settings.el.constructor &&
-      settings.el.constructor.name == 'Nothing'){
-      delete s.el;
-    }else{
-      s.el = settings.el.value0;
-    }
     return function(){
+      var s = extractSettings(settings);
       return new Ractive(s);
     };
 };
 
 var extend = function(settings){
-  var s = settings;
-    //ugly but needed to accept components that do not have `el`!
-    if(settings &&
-      settings.el &&
-      settings.el.constructor &&
-      settings.el.constructor.name == 'Nothing'){
-      delete s.el;
-    }else{
-      s.el = settings.el.value0;
-    }
     return function(){
-      var r = Ractive.extend(settings);
+      var s = extractSettings(settings);
+      var r = Ractive.extend(s);
       return r;
     };
 }
