@@ -191,6 +191,15 @@ var pop = function(keypath){
   };
 };
 
+var find = function(selector){
+  return function(ractive){
+    return function(){
+      var node = ractive.find(selector);
+      return node;
+    };
+  };
+};
+
 module.exports = {
   get         : get,
   set         : set,
@@ -200,5 +209,6 @@ module.exports = {
   pop         : pop,
   observe     : observe,
   observeOnce : observeOnce,
+  find        : find,
   ractive     : ractive
 }

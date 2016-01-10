@@ -3,6 +3,7 @@
 bower.json~
 !/.gitignore
 !/.travis.yml
+/output/Test.Main/
 /output/DemoApp.WithRactive/
 /node_modules/
 /bower_components/

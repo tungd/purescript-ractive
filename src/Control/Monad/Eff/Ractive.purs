@@ -82,6 +82,8 @@ foreign import pop         :: forall a e. String -> Maybe (a -> (Eff e Unit)) ->
 foreign import observe     :: forall a b e. String -> (a -> b -> String -> (Eff e Unit)) -> Maybe ObserverOptions -> Ractive -> RactiveEff Cancellable
 foreign import observeOnce :: forall a b e. String -> (a -> b -> String -> (Eff e Unit)) -> Maybe ObserverOptions -> Ractive -> RactiveEff Cancellable
 
+foreign import find        :: String -> Ractive -> RactiveEff DOMNode
+
 -- | End Foreign Imports
 
 ractiveFromData :: forall a b. Data a b -> RactiveEff Ractive

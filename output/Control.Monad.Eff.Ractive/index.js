@@ -40,6 +40,7 @@ module.exports = {
     ractiveFromData: ractiveFromData, 
     ffiP: ffiP, 
     ffiF: ffiF, 
+    find: $foreign.find, 
     observeOnce: $foreign.observeOnce, 
     observe: $foreign.observe, 
     pop: $foreign.pop, 

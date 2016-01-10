@@ -4,7 +4,16 @@ import Prelude                   (Unit, bind, not, (++))
 import Data.Maybe                (Maybe(Nothing, Just))
 import Control.Monad.Eff         (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
-import Control.Monad.Eff.Ractive (RactiveM, Ractive, ractive, on, get, set, push, pop, observe)
+import Control.Monad.Eff.Ractive (RactiveM,
+                                  Ractive,
+                                  ractive,
+                                  on,
+                                  get,
+                                  set,
+                                  push,
+                                  pop,
+                                  observe,
+                                  find)
 import Control.Monad.Eff.Random  (RANDOM, random)
 
 newtype ContT r m a = ContT ((a -> m r) -> m r)
@@ -103,6 +112,7 @@ main = do
        --------------------------> kp = keypath
        (observe "message" (\n o kp -> writeLog ract "consoleMessages" ("\r\n\r\nrandom: " ++ n)) Nothing ract)
 
+       logo <- (find ".app-logo" ract)
        -- Change the internal state of Ractive instance
        -- Here we manipulate the property `message`
        --> change "message" "HELLO WORLD!" ract

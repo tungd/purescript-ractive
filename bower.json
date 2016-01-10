@@ -1,16 +1,14 @@
 {
   "name": "purescript-ractive",
   "description": "Ractive bindings for PureScript (Work in progress)",
-  "main": [
-
-	  ],
+  "main": [],
   "keywords": [
     "purescript",
     "ractive"
   ],
   "repository": {
-	"type": "git",
-	"url": "git://github.com/brakmic/purescript-ractive.git"
+    "type": "git",
+    "url": "git://github.com/brakmic/purescript-ractive.git"
   },
   "ignore": [
     "**/.*",
