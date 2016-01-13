@@ -18,20 +18,20 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 
 ### Currently implemented APIs
 
-- <a href="http://docs.ractivejs.org/latest/ractive-get" target="_blank">get</a>
-- <a href="http://docs.ractivejs.org/latest/ractive-set" target="_blank">set</a>
-- <a href="http://docs.ractivejs.org/latest/ractive-on" target="_blank">on</a>
-- <a href="http://docs.ractivejs.org/latest/ractive-off" target="_blank">off</a>
-- <a href="http://docs.ractivejs.org/latest/ractive-push" target="_blank">push</a>
-- <a href="http://docs.ractivejs.org/latest/ractive-pop" target="_blank">pop</a>
-- <a href="http://docs.ractivejs.org/latest/ractive-observe" target="_blank">observe</a>
-- <a href="http://docs.ractivejs.org/latest/ractive-observeonce" target="_blank">observeOnce</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-add" target="_blank">add</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-animate" target="_blank">animate</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-extend" target="_blank">extend</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-find" target="_blank">find</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-findall" target="_blank">findAll</a>
-- <a href="http://docs.ractivejs.org/latest/ractive-add" target="_blank">add</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-get" target="_blank">get</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-observe" target="_blank">observe</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-observeonce" target="_blank">observeOnce</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-off" target="_blank">off</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-on" target="_blank">on</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-pop" target="_blank">pop</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-push" target="_blank">push</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-set" target="_blank">set</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-subtract" target="_blank">subtract</a>
-- <a href="http://docs.ractivejs.org/latest/ractive-extend" target="_blank">extend</a>
-- <a href="http://docs.ractivejs.org/latest/ractive-animate" target="_blank">animate</a>
 
 ### Component Support
 
