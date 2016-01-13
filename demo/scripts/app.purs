@@ -134,6 +134,9 @@ main = do
        -- Here we manipulate the property `message`
        --> change "message" "HELLO WORLD!" ract
 
+       -- | animate API
+       (animate "message" "Click on the PureScript Logo! :)" Nothing ract)
+
        -- Return a value from Ractive
        -- See also: http://docs.ractivejs.org/latest/ractive-get
        m <- (get "message" ract)

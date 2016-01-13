@@ -23,6 +23,20 @@ var RQNode = (function () {
     };
     return RQNode;
 })();
+var $$String = (function () {
+    function String() {
+
+    };
+    String.value = new String();
+    return String;
+})();
+var AnimateEasingFunction = (function () {
+    function AnimateEasingFunction() {
+
+    };
+    AnimateEasingFunction.value = new AnimateEasingFunction();
+    return AnimateEasingFunction;
+})();
 var Data = (function () {
     function Data(value0) {
         this.value0 = value0;
@@ -42,6 +56,8 @@ var ractiveFromData = ffiF([ "data", "" ])("new Ractive(data);");
 module.exports = {
     RQString: RQString, 
     RQNode: RQNode, 
+    "String": $$String, 
+    AnimateEasingFunction: AnimateEasingFunction, 
     Data: Data, 
     renderById: renderById, 
     updateModel: updateModel, 
@@ -50,6 +66,7 @@ module.exports = {
     ractiveFromData: ractiveFromData, 
     ffiP: ffiP, 
     ffiF: ffiF, 
+    animate: $foreign.animate, 
     subtract: $foreign.subtract, 
     add: $foreign.add, 
     findAllComponents: $foreign.findAllComponents, 

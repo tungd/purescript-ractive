@@ -37,6 +37,8 @@ type ObserverOptions = {
   context :: Ractive
 }
 
+-- findComponents API params
+
 type FindAllOptions = {
   live :: Boolean
 }
@@ -44,6 +46,27 @@ type FindAllOptions = {
 type FindAllComponentsOptions = {
   live :: Boolean
 }
+
+-- end of findComponents API params
+
+--  animate API params
+
+type StepFunction = forall t value. t -> value -> RactiveEff Unit
+
+type CompleteFunction = forall t value. t -> value -> RactiveEff Unit
+
+type EasingFunction = forall t value. t -> value -> RactiveEff Unit
+
+data EasingParam = String | AnimateEasingFunction
+
+type AnimateOptions = {
+  duration :: Number,
+  easing :: Easing,
+  step :: StepFunction,
+  complete :: CompleteFunction
+}
+
+-- end of anima API params
 
 data RenderQuery             = RQString String | RQNode DOMNode
 
@@ -60,6 +83,8 @@ foreign import data Text        :: *
 foreign import data Element     :: *
 
 foreign import data Cancellable :: *
+
+foreign import data Easing :: *
 
 type RactiveEff a = forall e. Eff (ractiveM :: RactiveM | e) a
 
@@ -94,6 +119,8 @@ foreign import findAllComponents :: String -> Maybe FindAllComponentsOptions -> 
 
 foreign import add               :: forall a e. String -> Maybe Number -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
 foreign import subtract          :: forall a e. String -> Maybe Number -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
+
+foreign import animate           :: forall a. String -> a -> Maybe AnimateOptions -> Ractive -> RactiveEff Unit
 
 -- | End Foreign Imports
 

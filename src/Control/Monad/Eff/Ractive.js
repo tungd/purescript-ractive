@@ -302,6 +302,33 @@ var findAllComponents = function(name){
   };
 };
 
+var animate = function(keypath){
+  return function(value){
+    return function(options){
+      return function(ractive){
+        return function(){
+          if(options &&
+            options.constructor &&
+            options.constructor.name != 'Nothing'){
+              ractive.animate(keypath,value,options).then(function(){
+
+              }).catch(function(err){
+                console.log('animate failed, error: ' + err);
+              });
+          }else{
+            ractive.animate(keypath, value).then(function(){
+
+            }).catch(function(err){
+              console.log('animate failed, error: ' + err);
+            });
+          }
+          return {};
+        };
+      };
+    };
+  };
+};
+
 var ractive = function(settings){
     return function(){
       var s = extractSettings(settings);
@@ -333,5 +360,6 @@ module.exports = {
   add               : add,
   subtract          : subtract,
   ractive           : ractive,
-  extend            : extend
+  extend            : extend,
+  animate           : animate
 }
