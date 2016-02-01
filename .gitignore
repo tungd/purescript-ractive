@@ -3,14 +3,14 @@
 bower.json~
 !/.gitignore
 !/.travis.yml
-/output/Test.Main/
-/output/DemoApp.WithRactive/
+/output/
 /node_modules/
 /bower_components/
 /tmp/
 html/js/demo.js
 html/templates/tut*/content.html
 demo/scripts/bundle.js
+demo/scripts/release
 /dist/
 /.pulp.cache/
 /.psci_modules/

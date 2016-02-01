@@ -4,7 +4,7 @@ import Prelude                   (Unit, bind, not, (++))
 import Data.Maybe                (Maybe(Nothing, Just))
 import Control.Monad.Eff         (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
-import Control.Monad.Eff.Ractive (..)
+import Control.Monad.Eff.Ractive
 import Control.Monad.Eff.Random  (RANDOM, random)
 
 newtype ContT r m a = ContT ((a -> m r) -> m r)

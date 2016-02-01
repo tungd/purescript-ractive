@@ -22,7 +22,9 @@
     "functional"
   ],
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "purescript": "^0.8.0"
+  },
   "devDependencies": {
     "async-uglify-js-webpack-plugin": "0.0.4",
     "compression-webpack-plugin": "^0.2.0",
