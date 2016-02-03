@@ -26,7 +26,7 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 - <a href="http://docs.ractivejs.org/latest/ractive-findallcomponents" target="_blank">findAllComponents</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-findcomponent" target="_blank">findComponent</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-findcontainer" target="_blank">findContainer</a>
-- <a href="http://docs.ractivejs.org/latest/ractive-findparent" target="_blank">findContainer</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-findparent" target="_blank">findParent</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-get" target="_blank">get</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-observe" target="_blank">observe</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-observeonce" target="_blank">observeOnce</a>
