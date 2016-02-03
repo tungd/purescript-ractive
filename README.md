@@ -56,7 +56,7 @@ gulp
 ### Building the Demo
 
 ```
-gulp make-demo [*initial build only*]
+gulp make-demo [initial build only]
 gulp build-demo
 open index.html from subdir demo
 ```
