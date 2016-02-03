@@ -1,6 +1,6 @@
 module Control.Monad.Eff.Ractive where
 
-import Prelude              (Unit, bind)
+import Prelude              (Unit)
 import Control.Monad.Eff    (Eff)
 import Data.Maybe           (Maybe)
 import Data.Foreign.EasyFFI (unsafeForeignFunction, unsafeForeignProcedure)
@@ -114,8 +114,10 @@ foreign import observeOnce       :: forall a b e. String -> (a -> b -> String ->
 foreign import find              :: String -> Ractive -> RactiveEff DOMNode
 foreign import findAll           :: String -> Maybe FindAllOptions -> Ractive -> RactiveEff (Array DOMNode)
 
-foreign import findComponent     :: String -> Ractive -> RactiveEff Ractive
-foreign import findAllComponents :: String -> Maybe FindAllComponentsOptions -> Ractive -> RactiveEff (Array Ractive)
+foreign import findComponent     :: String -> Ractive -> RactiveEff (Maybe Ractive)
+foreign import findAllComponents :: String -> Maybe FindAllComponentsOptions -> Ractive -> RactiveEff (Maybe (Array Ractive))
+foreign import findContainer     :: String -> Ractive -> RactiveEff (Maybe Ractive)
+foreign import findParent        :: String -> Ractive -> RactiveEff (Maybe Ractive)
 
 foreign import add               :: forall a e. String -> Maybe Number -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
 foreign import subtract          :: forall a e. String -> Maybe Number -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit

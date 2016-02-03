@@ -271,15 +271,17 @@ var subtract = function(keypath){
 };
 
 var findComponent = function(name){
+  var component = null;
   return function(ractive){
     return function(){
-      var component = ractive.findComponent(name);
+      component = ractive.findComponent(name);
       return component;
     }
   };
 };
 
 var findAllComponents = function(name){
+  var allComponents = null;
   return function(options){
     if(options &&
       options.constructor &&
@@ -290,7 +292,6 @@ var findAllComponents = function(name){
     }
     return function(ractive){
       return function(){
-        var allComponents = null;
         if(options){
           allComponents = ractive.findAllComponents(name, options);
         }else{
@@ -299,6 +300,24 @@ var findAllComponents = function(name){
         return allComponents;
       };
     };
+  };
+};
+
+var findContainer = function(name){
+  var container = null;
+  return function(ractive){
+    if(name){
+      container = ractive.findContainer(name);
+    }
+    return container;
+  };
+};
+
+var findParent = function(name){
+  var parent = null;
+  return function(ractive){
+    parent = ractive.findParent(name);
+    return parent;
   };
 };
 
@@ -355,8 +374,10 @@ module.exports = {
   observeOnce       : observeOnce,
   find              : find,
   findAll           : findAll,
-  findComponent     : findComponent,
   findAllComponents : findAllComponents,
+  findComponent     : findComponent,
+  findContainer     : findContainer,
+  findParent        : findParent,
   add               : add,
   subtract          : subtract,
   ractive           : ractive,
