@@ -434,6 +434,19 @@ var resetPartial = function(name){
   };
 };
 
+var shift = function(keypath){
+  return function(callback){
+    var cb = createCallback('shift', callback);
+    return function(ractive){
+      return function(){
+        var ok = ractive.shift(keypath);
+        cb(ok)();
+        return {};
+      };
+    };
+  };
+};
+
 var ractive = function(settings){
     return function(){
       var s = extractSettings(settings);
@@ -474,5 +487,6 @@ module.exports = {
   fire              : fire,
   render            : render,
   reset             : reset,
-  resetPartial      : resetPartial
+  resetPartial      : resetPartial,
+  shift             : shift
 }
