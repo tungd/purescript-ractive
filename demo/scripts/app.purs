@@ -98,6 +98,8 @@ main = do
        -- | Here we 'move' our Ractive instance from DOMNode 'app' to 'dummy'
        domObj <- detach ract -- first, we `detach` the instance
        insert ract (Target "#dummy") Nothing -- and second, we `insert` it
+       -- | We can also `reset` the `data` property of our Ractive instance
+       -- reset Nothing Nothing ract
        -- | ---------------------------------
        -- Register event-handlers for logo-clicks & button-clicks.
        -- Generate a random number each time we click the logo.

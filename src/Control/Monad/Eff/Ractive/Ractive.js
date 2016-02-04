@@ -399,6 +399,26 @@ var render = function(target){
   };
 };
 
+var reset = function(data){
+    return function(callback){
+      var cb = createCallback('reset', callback);
+      return function(ractive){
+        return function(){
+          var ok = null;
+          if(data &&
+            data.constructor &&
+            data.constructor.name != 'Nothing'){
+            ok = ractive.reset(data.value0);
+          }else{
+            ok = ractive.reset();
+          }
+          cb(ok)();
+          return {};
+      };
+    };
+  };
+};
+
 var ractive = function(settings){
     return function(){
       var s = extractSettings(settings);
@@ -437,5 +457,6 @@ module.exports = {
   insert            : insert,
   detach            : detach,
   fire              : fire,
-  render            : render
+  render            : render,
+  reset             : reset
 }

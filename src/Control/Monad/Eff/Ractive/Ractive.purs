@@ -135,6 +135,7 @@ foreign import insert            :: forall a b. Ractive -> Target a -> Maybe (An
 foreign import fire              :: forall a. String -> Maybe (List (Argument a)) -> Ractive -> RactiveEff Unit
 
 foreign import render            :: forall a. Target a -> Ractive -> RactiveEff Unit
+foreign import reset             :: forall a b e. Maybe (Data a b) -> Maybe (Eff e Unit) -> Ractive -> RactiveEff Unit
 
 -- | End Foreign Imports
 
