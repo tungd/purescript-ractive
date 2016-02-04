@@ -100,6 +100,10 @@ main = do
        insert ract (Target "#dummy") Nothing -- and second, we `insert` it
        -- | We can also `reset` the `data` property of our Ractive instance
        -- reset Nothing Nothing ract
+       -- | We can easily serve fully rendered pages with `toHTML`
+       -- | a.k.a. isomorphic JS, or `rehydrating` of clients
+       html <- toHTML ract
+       log ("This is the whole HTML => " ++ html)
        -- | ---------------------------------
        -- Register event-handlers for logo-clicks & button-clicks.
        -- Generate a random number each time we click the logo.

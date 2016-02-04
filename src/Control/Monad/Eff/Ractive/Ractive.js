@@ -497,6 +497,13 @@ var toggle = function(keypath){
   };
 };
 
+var toHTML = function(ractive){
+  return function(){
+    var htmlString = ractive.toHTML();
+    return htmlString;
+  };
+};
+
 var ractive = function(settings){
     return function(){
       var s = extractSettings(settings);
@@ -541,5 +548,6 @@ module.exports = {
   shift             : shift,
   splice            : splice,
   teardown          : teardown,
-  toggle            : toggle
+  toggle            : toggle,
+  toHTML            : toHTML
 }

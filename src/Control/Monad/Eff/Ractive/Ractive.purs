@@ -145,6 +145,8 @@ foreign import splice            :: forall a e. String -> Int -> Int -> Maybe (L
 foreign import teardown          :: forall a e. (Eff e a) -> Ractive -> RactiveEff Unit
 foreign import toggle            :: forall a e. String -> (Eff e a) -> Ractive -> RactiveEff Unit
 
+foreign import toHTML            :: Ractive -> RactiveEff String
+
 -- | End Foreign Imports
 
 ractiveFromData :: forall a b. Data a b -> RactiveEff Ractive
