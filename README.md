@@ -46,6 +46,10 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 - <a href="http://docs.ractivejs.org/latest/ractive-splice" target="_blank">splice</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-teardown" target="_blank">teardown</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-toggle" target="_blank">toggle</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-tohtml" target="_blank">toHTML</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-unrender" target="_blank">unrender</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-unshift" target="_blank">unshift</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-update" target="_blank">update</a>
 
 ### Component Support
 
