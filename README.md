@@ -58,7 +58,7 @@ Creation of RactiveJS <a href="http://docs.ractivejs.org/latest/components" targ
 
 ### Future planning
 
-To map all of the <a href="http://docs.ractivejs.org/latest/get-started" target="_blank">Ractive APIs</a> to PureScript.
+Follow the development of RactiveJS and continuously update the bindings.
 
 ### Building the Bindings
 
