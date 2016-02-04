@@ -390,6 +390,15 @@ var fire = function(eventName){
   };
 };
 
+var render = function(target){
+  return function(ractive){
+    return function(){
+      ractive.render(target.value0);
+      return {};
+    };
+  };
+};
+
 var ractive = function(settings){
     return function(){
       var s = extractSettings(settings);

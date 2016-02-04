@@ -37,6 +37,7 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 - <a href="http://docs.ractivejs.org/latest/ractive-on" target="_blank">on</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-pop" target="_blank">pop</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-push" target="_blank">push</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-render" target="_blank">render</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-set" target="_blank">set</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-subtract" target="_blank">subtract</a>
 
