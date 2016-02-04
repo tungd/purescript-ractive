@@ -20,11 +20,6 @@ change property value ractive = do
 inverse :: Boolean -> Boolean
 inverse canRand = not canRand
 
--- | Helper function for logging everything reglardless of its type
-logAnything :: forall a e. a -> Eff (console :: CONSOLE | e) Unit
-logAnything = \anything -> do
-                           logRaw anything
-
 -- | Change the random numeric value in Ractive's property "message"
 -- | The `RactiveM` type constructor is used to represent _RactiveJS_ effects.
 -- | The `RANDOM` type constructor is used to represent _RANDOM_ values generator effects.
