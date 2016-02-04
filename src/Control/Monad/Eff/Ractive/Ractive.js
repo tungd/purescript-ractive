@@ -373,6 +373,23 @@ var detach = function(ractive){
   };
 };
 
+var fire = function(eventName){
+  return function(args){
+    return function(ractive){
+      return function(){
+        if(args &&
+          args.constructor &&
+          args.constructor.name != 'Nothing'){
+          ractive.fire(eventName, args.value0);
+        }else{
+          ractive.fire(eventName);
+        }
+        return {};
+      };
+    };
+  };
+};
+
 var ractive = function(settings){
     return function(){
       var s = extractSettings(settings);
@@ -409,5 +426,6 @@ module.exports = {
   extend            : extend,
   animate           : animate,
   insert            : insert,
-  detach            : detach
+  detach            : detach,
+  fire              : fire
 }

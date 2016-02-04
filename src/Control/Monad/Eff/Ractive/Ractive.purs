@@ -3,6 +3,7 @@ module Control.Monad.Eff.Ractive where
 import Prelude              (Unit)
 import Control.Monad.Eff    (Eff)
 import Data.Maybe           (Maybe)
+import Data.List            (List)
 import Data.Foreign.EasyFFI (unsafeForeignFunction, unsafeForeignProcedure)
 
 data Data a b = Data {
@@ -47,8 +48,9 @@ type FindAllComponentsOptions = {
   live :: Boolean
 }
 
-data Target a = Target a
-data Anchor a = Anchor a
+data Target a   = Target a
+data Anchor a   = Anchor a
+data Argument a = Argument a
 
 -- end of findComponents API params
 
@@ -129,6 +131,8 @@ foreign import animate           :: forall a. String -> a -> Maybe AnimateOption
 
 foreign import detach            :: Ractive -> RactiveEff DOMNode
 foreign import insert            :: forall a b. Ractive -> Target a -> Maybe (Anchor b) -> RactiveEff Unit
+
+foreign import fire              :: forall a. String -> Maybe (List (Argument a)) -> Ractive -> RactiveEff Unit
 
 -- | End Foreign Imports
 

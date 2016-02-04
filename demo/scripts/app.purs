@@ -140,6 +140,12 @@ main = do
        -- | animate API
        (animate "message" "Click on the PureScript Logo! :)" Nothing ract)
 
+
+       -- | We can fire events with `fire`
+       -- | Here we generate a few `logo-clicked` proxy-events
+       fire "logo-clicked" Nothing ract
+       -- | ----------------------------
+
        -- Return a value from Ractive
        -- See also: http://docs.ractivejs.org/latest/ractive-get
        m <- (get "message" ract)
