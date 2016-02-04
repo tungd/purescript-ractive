@@ -95,7 +95,10 @@ main = do
        -- | This component will load its template first and then all subordinated
        -- | components and their templates
        ract <- ractive appSettings
-
+       -- | Here we 'move' our Ractive instance from DOMNode 'app' to 'dummy'
+       domObj <- detach ract -- first, we `detach` the instance
+       insert ract (Target "#dummy") Nothing -- and second, we `insert` it
+       -- | ---------------------------------
        -- Register event-handlers for logo-clicks & button-clicks.
        -- Generate a random number each time we click the logo.
        on "logo-clicked" (onLogoClicked ract) ract

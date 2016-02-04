@@ -20,6 +20,7 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 
 - <a href="http://docs.ractivejs.org/latest/ractive-add" target="_blank">add</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-animate" target="_blank">animate</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-detach" target="_blank">detach</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-extend" target="_blank">extend</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-find" target="_blank">find</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-findall" target="_blank">findAll</a>
@@ -28,6 +29,7 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 - <a href="http://docs.ractivejs.org/latest/ractive-findcontainer" target="_blank">findContainer</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-findparent" target="_blank">findParent</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-get" target="_blank">get</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-insert" target="_blank">insert</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-observe" target="_blank">observe</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-observeonce" target="_blank">observeOnce</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-off" target="_blank">off</a>

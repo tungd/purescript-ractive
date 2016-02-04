@@ -47,6 +47,9 @@ type FindAllComponentsOptions = {
   live :: Boolean
 }
 
+data Target a = Target a
+data Anchor a = Anchor a
+
 -- end of findComponents API params
 
 --  animate API params
@@ -123,6 +126,9 @@ foreign import add               :: forall a e. String -> Maybe Number -> Maybe 
 foreign import subtract          :: forall a e. String -> Maybe Number -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
 
 foreign import animate           :: forall a. String -> a -> Maybe AnimateOptions -> Ractive -> RactiveEff Unit
+
+foreign import detach            :: Ractive -> RactiveEff DOMNode
+foreign import insert            :: forall a b. Ractive -> Target a -> Maybe (Anchor b) -> RactiveEff Unit
 
 -- | End Foreign Imports
 

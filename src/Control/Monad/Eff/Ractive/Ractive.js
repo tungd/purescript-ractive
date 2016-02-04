@@ -348,6 +348,31 @@ var animate = function(keypath){
   };
 };
 
+var insert = function(ractive) {
+  return function(target){
+    return function(anchor){
+      return function(){
+        if(anchor &&
+          anchor.constructor &&
+          anchor.constructor.name != 'Nothing'){
+            ractive.insert(target.value0, anchor.value0);
+        }else {
+          ractive.insert(target.value0);
+        }
+        return {};
+      };
+    };
+  };
+};
+
+var detach = function(ractive){
+  var domObject = null;
+  return function(){
+     domObject = ractive.detach();
+     return domObject;
+  };
+};
+
 var ractive = function(settings){
     return function(){
       var s = extractSettings(settings);
@@ -382,5 +407,7 @@ module.exports = {
   subtract          : subtract,
   ractive           : ractive,
   extend            : extend,
-  animate           : animate
+  animate           : animate,
+  insert            : insert,
+  detach            : detach
 }
