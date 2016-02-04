@@ -473,6 +473,17 @@ var splice = function(keypath){
   };
 };
 
+var teardown = function(callback){
+  var cb = createCallback('teardown', callback);
+  return function(ractive){
+    return function(){
+      var ok = ractive.teardown();
+      cb(ok)();
+      return {};
+    };
+  };
+};
+
 var ractive = function(settings){
     return function(){
       var s = extractSettings(settings);
@@ -515,5 +526,6 @@ module.exports = {
   reset             : reset,
   resetPartial      : resetPartial,
   shift             : shift,
-  splice            : splice
+  splice            : splice,
+  teardown          : teardown
 }
