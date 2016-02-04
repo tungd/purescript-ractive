@@ -3,7 +3,7 @@
 
 **RactiveJS bindings for PureScript**
 
-Based on the original sources from <a href="https://github.com/AitorATuin/purescript-ractive" target="_blank">AitorATuin</a>
+Based on the original sources from <a href="https://github.com/AitorATuin/purescript-ractive" target="_blank">Aitor P. Iturri</a>
 
 This version is compatible with **psc 0.8.0.0**.
 
