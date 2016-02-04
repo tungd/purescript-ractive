@@ -139,7 +139,8 @@ foreign import render            :: forall a. Target a -> Ractive -> RactiveEff 
 foreign import reset             :: forall a b e. Maybe (Data a b) -> Maybe (Eff e Unit) -> Ractive -> RactiveEff Unit
 foreign import resetPartial      :: forall a e. String -> RactivePartial a -> Maybe (Eff e Unit) -> Ractive -> RactiveEff Unit
 
-foreign import shift             :: forall e. String -> Maybe (Eff e Unit) -> Ractive -> RactiveEff Unit
+foreign import shift             :: forall a e. String -> Maybe (Eff e a) -> Ractive -> RactiveEff Unit
+foreign import splice            :: forall a e. String -> Int -> Int -> Maybe (List a) -> (Eff e a) -> Ractive -> RactiveEff Unit
 
 -- | End Foreign Imports
 

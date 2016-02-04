@@ -447,6 +447,32 @@ var shift = function(keypath){
   };
 };
 
+var splice = function(keypath){
+  return function(index){
+    return function(removeCount){
+      return function(add){
+        return function(callback){
+          var cb = createCallback('splice', callback);
+          return function(ractive){
+            return function(){
+              var ok = null;
+              if(add &&
+                add.constructor &&
+                add.constructor.name != 'Nothing'){
+                  ok = ractive.splice(keypath, index, removeCount, add.value0);
+              }else{
+                ok = ractive.splice(keypath, index, removeCount, []);
+              }
+              cb(ok)();
+              return {};
+            };
+          };
+        };
+      };
+    };
+  };
+};
+
 var ractive = function(settings){
     return function(){
       var s = extractSettings(settings);
@@ -488,5 +514,6 @@ module.exports = {
   render            : render,
   reset             : reset,
   resetPartial      : resetPartial,
-  shift             : shift
+  shift             : shift,
+  splice            : splice
 }
