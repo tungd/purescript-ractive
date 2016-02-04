@@ -3,6 +3,7 @@
 // module Control.Monad.Eff.Ractive
 
 var Ractive = require('ractive');
+var Data_Maybe = require('Data.Maybe');
 
 //-- an ugly helper function for wiring up of callbacks
 // used in push/pop APIs
@@ -72,7 +73,11 @@ var observe = function(selector){
                 return handler(n)(o)(kp)(this);
             });
           }
-          return cancellable;
+          if(cancellable){
+            return Data_Maybe.Just.create(cancellable);
+          }else{
+            return Data_Maybe.Nothing.value;
+          }
         };
       };
     };
@@ -101,7 +106,11 @@ var observeOnce = function(selector){
               return handler(n)(o)(kp)(this);
             });
           }
-          return cancellable;
+          if(cancellable){
+            return Data_Maybe.Just.create(cancellable);
+          }else{
+            return Data_Maybe.Nothing.value;
+          }
         };
       };
     };
@@ -112,7 +121,11 @@ var get = function(selector){
   return function(ractive){
     return function(){
       var data = ractive.get(selector);
-      return data;
+      if(data){
+        return Data_Maybe.Just.create(data);
+      }else{
+        return Data_Maybe.Nothing.value;
+      }
     };
   };
 };
@@ -135,7 +148,11 @@ var on = function(event) {
        var cancellable = ractive.on(event, function(ev){
           return handler(ev)(this);
        });
-       return cancellable;
+       if(cancellable){
+          return Data_Maybe.Just.create(cancellable);
+       }else{
+          return Data_Maybe.Nothing.value;
+       }
      };
    };
   };
@@ -145,17 +162,21 @@ var off = function(event){
   return function(handler){
     return function(ractive){
       return function(){
-        var chainable = null;
+        var cancellable = null;
         if(event.constructor &&
             event.constructor.name == 'Just'){
-          chainable = ractive.off(event.value0);
+          cancellable = ractive.off(event.value0);
         }else if(event.constructor &&
             event.constructor.name == 'Nothing'){
-          chainable = ractive.off();
+          cancellable = ractive.off();
         }else{
-          chainable = ractive.off(event.value0,handler.constructor());
+          cancellable = ractive.off(event.value0,handler.constructor());
         }
-        return chainable;
+        if(cancellable){
+          return Data_Maybe.Just.create(cancellable);
+        }else{
+          return Data_Maybe.Nothing.value;
+        }
       };
     };
   };
@@ -201,7 +222,11 @@ var find = function(selector){
   return function(ractive){
     return function(){
       var node = ractive.find(selector);
-      return node;
+      if(node){
+        return Data_Maybe.Just.create(node);
+      }else{
+        return Data_Maybe.Nothing.value;
+      }
     };
   };
 };
@@ -218,7 +243,11 @@ var findAll = function(selector){
         }else{
           elements = ractive.findAll(selector, options.value0);
         }
-        return elements;
+        if(elements){
+          return Data_Maybe.Just.create(elements);
+        }else{
+          return Data_Maybe.Nothing.value;
+        }
       };
     };
   };
@@ -279,7 +308,11 @@ var findComponent = function(name){
   return function(ractive){
     return function(){
       component = ractive.findComponent(name);
-      return component;
+      if(component){
+        return Data_Maybe.Just.create(component);
+      }else{
+        return Data_Maybe.Nothing.value;
+      }
     }
   };
 };
@@ -301,7 +334,11 @@ var findAllComponents = function(name){
         }else{
           allComponents = ractive.find(name);
         }
-        return allComponents;
+        if(allComponents){
+          return Data_Maybe.Just.create(allComponents);
+        }else{
+          return Data_Maybe.Nothing.value;
+        }
       };
     };
   };
@@ -313,7 +350,11 @@ var findContainer = function(name){
     if(name){
       container = ractive.findContainer(name);
     }
-    return container;
+    if(container){
+      return Data_Maybe.Just.create(container);
+    }else{
+      return Data_Maybe.Nothing.value;
+    }
   };
 };
 
@@ -321,7 +362,11 @@ var findParent = function(name){
   var parent = null;
   return function(ractive){
     parent = ractive.findParent(name);
-    return parent;
+    if(parent){
+      return Data_Maybe.Just.create(parent);
+    }else{
+      return Data_Maybe.Nothing.value;
+    }
   };
 };
 
@@ -373,7 +418,11 @@ var detach = function(ractive){
   var domObject = null;
   return function(){
      domObject = ractive.detach();
-     return domObject;
+     if(domObject){
+       return Data_Maybe.Just.create(domObject);
+     }else{
+       return Data_Maybe.Nothing.value;
+     }
   };
 };
 
@@ -528,7 +577,11 @@ var toggle = function(keypath){
 var toHTML = function(ractive){
   return function(){
     var htmlString = ractive.toHTML();
-    return htmlString;
+    if(htmlString){
+      return Data_Maybe.Just.create(htmlString);
+    }else{
+      return Data_Maybe.Nothing.value;
+    }
   };
 };
 
@@ -653,7 +706,17 @@ var extend = function(settings){
     };
 }
 
+/* HELPERS */
+
+var logRaw = function(str) {
+  return function () {
+    console.log(str);
+    return {};
+  };
+};
+
 module.exports = {
+  /****** BEGIN API ******/
   get               : get,
   set               : set,
   on                : on,
@@ -687,5 +750,7 @@ module.exports = {
   unrender          : unrender,
   unshift           : unshift,
   update            : update,
-  updateModel       : updateModel
+  updateModel       : updateModel,
+  /********** END API *************/
+  logRaw            : logRaw
 }

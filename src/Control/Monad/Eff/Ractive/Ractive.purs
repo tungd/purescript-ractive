@@ -1,10 +1,11 @@
 module Control.Monad.Eff.Ractive where
 
-import Prelude              (Unit)
-import Control.Monad.Eff    (Eff)
-import Data.Maybe           (Maybe)
-import Data.List            (List)
-import Data.Foreign.EasyFFI (unsafeForeignFunction, unsafeForeignProcedure)
+import Prelude                   (Unit)
+import Control.Monad.Eff         (Eff)
+import Control.Monad.Eff.Console (CONSOLE)
+import Data.Maybe                (Maybe)
+import Data.List                 (List)
+import Data.Foreign.EasyFFI      (unsafeForeignFunction, unsafeForeignProcedure)
 
 data Data a b = Data {
   template :: String,
@@ -101,6 +102,9 @@ ffiF              = unsafeForeignFunction
 ffiP              :: forall a. Array String -> String -> a
 ffiP              = unsafeForeignProcedure
 
+-- | Logging helper
+foreign import logRaw :: forall a e. a -> Eff (console :: CONSOLE | e) Unit
+
 -- | Create a new RactiveJS instance
 foreign import ractive           :: forall a b. Data a b -> RactiveEff Ractive
 
@@ -108,21 +112,21 @@ foreign import ractive           :: forall a b. Data a b -> RactiveEff Ractive
 
 foreign import add               :: forall a e. String -> Maybe Number -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
 foreign import animate           :: forall a. String -> a -> Maybe AnimateOptions -> Ractive -> RactiveEff Unit
-foreign import detach            :: Ractive -> RactiveEff DOMNode
+foreign import detach            :: Ractive -> RactiveEff (Maybe DOMNode)
 foreign import extend            :: forall a b. Data a b -> RactiveEff Ractive
-foreign import find              :: String -> Ractive -> RactiveEff DOMNode
-foreign import findAll           :: String -> Maybe FindAllOptions -> Ractive -> RactiveEff (Array DOMNode)
+foreign import find              :: String -> Ractive -> RactiveEff (Maybe DOMNode)
+foreign import findAll           :: String -> Maybe FindAllOptions -> Ractive -> RactiveEff (Maybe (Array DOMNode))
 foreign import findAllComponents :: String -> Maybe FindAllComponentsOptions -> Ractive -> RactiveEff (Maybe (Array Ractive))
 foreign import findComponent     :: String -> Ractive -> RactiveEff (Maybe Ractive)
 foreign import findContainer     :: String -> Ractive -> RactiveEff (Maybe Ractive)
 foreign import findParent        :: String -> Ractive -> RactiveEff (Maybe Ractive)
 foreign import fire              :: forall a. String -> Maybe (List (Argument a)) -> Ractive -> RactiveEff Unit
-foreign import get               :: forall a. String -> Ractive -> RactiveEff a
+foreign import get               :: forall a. String -> Ractive -> RactiveEff (Maybe a)
 foreign import insert            :: forall a b. Ractive -> Target a -> Maybe (Anchor b) -> RactiveEff Unit
-foreign import observe           :: forall a b e. String -> (a -> b -> String -> (Eff e Unit)) -> Maybe ObserverOptions -> Ractive -> RactiveEff Cancellable
-foreign import observeOnce       :: forall a b e. String -> (a -> b -> String -> (Eff e Unit)) -> Maybe ObserverOptions -> Ractive -> RactiveEff Cancellable
-foreign import off               :: Maybe String -> Maybe RactiveEventCallback -> Ractive -> RactiveEff Ractive
-foreign import on                :: forall a e. String -> (Event -> Eff e a) -> Ractive -> RactiveEff Cancellable
+foreign import observe           :: forall a b e. String -> (a -> b -> String -> (Eff e Unit)) -> Maybe ObserverOptions -> Ractive -> RactiveEff (Maybe Cancellable)
+foreign import observeOnce       :: forall a b e. String -> (a -> b -> String -> (Eff e Unit)) -> Maybe ObserverOptions -> Ractive -> RactiveEff (Maybe Cancellable)
+foreign import off               :: Maybe String -> Maybe RactiveEventCallback -> Ractive -> RactiveEff (Maybe Ractive)
+foreign import on                :: forall a e. String -> (Event -> Eff e a) -> Ractive -> RactiveEff (Maybe Cancellable)
 foreign import pop               :: forall a e. String -> Maybe (a -> (Eff e Unit)) -> Ractive -> RactiveEff Unit
 foreign import push              :: forall a b e. String -> a -> Maybe (b -> (Eff e Unit)) -> Ractive -> RactiveEff Unit
 foreign import render            :: forall a. Target a -> Ractive -> RactiveEff Unit
@@ -134,7 +138,7 @@ foreign import subtract          :: forall a e. String -> Maybe Number -> Maybe 
 foreign import splice            :: forall a e. String -> Int -> Int -> Maybe (List a) -> (Eff e a) -> Ractive -> RactiveEff Unit
 foreign import teardown          :: forall a e. (Eff e a) -> Ractive -> RactiveEff Unit
 foreign import toggle            :: forall a e. String -> (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
-foreign import toHTML            :: Ractive -> RactiveEff String
+foreign import toHTML            :: Ractive -> RactiveEff (Maybe String)
 foreign import unrender          :: forall a e. (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
 foreign import unshift           :: forall a b e. String -> a -> (Ractive -> Eff e b) -> Ractive -> RactiveEff Unit
 foreign import update            :: forall a e. Maybe String -> (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit

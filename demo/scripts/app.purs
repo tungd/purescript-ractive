@@ -1,7 +1,7 @@
 module DemoApp.WithRactive where
 
 import Prelude                   (Unit, bind, not, (++))
-import Data.Maybe                (Maybe(Nothing, Just))
+import Data.Maybe                (Maybe(Nothing, Just), fromMaybe)
 import Control.Monad.Eff         (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
 import Control.Monad.Eff.Ractive
@@ -20,6 +20,11 @@ change property value ractive = do
 inverse :: Boolean -> Boolean
 inverse canRand = not canRand
 
+-- | Helper function for logging everything reglardless of its type
+logAnything :: forall a e. a -> Eff (console :: CONSOLE | e) Unit
+logAnything = \anything -> do
+                           logRaw anything
+
 -- | Change the random numeric value in Ractive's property "message"
 -- | The `RactiveM` type constructor is used to represent _RactiveJS_ effects.
 -- | The `RANDOM` type constructor is used to represent _RANDOM_ values generator effects.
@@ -33,21 +38,21 @@ setRandom ractive = do
 -- | Each time we click a new random number will be generated unless we disable it by clicking on the button below
 onLogoClicked :: forall event e. Ractive -> event -> Eff (ractiveM :: RactiveM, random :: RANDOM | e) Unit
 onLogoClicked = \r e -> do
-                         canRandomize <- get "canRandomize" r
-                         if canRandomize then (setRandom r) else (change "message" "Randomization disabled!" r)
+                         canRandomize <- (get "canRandomize" r)
+                         if (fromMaybe false canRandomize) then (setRandom r) else (change "message" "Randomization disabled!" r)
 
 -- | Callback for `control-button-clicked` proxy event
 -- | Here we can enable/disable the randomization functionality of the app.
 onControlButtonClicked :: forall event eff. Ractive -> event -> Eff (ractiveM :: RactiveM | eff) Unit
 onControlButtonClicked = \r e -> do
                                   canRandomize <- (get "canRandomize" r)
-                                  change "canRandomize" (inverse canRandomize) r
+                                  change "canRandomize" (inverse (fromMaybe false canRandomize)) r
 
 -- | Writes log messages to the Console Output Panel in Browser
 writeLog :: forall e. Ractive -> String -> String -> Eff (ractiveM :: RactiveM | e) Unit
 writeLog ractive logName message = do
-                                    current <- get logName ractive
-                                    let newLog = (current++ message)
+                                    current <- (get logName ractive)
+                                    let newLog = ((fromMaybe "" current) ++ message)
                                     change logName newLog ractive
 
 main :: forall eff.
@@ -103,7 +108,7 @@ main = do
        -- | We can easily serve fully rendered pages with `toHTML`
        -- | a.k.a. isomorphic JS, or `rehydrating` of clients
        html <- toHTML ract
-       log ("This is the whole HTML => " ++ html)
+       log ("This is the whole HTML => " ++ (fromMaybe "" html))
        -- | We can update our models at any time
        -- updateModel Nothing Nothing (\ract -> log "Model updated!") ract
        -- | ---------------------------------
@@ -148,7 +153,6 @@ main = do
        -- | animate API
        (animate "message" "Click on the PureScript Logo! :)" Nothing ract)
 
-
        -- | We can fire events with `fire`
        fire "logo-clicked" Nothing ract
        -- | ----------------------------
@@ -156,4 +160,4 @@ main = do
        -- Return a value from Ractive
        -- See also: http://docs.ractivejs.org/latest/ractive-get
        m <- (get "message" ract)
-       log m
+       log (fromMaybe "" m)
