@@ -140,7 +140,7 @@ foreign import unshift           :: forall a b e. String -> a -> (Ractive -> Eff
 foreign import update            :: forall a e. Maybe String -> (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
 foreign import updateModel       :: forall e. Maybe String -> Maybe Boolean -> (Ractive -> Eff e Unit) -> Ractive -> RactiveEff Unit
 
--- | End Foreign Imports
+-- | End RactiveJS API
 
 ractiveFromData :: forall a b. Data a b -> RactiveEff Ractive
 ractiveFromData = ffiF ["data", ""] "new Ractive(data);"
