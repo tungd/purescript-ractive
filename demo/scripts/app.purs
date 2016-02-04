@@ -142,7 +142,6 @@ main = do
 
 
        -- | We can fire events with `fire`
-       -- | Here we generate a few `logo-clicked` proxy-events
        fire "logo-clicked" Nothing ract
        -- | ----------------------------
 
