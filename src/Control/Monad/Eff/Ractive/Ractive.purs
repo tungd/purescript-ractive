@@ -143,6 +143,7 @@ foreign import shift             :: forall a e. String -> Maybe (Eff e a) -> Rac
 foreign import splice            :: forall a e. String -> Int -> Int -> Maybe (List a) -> (Eff e a) -> Ractive -> RactiveEff Unit
 
 foreign import teardown          :: forall a e. (Eff e a) -> Ractive -> RactiveEff Unit
+foreign import toggle            :: forall a e. String -> (Eff e a) -> Ractive -> RactiveEff Unit
 
 -- | End Foreign Imports
 

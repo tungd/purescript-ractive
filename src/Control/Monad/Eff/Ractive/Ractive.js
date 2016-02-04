@@ -484,6 +484,19 @@ var teardown = function(callback){
   };
 };
 
+var toggle = function(keypath){
+  return function(callback){
+    var cb = createCallback('toggle', callback);
+    return function(ractive){
+      return function(){
+        var ok = ractive.toggle(keypath);
+        cb(ok)();
+        return {};
+      };
+    };
+  };
+};
+
 var ractive = function(settings){
     return function(){
       var s = extractSettings(settings);
@@ -527,5 +540,6 @@ module.exports = {
   resetPartial      : resetPartial,
   shift             : shift,
   splice            : splice,
-  teardown          : teardown
+  teardown          : teardown,
+  toggle            : toggle
 }

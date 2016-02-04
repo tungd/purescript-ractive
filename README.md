@@ -45,6 +45,7 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 - <a href="http://docs.ractivejs.org/latest/ractive-subtract" target="_blank">subtract</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-splice" target="_blank">splice</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-teardown" target="_blank">teardown</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-toggle" target="_blank">toggle</a>
 
 ### Component Support
 
