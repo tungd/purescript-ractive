@@ -52,6 +52,7 @@ data Target a         = Target a
 data Anchor a         = Anchor a
 data Argument a       = Argument a
 data RactivePartial a = RactivePartial a
+data RactiveValue a   = RactiveValue a
 
 -- end of findComponents API params
 
@@ -136,16 +137,21 @@ foreign import insert            :: forall a b. Ractive -> Target a -> Maybe (An
 foreign import fire              :: forall a. String -> Maybe (List (Argument a)) -> Ractive -> RactiveEff Unit
 
 foreign import render            :: forall a. Target a -> Ractive -> RactiveEff Unit
-foreign import reset             :: forall a b e. Maybe (Data a b) -> Maybe (Eff e Unit) -> Ractive -> RactiveEff Unit
-foreign import resetPartial      :: forall a e. String -> RactivePartial a -> Maybe (Eff e Unit) -> Ractive -> RactiveEff Unit
+foreign import reset             :: forall a b e. Maybe (Data a b) -> (Ractive -> Eff e Unit) -> Ractive -> RactiveEff Unit
+foreign import resetPartial      :: forall a e. String -> RactivePartial a -> Maybe (Ractive ->Eff e Unit) -> Ractive -> RactiveEff Unit
 
-foreign import shift             :: forall a e. String -> Maybe (Eff e a) -> Ractive -> RactiveEff Unit
+foreign import shift             :: forall a e. String -> Maybe (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
 foreign import splice            :: forall a e. String -> Int -> Int -> Maybe (List a) -> (Eff e a) -> Ractive -> RactiveEff Unit
 
 foreign import teardown          :: forall a e. (Eff e a) -> Ractive -> RactiveEff Unit
-foreign import toggle            :: forall a e. String -> (Eff e a) -> Ractive -> RactiveEff Unit
+foreign import toggle            :: forall a e. String -> (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
 
 foreign import toHTML            :: Ractive -> RactiveEff String
+
+foreign import unrender          :: forall a e. (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
+foreign import unshift           :: forall a b e. String -> a -> (Ractive -> Eff e b) -> Ractive -> RactiveEff Unit
+
+foreign import update            :: forall a e. String -> (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
 
 -- | End Foreign Imports
 
@@ -157,9 +163,3 @@ setPartial      = ffiP ["selector", "value", "ractive"] "ractive.partials[select
 
 getPartial      :: String -> Ractive -> RactiveEff String
 getPartial      = ffiF ["selector","ractive"] "ractive.partials[selector];"
-
-updateModel     :: Ractive -> RactiveEff Unit
-updateModel     = ffiP ["ractive"] "ractive.updateModel();"
-
-renderById      :: String -> Ractive -> RactiveEff Unit
-renderById      = ffiP ["id","ractive"] "ractive.render(id);"

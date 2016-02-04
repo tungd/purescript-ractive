@@ -408,9 +408,17 @@ var reset = function(data){
           if(data &&
             data.constructor &&
             data.constructor.name != 'Nothing'){
-            ok = ractive.reset(data.value0);
+            ok = ractive.reset(data.value0).then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('reset failed, error: ' + err);
+              });
           }else{
-            ok = ractive.reset();
+            ok = ractive.reset().then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('reset failed, error: ' + err);
+              });
           }
           cb(ok)();
           return {};
@@ -425,7 +433,11 @@ var resetPartial = function(name){
       var cb = createCallback('resetPartial', callback);
       return function(ractive){
         return function(){
-          var ok = ractive.resetPartial(name, partial.value0);
+          var ok = ractive.resetPartial(name, partial.value0).then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('resetPartial failed, error: ' + err);
+              });
           cb(ok)();
           return {};
         };
@@ -459,9 +471,17 @@ var splice = function(keypath){
               if(add &&
                 add.constructor &&
                 add.constructor.name != 'Nothing'){
-                  ok = ractive.splice(keypath, index, removeCount, add.value0);
+                  ok = ractive.splice(keypath, index, removeCount, add.value0).then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('splice failed, error: ' + err);
+              });
               }else{
-                ok = ractive.splice(keypath, index, removeCount, []);
+                ok = ractive.splice(keypath, index, removeCount, []).then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('splice failed, error: ' + err);
+              });
               }
               cb(ok)();
               return {};
@@ -489,7 +509,11 @@ var toggle = function(keypath){
     var cb = createCallback('toggle', callback);
     return function(ractive){
       return function(){
-        var ok = ractive.toggle(keypath);
+        var ok = ractive.toggle(keypath).then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('toggle failed, error: ' + err);
+              });
         cb(ok)();
         return {};
       };
@@ -501,6 +525,40 @@ var toHTML = function(ractive){
   return function(){
     var htmlString = ractive.toHTML();
     return htmlString;
+  };
+};
+
+var unrender = function(callback){
+  var cb = createCallback('unrender', callback);
+  return function(ractive){
+    return function(){
+      var ok = ractive.unrender().then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('unrender failed, error: ' + err);
+              });
+      cb(ok)();
+      return {};
+    };
+  };
+};
+
+var unshift = function(keypath){
+  return function(value){
+    return function(callback){
+      var cb = createCallback('unshift', callback);
+      return function(ractive){
+        return function(){
+          var ok = ractive.unshift(keypath, value).then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('reset failed, error: ' + err);
+              });
+          cb(ok)();
+          return {};
+        };
+      };
+    };
   };
 };
 
@@ -549,5 +607,7 @@ module.exports = {
   splice            : splice,
   teardown          : teardown,
   toggle            : toggle,
-  toHTML            : toHTML
+  toHTML            : toHTML,
+  unrender          : unrender,
+  unshift           : unshift
 }
