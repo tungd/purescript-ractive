@@ -39,6 +39,7 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 - <a href="http://docs.ractivejs.org/latest/ractive-push" target="_blank">push</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-render" target="_blank">render</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-reset" target="_blank">reset</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-resetpartial" target="_blank">resetPartial</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-set" target="_blank">set</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-subtract" target="_blank">subtract</a>
 

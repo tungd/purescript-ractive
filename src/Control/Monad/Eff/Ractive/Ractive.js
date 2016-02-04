@@ -419,6 +419,21 @@ var reset = function(data){
   };
 };
 
+var resetPartial = function(name){
+  return function(partial){
+    return function(callback){
+      var cb = createCallback('resetPartial', callback);
+      return function(ractive){
+        return function(){
+          var ok = ractive.resetPartial(name, partial.value0);
+          cb(ok)();
+          return {};
+        };
+      };
+    };
+  };
+};
+
 var ractive = function(settings){
     return function(){
       var s = extractSettings(settings);
@@ -458,5 +473,6 @@ module.exports = {
   detach            : detach,
   fire              : fire,
   render            : render,
-  reset             : reset
+  reset             : reset,
+  resetPartial      : resetPartial
 }

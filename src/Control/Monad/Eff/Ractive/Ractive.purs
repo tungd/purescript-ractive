@@ -48,9 +48,10 @@ type FindAllComponentsOptions = {
   live :: Boolean
 }
 
-data Target a   = Target a
-data Anchor a   = Anchor a
-data Argument a = Argument a
+data Target a         = Target a
+data Anchor a         = Anchor a
+data Argument a       = Argument a
+data RactivePartial a = RactivePartial a
 
 -- end of findComponents API params
 
@@ -136,6 +137,7 @@ foreign import fire              :: forall a. String -> Maybe (List (Argument a)
 
 foreign import render            :: forall a. Target a -> Ractive -> RactiveEff Unit
 foreign import reset             :: forall a b e. Maybe (Data a b) -> Maybe (Eff e Unit) -> Ractive -> RactiveEff Unit
+foreign import resetPartial      :: forall a e. String -> RactivePartial a -> Maybe (Eff e Unit) -> Ractive -> RactiveEff Unit
 
 -- | End Foreign Imports
 
