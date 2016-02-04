@@ -104,8 +104,8 @@ main = do
        -- | a.k.a. isomorphic JS, or `rehydrating` of clients
        html <- toHTML ract
        log ("This is the whole HTML => " ++ html)
-
-       updateModel Nothing Nothing (\ract -> log "Model updated!") ract
+       -- | We can update our models at any time
+       -- updateModel Nothing Nothing (\ract -> log "Model updated!") ract
        -- | ---------------------------------
        -- Register event-handlers for logo-clicks & button-clicks.
        -- Generate a random number each time we click the logo.
