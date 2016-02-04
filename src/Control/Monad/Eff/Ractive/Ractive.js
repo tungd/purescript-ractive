@@ -26,7 +26,11 @@ var createCallback = function(api, callback){
       cb = function(val){
         return function(){
           val.then(function(v){
-            callback.value0(v)();
+            if(typeof callback.value0 === 'function'){
+              callback.value0(v)();
+            }else if(typeof callback === 'function'){
+              callback(v)();
+            }
           }).catch(function(err){
             console.log(err);
           });
@@ -562,6 +566,78 @@ var unshift = function(keypath){
   };
 };
 
+var update = function(keypath){
+  return function(callback){
+    var cb = createCallback('update', callback);
+    return function(ractive){
+      return function(){
+        var ok = null;
+        if(keypath &&
+          keypath.constructor &&
+          keypath.constructor.name != 'Nothing'){
+          ok = ractive.update(keypath).then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('update failed, error: ' + err);
+              });
+        }else{
+          ok = ractive.update().then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('update failed, error: ' + err);
+              });
+        }
+        cb(ok)();
+        return {};
+      };
+    };
+  };
+};
+
+var updateModel = function(keypath){
+  return function(cascade){
+    return function(callback){
+      var cb = createCallback('updateModel', callback);
+      return function(ractive){
+        return function(){
+          var cas = null;
+          var ok = null;
+          if(cascade &&
+            cascade.constructor &&
+            cascade.constructor.name != 'Nothing'){
+            cas = cascade.value0;
+          }
+          if(keypath &&
+            keypath.constructor &&
+            keypath.constructor.name != 'Nothing'){
+            if(cas){
+              ok = ractive.updateModel(keypath.value0, cas).then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('updateModel failed, error: ' + err);
+              });
+            }else{
+              ok = ractive.updateModel(keypath.value0).then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('updateModel failed, error: ' + err);
+              });
+            }
+          }else{
+            ok = ractive.updateModel().then(function(r){
+                  return r;
+              }).catch(function(err){
+                  console.log('updateModel failed, error: ' + err);
+              });
+          }
+          cb(ok)();
+          return {};
+        };
+      };
+    };
+  };
+};
+
 var ractive = function(settings){
     return function(){
       var s = extractSettings(settings);
@@ -609,5 +685,7 @@ module.exports = {
   toggle            : toggle,
   toHTML            : toHTML,
   unrender          : unrender,
-  unshift           : unshift
+  unshift           : unshift,
+  update            : update,
+  updateModel       : updateModel
 }

@@ -1,7 +1,7 @@
 
 # purescript-ractive
 
-RactiveJS bindings for PureScript (Work in progress)
+**RactiveJS bindings for PureScript**
 
 Based on the original sources from <a href="https://github.com/AitorATuin/purescript-ractive" target="_blank">AitorATuin</a>
 
@@ -16,7 +16,7 @@ For quick testing a <a href="https://github.com/brakmic/purescript-ractive/blob/
 
 My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" target="_blank">article</a> on using PureScript with RactiveJS.
 
-### Currently implemented APIs
+### All of the APIs from RactiveJS v0.7.3 are supported
 
 - <a href="http://docs.ractivejs.org/latest/ractive-add" target="_blank">add</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-animate" target="_blank">animate</a>
@@ -50,6 +50,7 @@ My <a href="http://blog.brakmic.com/webapps-with-purescript-and-ractivejs/" targ
 - <a href="http://docs.ractivejs.org/latest/ractive-unrender" target="_blank">unrender</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-unshift" target="_blank">unshift</a>
 - <a href="http://docs.ractivejs.org/latest/ractive-update" target="_blank">update</a>
+- <a href="http://docs.ractivejs.org/latest/ractive-updatemodel" target="_blank">updateModel</a>
 
 ### Component Support
 

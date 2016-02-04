@@ -151,7 +151,8 @@ foreign import toHTML            :: Ractive -> RactiveEff String
 foreign import unrender          :: forall a e. (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
 foreign import unshift           :: forall a b e. String -> a -> (Ractive -> Eff e b) -> Ractive -> RactiveEff Unit
 
-foreign import update            :: forall a e. String -> (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
+foreign import update            :: forall a e. Maybe String -> (Ractive -> Eff e a) -> Ractive -> RactiveEff Unit
+foreign import updateModel       :: forall e. Maybe String -> Maybe Boolean -> (Ractive -> Eff e Unit) -> Ractive -> RactiveEff Unit
 
 -- | End Foreign Imports
 
