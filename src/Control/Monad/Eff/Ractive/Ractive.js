@@ -436,5 +436,6 @@ module.exports = {
   animate           : animate,
   insert            : insert,
   detach            : detach,
-  fire              : fire
+  fire              : fire,
+  render            : render
 }
