@@ -23,9 +23,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "purescript": "^0.8.0"
-  },
-  "devDependencies": {
+    "purescript": "^0.8.0",
+    "ractive": "^0.7.3",
     "async-uglify-js-webpack-plugin": "0.0.4",
     "compression-webpack-plugin": "^0.2.0",
     "del": "^2.2.0",
@@ -40,5 +39,7 @@
     "webpack": "^1.12.9",
     "webpack-config": "^0.8.1",
     "webpack-stream": "^3.1.0"
+  },
+  "devDependencies": {
   }
 }
