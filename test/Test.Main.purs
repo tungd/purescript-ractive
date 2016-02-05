@@ -38,8 +38,4 @@ main = do
        set "message" "HELLO WORLD!" ract
        m <- (get "message" ract)
 
-       quickCheck \n -> n + 1 == 1 + n
-       -- quickCheck v
-       --quickCheck \n -> n + 1 == 1 + n
-
-       --log "all tests completed"
+       quickCheck \n -> n + 1 == 1 + n -- not completed yet...
