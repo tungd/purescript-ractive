@@ -7,6 +7,7 @@ import Control.Monad.Eff.Exception (..)
 import Control.Monad.Eff.Console (..)
 import Control.Monad.Eff.Ractive (..)
 import Control.Monad.Eff.Random (..)
+import Debug.Trace (..)
 import Test.QuickCheck (..)
 
 foreign import data DOMNode :: *
@@ -17,7 +18,12 @@ type DOMEnvEff a = forall e. Eff (domEff :: DOMEff | e) a
 foreign import setupDOM :: Maybe String -> DOMEnvEff Unit
 
 
-main :: forall eff. Eff (domEff :: DOMEff, ractiveM :: RactiveM, console :: CONSOLE, err :: EXCEPTION, random :: RANDOM | eff) Unit
+main :: forall eff. Eff (domEff :: DOMEff
+                      , ractiveM :: RactiveM
+                      , console :: CONSOLE
+                      , err :: EXCEPTION
+                      , random :: RANDOM
+                      | eff) Unit
 main = do
        setupDOM Nothing
        let appSettings = Data {
@@ -31,11 +37,28 @@ main = do
                           message   : "Click the PureScript Logo!",
                           consoleMessages: "no messages",
                           canRandomize : true,
+                          counter: 0,
                           numbers: []
                       }
                   }
        ract <- ractive appSettings
+
+       traceA "[TESTING] add() and subtract()"
+
+       (Control.Monad.Eff.Ractive.add "counter" (Just 5.0) Nothing ract)
+       cntr1 <- (get "counter" ract)
+       (subtract "counter" (Just 1.0) Nothing ract)
+       cntr2 <- (get "counter" ract)
+       -- | test add() / subtract()
+       quickCheck (cntr1 == (Just 5.0))
+       quickCheck (cntr2 == (Just 4.0))
+
+       traceA "[TESTING] get()"
        set "message" "HELLO WORLD!" ract
        m <- (get "message" ract)
+       -- | test get()
+       quickCheck (m == (Just "HELLO WORLD!"))
 
-       quickCheck \n -> n + 1 == 1 + n -- not completed yet...
+       traceA "[TESTING] observe()"
+       (observe "message" (\n o kp -> log ("observe(): " ++ n)) Nothing ract)
+       set "message" "observe() should catch me!" ract
