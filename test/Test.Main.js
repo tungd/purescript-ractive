@@ -12,7 +12,7 @@ var _template = "<div>template</div>";
 var setupDOM = function(html){
   return function(){
     if (typeof document !== 'undefined') {
-      return
+      return {};
     }
 
     if(html &&
@@ -33,7 +33,7 @@ var setupDOM = function(html){
 };
 
 module.exports = {
-  setupDOM   : setupDOM,
+  setupDOM        : setupDOM,
   defaultHtml     : _html,
   defaultTemplate : _template
 }
