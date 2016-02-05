@@ -81,6 +81,16 @@ Or use HapiJS
 npm start  [will load index.js from subdir demo]
 ```
 
+### Testing
+
+```shell
+pulp test
+```
+
+<a href="https://github.com/purescript/purescript-quickcheck" target="_blank">QuickCheck</a> is used for property-based testing while <a href="https://github.com/tmpvar/jsdom" target="_blank">JSDOM</a> is for headless testing of RactiveJS-APIs.
+
+<img src="http://fs5.directupload.net/images/160205/9lbb94kn.png">
+
 ### License
 
 <a href="https://github.com/brakmic/purescript-ractive/blob/master/LICENSE">MIT</a>
