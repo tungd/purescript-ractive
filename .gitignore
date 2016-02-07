@@ -1,8 +1,8 @@
 .*
-!/.bowerrc
+.bowerrc
 bower.json~
-!/.gitignore
-!/.travis.yml
+.gitignore
+.travis.yml
 /output/
 /node_modules/
 /bower_components/
@@ -15,3 +15,4 @@ demo/scripts/release
 /.pulp.cache/
 /.psci_modules/
 pursuit.json
+npm-debug.log

@@ -1,6 +1,6 @@
 {
   "name": "purescript-ractive",
-  "description": "Ractive bindings for PureScript (Work in progress)",
+  "description": "Ractive bindings for PureScript",
   "main": [],
   "keywords": [
     "purescript",
