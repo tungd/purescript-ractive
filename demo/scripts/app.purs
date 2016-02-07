@@ -7,8 +7,6 @@ import Control.Monad.Eff.Console (CONSOLE, log)
 import Control.Monad.Eff.Ractive
 import Control.Monad.Eff.Random  (RANDOM, random)
 
-newtype ContT r m a = ContT ((a -> m r) -> m r)
-
 -- | Change a property by using Ractive's set() method
 -- | The `RactiveM` type constructor is used to represent _RactiveJS_ effects.
 -- |
