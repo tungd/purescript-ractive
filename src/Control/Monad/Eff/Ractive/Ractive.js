@@ -121,7 +121,7 @@ var get = function(selector){
   return function(ractive){
     return function(){
       var data = ractive.get(selector);
-      if(data){
+      if(typeof data != 'undefined'){
         return Data_Maybe.Just.create(data);
       }else{
         return Data_Maybe.Nothing.value;
