@@ -5,7 +5,7 @@
 
 Based on the original sources from <a href="https://github.com/AitorATuin/purescript-ractive" target="_blank">Aitor P. Iturri</a>
 
-This version is compatible with **psc 0.8.0.0**.
+This version is compatible with **psc 0.9.3**.
 
 The original Grunt mechanics were replaced by Gulp/WebPack.
 
