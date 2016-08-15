@@ -1,14 +1,14 @@
 module Test.Main where
 
-import Prelude (..)
-import Data.Maybe (..)
-import Control.Monad.Eff (..)
-import Control.Monad.Eff.Exception (..)
-import Control.Monad.Eff.Console (..)
-import Control.Monad.Eff.Ractive (..)
-import Control.Monad.Eff.Random (..)
-import Debug.Trace (..)
-import Test.QuickCheck (..)
+import Prelude (Unit, bind, (==), (<>))
+import Data.Maybe (Maybe(..))
+import Control.Monad.Eff (Eff)
+import Control.Monad.Eff.Exception (EXCEPTION)
+import Control.Monad.Eff.Console (CONSOLE, log)
+import Control.Monad.Eff.Ractive (RactiveM, Data(..), set, observe, get, subtract, ractive, add)
+import Control.Monad.Eff.Random (RANDOM)
+import Debug.Trace (traceA)
+import Test.QuickCheck (quickCheck)
 
 foreign import data DOMNode :: *
 foreign import data DOMEff  :: !
@@ -45,7 +45,7 @@ main = do
 
        traceA "[TESTING] add() and subtract()"
 
-       (Control.Monad.Eff.Ractive.add "counter" (Just 5.0) Nothing ract)
+       (add "counter" (Just 5.0) Nothing ract)
        cntr1 <- (get "counter" ract)
        (subtract "counter" (Just 1.0) Nothing ract)
        cntr2 <- (get "counter" ract)
@@ -60,5 +60,5 @@ main = do
        quickCheck (m == (Just "HELLO WORLD!"))
 
        traceA "[TESTING] observe()"
-       (observe "message" (\n o kp -> log ("observe(): " ++ n)) Nothing ract)
+       (observe "message" (\n o kp -> log ("observe(): " <> n)) Nothing ract)
        set "message" "observe() should catch me!" ract
