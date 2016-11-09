@@ -29,7 +29,8 @@
     "purescript-easy-ffi": "^2.0.0",
     "purescript-console": "^2.0.0",
     "purescript-lists": "^3.2.0",
-    "purescript-maybe": "^2.0.1"
+    "purescript-maybe": "^2.0.1",
+    "purescript-nullable": "^2.0.0"
   },
   "devDependencies": {
     "purescript-math": "*",

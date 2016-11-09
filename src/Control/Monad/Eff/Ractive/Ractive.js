@@ -2,7 +2,9 @@
 
 // module Control.Monad.Eff.Ractive
 
-var Ractive = require('ractive');
+// TODO: this works with Bower on browser, need to test with Node/Browserify
+var Ractive = typeof require !== "undefined" ? require('ractive') : this.Ractive;
+// This won't work :(
 var Data_Maybe = require('Data.Maybe');
 
 //-- an ugly helper function for wiring up of callbacks

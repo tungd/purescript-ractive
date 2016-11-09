@@ -69,7 +69,7 @@ module Control.Monad.Eff.Ractive
 import Prelude                   (Unit)
 import Control.Monad.Eff         (Eff)
 import Control.Monad.Eff.Console (CONSOLE)
-import Data.Maybe                (Maybe)
+import Data.Maybe                (Maybe(..))
 import Data.List                 (List)
 import Data.Foreign.EasyFFI      (unsafeForeignFunction, unsafeForeignProcedure)
 
