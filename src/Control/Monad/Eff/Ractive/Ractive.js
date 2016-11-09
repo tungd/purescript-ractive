@@ -3,9 +3,10 @@
 // module Control.Monad.Eff.Ractive
 
 // TODO: this works with Bower on browser, need to test with Node/Browserify
-try {
-  var Ractive = require('ractive');
-} catch (e) {}
+// try {
+//   var Ractive = require('ractive');
+// } catch (e) {
+// }
 
 //-- an ugly helper function for wiring up of callbacks
 // used in push/pop APIs
