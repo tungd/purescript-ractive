@@ -3,9 +3,9 @@
 // module Control.Monad.Eff.Ractive
 
 // TODO: this works with Bower on browser, need to test with Node/Browserify
-var Ractive = typeof require !== "undefined" ? require('ractive') : this.Ractive;
-// This won't work :(
-var Data_Maybe = require('Data.Maybe');
+try {
+  var Ractive = require('ractive');
+} catch (e) {}
 
 //-- an ugly helper function for wiring up of callbacks
 // used in push/pop APIs
@@ -75,11 +75,8 @@ var observe = function(selector){
                 return handler(n)(o)(kp)(this);
             });
           }
-          if(cancellable){
-            return Data_Maybe.Just.create(cancellable);
-          }else{
-            return Data_Maybe.Nothing.value;
-          }
+
+          return cancellable;
         };
       };
     };
@@ -108,11 +105,8 @@ var observeOnce = function(selector){
               return handler(n)(o)(kp)(this);
             });
           }
-          if(cancellable){
-            return Data_Maybe.Just.create(cancellable);
-          }else{
-            return Data_Maybe.Nothing.value;
-          }
+
+          return cancellable;
         };
       };
     };
@@ -122,41 +116,32 @@ var observeOnce = function(selector){
 var get = function(selector){
   return function(ractive){
     return function(){
-      var data = ractive.get(selector);
-      if(typeof data != 'undefined'){
-        return Data_Maybe.Just.create(data);
-      }else{
-        return Data_Maybe.Nothing.value;
-      }
+      return ractive.get(selector) || null;
     };
   };
 };
 
 var set = function(selector) {
-   return function(value) {
-     return function(ractive) {
-       return function () {
-         ractive.set(selector, value);
-         return {};
-     };
+  return function(value) {
+    return function(ractive) {
+      return function () {
+        ractive.set(selector, value);
+        return {};
+      };
     };
   };
 };
 
 var on = function(event) {
- return function(handler) {
-   return function(ractive) {
-     return function() {
-       var cancellable = ractive.on(event, function(ev){
+  return function(handler) {
+    return function(ractive) {
+      return function() {
+        var cancellable = ractive.on(event, function(ev){
           return handler(ev)(this);
-       });
-       if(cancellable){
-          return Data_Maybe.Just.create(cancellable);
-       }else{
-          return Data_Maybe.Nothing.value;
-       }
-     };
-   };
+        });
+        return cancellable || null;
+      };
+    };
   };
 };
 
@@ -174,11 +159,8 @@ var off = function(event){
         }else{
           cancellable = ractive.off(event.value0,handler.constructor());
         }
-        if(cancellable){
-          return Data_Maybe.Just.create(cancellable);
-        }else{
-          return Data_Maybe.Nothing.value;
-        }
+
+        return cancellable;
       };
     };
   };
@@ -223,12 +205,7 @@ var pop = function(keypath){
 var find = function(selector){
   return function(ractive){
     return function(){
-      var node = ractive.find(selector);
-      if(node){
-        return Data_Maybe.Just.create(node);
-      }else{
-        return Data_Maybe.Nothing.value;
-      }
+      return ractive.find(selector) || null;
     };
   };
 };
@@ -245,11 +222,8 @@ var findAll = function(selector){
         }else{
           elements = ractive.findAll(selector, options.value0);
         }
-        if(elements){
-          return Data_Maybe.Just.create(elements);
-        }else{
-          return Data_Maybe.Nothing.value;
-        }
+
+        return elements;
       };
     };
   };
@@ -306,69 +280,49 @@ var subtract = function(keypath){
 };
 
 var findComponent = function(name){
-  var component = null;
   return function(ractive){
     return function(){
-      component = ractive.findComponent(name);
-      if(component){
-        return Data_Maybe.Just.create(component);
-      }else{
-        return Data_Maybe.Nothing.value;
-      }
+      return ractive.findComponent(name) || null;
     }
   };
 };
 
 var findAllComponents = function(name){
-  var allComponents = null;
   return function(options){
     if(options &&
-      options.constructor &&
-      options.constructor.name == 'Nothing'){
+       options.constructor &&
+       options.constructor.name == 'Nothing'){
       options = null;
     }else{
       options = options.value0;
     }
     return function(ractive){
       return function(){
+        var allComponents = null;
         if(options){
           allComponents = ractive.findAllComponents(name, options);
         }else{
           allComponents = ractive.find(name);
         }
-        if(allComponents){
-          return Data_Maybe.Just.create(allComponents);
-        }else{
-          return Data_Maybe.Nothing.value;
-        }
+        return allComponents;
       };
     };
   };
 };
 
 var findContainer = function(name){
-  var container = null;
   return function(ractive){
+    var container = null;
     if(name){
       container = ractive.findContainer(name);
     }
-    if(container){
-      return Data_Maybe.Just.create(container);
-    }else{
-      return Data_Maybe.Nothing.value;
-    }
+    return container;
   };
 };
 
 var findParent = function(name){
-  var parent = null;
   return function(ractive){
-    parent = ractive.findParent(name);
-    if(parent){
-      return Data_Maybe.Just.create(parent);
-    }else{
-      return Data_Maybe.Nothing.value;
-    }
+    return ractive.findParent(name) || null;
   };
 };
 
@@ -417,14 +371,8 @@ var insert = function(ractive) {
 };
 
 var detach = function(ractive){
-  var domObject = null;
   return function(){
-     domObject = ractive.detach();
-     if(domObject){
-       return Data_Maybe.Just.create(domObject);
-     }else{
-       return Data_Maybe.Nothing.value;
-     }
+    return ractive.detach() || null;
   };
 };
 
@@ -578,12 +526,7 @@ var toggle = function(keypath){
 
 var toHTML = function(ractive){
   return function(){
-    var htmlString = ractive.toHTML();
-    if(htmlString){
-      return Data_Maybe.Just.create(htmlString);
-    }else{
-      return Data_Maybe.Nothing.value;
-    }
+    return ractive.toHTML() || null;
   };
 };
 
