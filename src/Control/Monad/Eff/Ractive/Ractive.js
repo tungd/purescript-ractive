@@ -11,9 +11,7 @@ try {
 // used in push/pop APIs
 var createCallback = function(api, callback){
   var cb = null;
-  if(callback &&
-     callback.constructor &&
-     callback.constructor.name == 'Nothing'){
+  if(!callback){
     cb = function(ignore){
       var ignr = ignore.then(function(){
         return {};
@@ -56,13 +54,6 @@ var extractSettings = function(settings){
 var observe = function(selector){
   return function(handler){
     return function(options){
-      if(options.constructor &&
-         options.constructor.name == 'Just'){
-        options = options.value0;
-      } else if(options.constructor &&
-                options.constructor.name == 'Nothing'){
-        options = null;
-      }
       return function(ractive){
         return function(){
           var cancellable = null;
@@ -86,13 +77,6 @@ var observe = function(selector){
 var observeOnce = function(selector){
   return function(handler){
     return function(options){
-      if(options.constructor &&
-         options.constructor.name == 'Just'){
-        options = options.value0;
-      } else if(options.constructor &&
-                options.constructor.name == 'Nothing'){
-        options = null;
-      }
       return function(ractive){
         return function(){
           var cancellable = null;
@@ -150,14 +134,10 @@ var off = function(event){
     return function(ractive){
       return function(){
         var cancellable = null;
-        if(event.constructor &&
-           event.constructor.name == 'Just'){
-          cancellable = ractive.off(event.value0);
-        }else if(event.constructor &&
-                 event.constructor.name == 'Nothing'){
+        if (event) {
+          cancellable = ractive.off(event);
+        } else {
           cancellable = ractive.off();
-        }else{
-          cancellable = ractive.off(event.value0,handler.constructor());
         }
 
         return cancellable;
@@ -215,9 +195,7 @@ var findAll = function(selector){
     return function(ractive){
       return function(){
         var elements = null;
-        if(options &&
-           options.constructor &&
-           options.constructor.name == 'Nothing'){
+        if(!options){
           elements = ractive.findAll(selector);
         }else{
           elements = ractive.findAll(selector, options.value0);
@@ -231,12 +209,7 @@ var findAll = function(selector){
 
 var add = function(keypath){
   return function(number){
-    var num = 1;
-    if(number &&
-       number.constructor &&
-       number.constructor.name != 'Nothing'){
-      num = number.value0;
-    }
+    var num = number || 1;
     return function(callback){
       var cb = createCallback('add', callback);
       return function(ractive){
@@ -256,12 +229,7 @@ var add = function(keypath){
 
 var subtract = function(keypath){
   return function(number){
-    var num = 1;
-    if(number &&
-       number.constructor &&
-       number.constructor.name != 'Nothing'){
-      num = number.value0;
-    }
+    var num = number || 1;
     return function(callback){
       var cb = createCallback('subtract', callback);
       return function(ractive){
@@ -279,9 +247,9 @@ var subtract = function(keypath){
   };
 };
 
-var findComponent = function(name){
-  return function(ractive){
-    return function(){
+var findComponent = function(name) {
+  return function(ractive) {
+    return function() {
       return ractive.findComponent(name) || null;
     }
   };
@@ -289,13 +257,6 @@ var findComponent = function(name){
 
 var findAllComponents = function(name){
   return function(options){
-    if(options &&
-       options.constructor &&
-       options.constructor.name == 'Nothing'){
-      options = null;
-    }else{
-      options = options.value0;
-    }
     return function(ractive){
       return function(){
         var allComponents = null;
@@ -331,9 +292,7 @@ var animate = function(keypath){
     return function(options){
       return function(ractive){
         return function(){
-          if(options &&
-             options.constructor &&
-             options.constructor.name != 'Nothing'){
+          if(options){
             ractive.animate(keypath,value,options).then(function(){
 
             }).catch(function(err){
@@ -357,9 +316,7 @@ var insert = function(ractive) {
   return function(target){
     return function(anchor){
       return function(){
-        if(anchor &&
-           anchor.constructor &&
-           anchor.constructor.name != 'Nothing'){
+        if(anchor){
           ractive.insert(target.value0, anchor.value0);
         }else {
           ractive.insert(target.value0);
@@ -380,9 +337,7 @@ var fire = function(eventName){
   return function(args){
     return function(ractive){
       return function(){
-        if(args &&
-           args.constructor &&
-           args.constructor.name != 'Nothing'){
+        if(args){
           ractive.fire(eventName, args.value0);
         }else{
           ractive.fire(eventName);
@@ -408,9 +363,7 @@ var reset = function(data){
     return function(ractive){
       return function(){
         var ok = null;
-        if(data &&
-           data.constructor &&
-           data.constructor.name != 'Nothing'){
+        if(data){
           ok = ractive.reset(data.value0).then(function(r){
             return r;
           }).catch(function(err){
@@ -471,9 +424,7 @@ var splice = function(keypath){
           return function(ractive){
             return function(){
               var ok = null;
-              if(add &&
-                 add.constructor &&
-                 add.constructor.name != 'Nothing'){
+              if(add){
                 ok = ractive.splice(keypath, index, removeCount, add.value0).then(function(r){
                   return r;
                 }).catch(function(err){
@@ -570,9 +521,7 @@ var update = function(keypath){
     return function(ractive){
       return function(){
         var ok = null;
-        if(keypath &&
-           keypath.constructor &&
-           keypath.constructor.name != 'Nothing'){
+        if(keypath){
           ok = ractive.update(keypath).then(function(r){
             return r;
           }).catch(function(err){
@@ -600,14 +549,10 @@ var updateModel = function(keypath){
         return function(){
           var cas = null;
           var ok = null;
-          if(cascade &&
-             cascade.constructor &&
-             cascade.constructor.name != 'Nothing'){
+          if(cascade){
             cas = cascade.value0;
           }
-          if(keypath &&
-             keypath.constructor &&
-             keypath.constructor.name != 'Nothing'){
+          if(keypath){
             if(cas){
               ok = ractive.updateModel(keypath.value0, cas).then(function(r){
                 return r;
