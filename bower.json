@@ -27,7 +27,9 @@
   "dependencies": {
     "ractive": "~0.8.4",
     "purescript-easy-ffi": "^2.0.0",
-    "purescript-console": "^2.0.0"
+    "purescript-console": "^2.0.0",
+    "purescript-lists": "^3.2.0",
+    "purescript-maybe": "^2.0.1"
   },
   "devDependencies": {
     "purescript-math": "*",

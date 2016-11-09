@@ -5,7 +5,7 @@ import Data.Maybe (Maybe(..))
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Exception (EXCEPTION)
 import Control.Monad.Eff.Console (CONSOLE, log)
-import Control.Monad.Eff.Ractive (RactiveM, RactiveEff, Data(..), set, observe, get, subtract, ractive, add)
+import Control.Monad.Eff.Ractive
 import Control.Monad.Eff.Random (RANDOM)
 import Debug.Trace (traceA)
 import Test.QuickCheck (quickCheck)
