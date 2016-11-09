@@ -12,36 +12,36 @@ try {
 var createCallback = function(api, callback){
   var cb = null;
   if(callback &&
-       callback.constructor &&
-       callback.constructor.name == 'Nothing'){
-        cb = function(ignore){
-          var ignr = ignore.then(function(){
-            return {};
-          }).catch(function(error){
-            console.log(api + ' failed, error: ' + error);
-          });
-          var ret = function(){
-            return ignr;
-          };
-          return ret;
+     callback.constructor &&
+     callback.constructor.name == 'Nothing'){
+    cb = function(ignore){
+      var ignr = ignore.then(function(){
+        return {};
+      }).catch(function(error){
+        console.log(api + ' failed, error: ' + error);
+      });
+      var ret = function(){
+        return ignr;
       };
-    } else {
-      cb = function(val){
-        return function(){
-          val.then(function(v){
-            if(typeof callback.value0 === 'function'){
-              callback.value0(v)();
-            }else if(typeof callback === 'function'){
-              callback(v)();
-            }
-          }).catch(function(err){
-            console.log(err);
-          });
-          return {};
-        }
-      };
-    }
-    return cb;
+      return ret;
+    };
+  } else {
+    cb = function(val){
+      return function(){
+        val.then(function(v){
+          if(typeof callback.value0 === 'function'){
+            callback.value0(v)();
+          }else if(typeof callback === 'function'){
+            callback(v)();
+          }
+        }).catch(function(err){
+          console.log(err);
+        });
+        return {};
+      }
+    };
+  }
+  return cb;
 };
 // -- end of ugly helper function
 
@@ -60,7 +60,7 @@ var observe = function(selector){
          options.constructor.name == 'Just'){
         options = options.value0;
       } else if(options.constructor &&
-         options.constructor.name == 'Nothing'){
+                options.constructor.name == 'Nothing'){
         options = null;
       }
       return function(ractive){
@@ -68,11 +68,11 @@ var observe = function(selector){
           var cancellable = null;
           if(options){
             cancellable = ractive.observe(selector, function(n,o,kp){
-                return handler(n)(o)(kp)(this);
+              return handler(n)(o)(kp)(this);
             }, options);
           }else{
             cancellable = ractive.observe(selector, function(n,o,kp){
-                return handler(n)(o)(kp)(this);
+              return handler(n)(o)(kp)(this);
             });
           }
 
@@ -86,11 +86,11 @@ var observe = function(selector){
 var observeOnce = function(selector){
   return function(handler){
     return function(options){
-       if(options.constructor &&
+      if(options.constructor &&
          options.constructor.name == 'Just'){
         options = options.value0;
       } else if(options.constructor &&
-         options.constructor.name == 'Nothing'){
+                options.constructor.name == 'Nothing'){
         options = null;
       }
       return function(ractive){
@@ -151,10 +151,10 @@ var off = function(event){
       return function(){
         var cancellable = null;
         if(event.constructor &&
-            event.constructor.name == 'Just'){
+           event.constructor.name == 'Just'){
           cancellable = ractive.off(event.value0);
         }else if(event.constructor &&
-            event.constructor.name == 'Nothing'){
+                 event.constructor.name == 'Nothing'){
           cancellable = ractive.off();
         }else{
           cancellable = ractive.off(event.value0,handler.constructor());
@@ -186,17 +186,17 @@ var push = function(keypath){
 };
 
 var pop = function(keypath){
-   return function(callback){
+  return function(callback){
     var cb = createCallback('pop', callback);
     return function(ractive){
       return function(){
-          var ok = ractive.pop(keypath).then(function(r){
-                return r;
-            }).catch(function(err){
-              console.log('pop failed, error: ' + err);
-          });
-          cb(ok)();
-          return {};
+        var ok = ractive.pop(keypath).then(function(r){
+          return r;
+        }).catch(function(err){
+          console.log('pop failed, error: ' + err);
+        });
+        cb(ok)();
+        return {};
       };
     };
   };
@@ -216,8 +216,8 @@ var findAll = function(selector){
       return function(){
         var elements = null;
         if(options &&
-          options.constructor &&
-          options.constructor.name == 'Nothing'){
+           options.constructor &&
+           options.constructor.name == 'Nothing'){
           elements = ractive.findAll(selector);
         }else{
           elements = ractive.findAll(selector, options.value0);
@@ -233,8 +233,8 @@ var add = function(keypath){
   return function(number){
     var num = 1;
     if(number &&
-      number.constructor &&
-      number.constructor.name != 'Nothing'){
+       number.constructor &&
+       number.constructor.name != 'Nothing'){
       num = number.value0;
     }
     return function(callback){
@@ -242,9 +242,9 @@ var add = function(keypath){
       return function(ractive){
         return function(){
           var ok = ractive.add(keypath, num).then(function(r){
-                return r;
-            }).catch(function(err){
-              console.log('add failed, error: ' + err);
+            return r;
+          }).catch(function(err){
+            console.log('add failed, error: ' + err);
           });
           cb(ok)();
           return {};
@@ -255,11 +255,11 @@ var add = function(keypath){
 };
 
 var subtract = function(keypath){
-   return function(number){
+  return function(number){
     var num = 1;
     if(number &&
-      number.constructor &&
-      number.constructor.name != 'Nothing'){
+       number.constructor &&
+       number.constructor.name != 'Nothing'){
       num = number.value0;
     }
     return function(callback){
@@ -267,9 +267,9 @@ var subtract = function(keypath){
       return function(ractive){
         return function(){
           var ok = ractive.subtract(keypath, num).then(function(r){
-                return r;
-            }).catch(function(err){
-              console.log('subtract failed, error: ' + err);
+            return r;
+          }).catch(function(err){
+            console.log('subtract failed, error: ' + err);
           });
           cb(ok)();
           return {};
@@ -332,13 +332,13 @@ var animate = function(keypath){
       return function(ractive){
         return function(){
           if(options &&
-            options.constructor &&
-            options.constructor.name != 'Nothing'){
-              ractive.animate(keypath,value,options).then(function(){
+             options.constructor &&
+             options.constructor.name != 'Nothing'){
+            ractive.animate(keypath,value,options).then(function(){
 
-              }).catch(function(err){
-                console.log('animate failed, error: ' + err);
-              });
+            }).catch(function(err){
+              console.log('animate failed, error: ' + err);
+            });
           }else{
             ractive.animate(keypath, value).then(function(){
 
@@ -358,9 +358,9 @@ var insert = function(ractive) {
     return function(anchor){
       return function(){
         if(anchor &&
-          anchor.constructor &&
-          anchor.constructor.name != 'Nothing'){
-            ractive.insert(target.value0, anchor.value0);
+           anchor.constructor &&
+           anchor.constructor.name != 'Nothing'){
+          ractive.insert(target.value0, anchor.value0);
         }else {
           ractive.insert(target.value0);
         }
@@ -381,8 +381,8 @@ var fire = function(eventName){
     return function(ractive){
       return function(){
         if(args &&
-          args.constructor &&
-          args.constructor.name != 'Nothing'){
+           args.constructor &&
+           args.constructor.name != 'Nothing'){
           ractive.fire(eventName, args.value0);
         }else{
           ractive.fire(eventName);
@@ -403,28 +403,28 @@ var render = function(target){
 };
 
 var reset = function(data){
-    return function(callback){
-      var cb = createCallback('reset', callback);
-      return function(ractive){
-        return function(){
-          var ok = null;
-          if(data &&
-            data.constructor &&
-            data.constructor.name != 'Nothing'){
-            ok = ractive.reset(data.value0).then(function(r){
-                  return r;
-              }).catch(function(err){
-                  console.log('reset failed, error: ' + err);
-              });
-          }else{
-            ok = ractive.reset().then(function(r){
-                  return r;
-              }).catch(function(err){
-                  console.log('reset failed, error: ' + err);
-              });
-          }
-          cb(ok)();
-          return {};
+  return function(callback){
+    var cb = createCallback('reset', callback);
+    return function(ractive){
+      return function(){
+        var ok = null;
+        if(data &&
+           data.constructor &&
+           data.constructor.name != 'Nothing'){
+          ok = ractive.reset(data.value0).then(function(r){
+            return r;
+          }).catch(function(err){
+            console.log('reset failed, error: ' + err);
+          });
+        }else{
+          ok = ractive.reset().then(function(r){
+            return r;
+          }).catch(function(err){
+            console.log('reset failed, error: ' + err);
+          });
+        }
+        cb(ok)();
+        return {};
       };
     };
   };
@@ -437,10 +437,10 @@ var resetPartial = function(name){
       return function(ractive){
         return function(){
           var ok = ractive.resetPartial(name, partial.value0).then(function(r){
-                  return r;
-              }).catch(function(err){
-                  console.log('resetPartial failed, error: ' + err);
-              });
+            return r;
+          }).catch(function(err){
+            console.log('resetPartial failed, error: ' + err);
+          });
           cb(ok)();
           return {};
         };
@@ -472,19 +472,19 @@ var splice = function(keypath){
             return function(){
               var ok = null;
               if(add &&
-                add.constructor &&
-                add.constructor.name != 'Nothing'){
-                  ok = ractive.splice(keypath, index, removeCount, add.value0).then(function(r){
+                 add.constructor &&
+                 add.constructor.name != 'Nothing'){
+                ok = ractive.splice(keypath, index, removeCount, add.value0).then(function(r){
                   return r;
-              }).catch(function(err){
+                }).catch(function(err){
                   console.log('splice failed, error: ' + err);
-              });
+                });
               }else{
                 ok = ractive.splice(keypath, index, removeCount, []).then(function(r){
                   return r;
-              }).catch(function(err){
+                }).catch(function(err){
                   console.log('splice failed, error: ' + err);
-              });
+                });
               }
               cb(ok)();
               return {};
@@ -513,10 +513,10 @@ var toggle = function(keypath){
     return function(ractive){
       return function(){
         var ok = ractive.toggle(keypath).then(function(r){
-                  return r;
-              }).catch(function(err){
-                  console.log('toggle failed, error: ' + err);
-              });
+          return r;
+        }).catch(function(err){
+          console.log('toggle failed, error: ' + err);
+        });
         cb(ok)();
         return {};
       };
@@ -535,10 +535,10 @@ var unrender = function(callback){
   return function(ractive){
     return function(){
       var ok = ractive.unrender().then(function(r){
-                  return r;
-              }).catch(function(err){
-                  console.log('unrender failed, error: ' + err);
-              });
+        return r;
+      }).catch(function(err){
+        console.log('unrender failed, error: ' + err);
+      });
       cb(ok)();
       return {};
     };
@@ -552,10 +552,10 @@ var unshift = function(keypath){
       return function(ractive){
         return function(){
           var ok = ractive.unshift(keypath, value).then(function(r){
-                  return r;
-              }).catch(function(err){
-                  console.log('reset failed, error: ' + err);
-              });
+            return r;
+          }).catch(function(err){
+            console.log('reset failed, error: ' + err);
+          });
           cb(ok)();
           return {};
         };
@@ -571,19 +571,19 @@ var update = function(keypath){
       return function(){
         var ok = null;
         if(keypath &&
-          keypath.constructor &&
-          keypath.constructor.name != 'Nothing'){
+           keypath.constructor &&
+           keypath.constructor.name != 'Nothing'){
           ok = ractive.update(keypath).then(function(r){
-                  return r;
-              }).catch(function(err){
-                  console.log('update failed, error: ' + err);
-              });
+            return r;
+          }).catch(function(err){
+            console.log('update failed, error: ' + err);
+          });
         }else{
           ok = ractive.update().then(function(r){
-                  return r;
-              }).catch(function(err){
-                  console.log('update failed, error: ' + err);
-              });
+            return r;
+          }).catch(function(err){
+            console.log('update failed, error: ' + err);
+          });
         }
         cb(ok)();
         return {};
@@ -601,32 +601,32 @@ var updateModel = function(keypath){
           var cas = null;
           var ok = null;
           if(cascade &&
-            cascade.constructor &&
-            cascade.constructor.name != 'Nothing'){
+             cascade.constructor &&
+             cascade.constructor.name != 'Nothing'){
             cas = cascade.value0;
           }
           if(keypath &&
-            keypath.constructor &&
-            keypath.constructor.name != 'Nothing'){
+             keypath.constructor &&
+             keypath.constructor.name != 'Nothing'){
             if(cas){
               ok = ractive.updateModel(keypath.value0, cas).then(function(r){
-                  return r;
+                return r;
               }).catch(function(err){
-                  console.log('updateModel failed, error: ' + err);
+                console.log('updateModel failed, error: ' + err);
               });
             }else{
               ok = ractive.updateModel(keypath.value0).then(function(r){
-                  return r;
+                return r;
               }).catch(function(err){
-                  console.log('updateModel failed, error: ' + err);
+                console.log('updateModel failed, error: ' + err);
               });
             }
           }else{
             ok = ractive.updateModel().then(function(r){
-                  return r;
-              }).catch(function(err){
-                  console.log('updateModel failed, error: ' + err);
-              });
+              return r;
+            }).catch(function(err){
+              console.log('updateModel failed, error: ' + err);
+            });
           }
           cb(ok)();
           return {};
@@ -637,18 +637,18 @@ var updateModel = function(keypath){
 };
 
 var ractive = function(settings){
-    return function(){
-      var s = extractSettings(settings);
-      return new Ractive(s);
-    };
+  return function(){
+    var s = extractSettings(settings);
+    return new Ractive(s);
+  };
 };
 
 var extend = function(settings){
-    return function(){
-      var s = extractSettings(settings);
-      var r = Ractive.extend(s);
-      return r;
-    };
+  return function(){
+    var s = extractSettings(settings);
+    var r = Ractive.extend(s);
+    return r;
+  };
 }
 
 /* HELPERS */

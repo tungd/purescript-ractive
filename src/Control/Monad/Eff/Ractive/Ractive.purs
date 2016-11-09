@@ -1,81 +1,81 @@
 module Control.Monad.Eff.Ractive
-      (
-          Data(..)
-        , Target(..)
-        , Anchor(..)
-        , Argument(..)
-        , RactivePartial(..)
-        , RactiveValue(..)
-        , RactiveEventCallback
-        , RactiveObserverCallback
-        , ObserverEventData
-        , ObserverOptions
-        , AnimateOptions
-        , FindAllOptions
-        , FindAllComponentsOptions
-        , StepFunction
-        , CompleteFunction
-        , EasingFunction
-        , EasingParam(..)
-        , RenderQuery(..)
-        , RactiveEff
-        , RactiveM
-        , Ractive
-        , DOMNode
-        , DOMEvent
-        , Text
-        , Element
-        , Cancellable
-        , Easing
-        , Event
-        , add
-        , animate
-        , detach
-        , extend
-        , find
-        , findAll
-        , findAllComponents
-        , findComponent
-        , findContainer
-        , findParent
-        , fire
-        , get
-        , insert
-        , observe
-        , observeOnce
-        , off
-        , on
-        , pop
-        , push
-        , render
-        , reset
-        , resetPartial
-        , set
-        , shift
-        , subtract
-        , splice
-        , teardown
-        , toggle
-        , toHTML
-        , unrender
-        , unshift
-        , update
-        , updateModel
-        , logRaw
-        , ractive
-      )
-      where
+       (
+         Data(..)
+       , Target(..)
+       , Anchor(..)
+       , Argument(..)
+       , RactivePartial(..)
+       , RactiveValue(..)
+       , RactiveEventCallback
+       , RactiveObserverCallback
+       , ObserverEventData
+       , ObserverOptions
+       , AnimateOptions
+       , FindAllOptions
+       , FindAllComponentsOptions
+       , StepFunction
+       , CompleteFunction
+       , EasingFunction
+       , EasingParam(..)
+       , RenderQuery(..)
+       , RactiveEff
+       , RactiveM
+       , Ractive
+       , DOMNode
+       , DOMEvent
+       , Text
+       , Element
+       , Cancellable
+       , Easing
+       , Event
+       , add
+       , animate
+       , detach
+       , extend
+       , find
+       , findAll
+       , findAllComponents
+       , findComponent
+       , findContainer
+       , findParent
+       , fire
+       , get
+       , insert
+       , observe
+       , observeOnce
+       , off
+       , on
+       , pop
+       , push
+       , render
+       , reset
+       , resetPartial
+       , set
+       , shift
+       , subtract
+       , splice
+       , teardown
+       , toggle
+       , toHTML
+       , unrender
+       , unshift
+       , update
+       , updateModel
+       , logRaw
+       , ractive
+       )
+       where
 
-import Prelude                   (Unit)
-import Control.Monad.Eff         (Eff)
+import Prelude
+import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE)
-import Data.List                 (List)
-import Data.Foreign.EasyFFI      (unsafeForeignFunction, unsafeForeignProcedure)
+import Data.Foreign.EasyFFI (unsafeForeignFunction, unsafeForeignProcedure)
+import Data.List (List)
 import Data.Nullable (Nullable)
 
 data Data a b = Data {
   template :: String,
-  "data"   :: { | a}
+  "data"   :: { | a }
   |
   b -- optional properties like "components", "partials", "el" etc.
 }
