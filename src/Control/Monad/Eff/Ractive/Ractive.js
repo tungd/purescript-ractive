@@ -122,7 +122,7 @@ var on = function(event) {
     return function(ractive) {
       return function() {
         var cancellable = ractive.on(event, function(ev){
-          return handler(ev)(this);
+          return handler(ev);
         });
         return cancellable || null;
       };
